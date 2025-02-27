@@ -9,12 +9,25 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish --access public
+      - name: Get latest tag
+        id: get_tag
+        run: echo "TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+      - name: Update package.json version
+        run: |
+          VERSION="${{ steps.get_tag.outputs.tag }}"
+          sed -i "s/\"version\": \".*\"/\"version\": \"$VERSION\"/g" package.json
+      - name: Install dependencies and publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm ci
+          npm publish --access public --tag ${{ steps.get_tag.outputs.tag }}
