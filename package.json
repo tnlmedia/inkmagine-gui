@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "Inkmagine GUI components",
   "author": "TNL Media Group <to.it@tnlmediagene.com>",
+  "keywords": [
+    "inkmagine",
+    "vue",
+    "components"
+  ],
   "scripts": {},
   "repository": {
     "type": "git",
