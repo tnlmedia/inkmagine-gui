@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "target": "esnext",
+    "allowJs": false,
+    "checkJs": false,
+    "declaration": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "removeComments": true,
+    // "useDefineForClassFields": true,
+    // "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "Bundler",
+    // "allowImportingTsExtensions": true,
+    // "emitDeclarationOnly": true,
+    // "isolatedModules": true,
+    // "moduleDetection": "force",
+    // "noEmit": true,
+    "jsx": "preserve",
+    "noImplicitAny": true,
+    "composite": true, 
+    "incremental": true,
+
+    /* Linting */
+    "strict": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*":["./src/*"]
+    },
+
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+  },
+  "include": ["src/lang/*.json","src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"],
+  "exclude": ["node_modules", "dist"]
+}

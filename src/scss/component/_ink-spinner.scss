@@ -1,0 +1,19 @@
+.tw-spinner-grow {
+  @apply tw-inline-block tw-h-8 tw-w-8 tw-rounded-full tw-opacity-0;
+  animation: spinnerGrow 0.75s linear infinite;
+}
+.tw-spinner-grow-gray{
+  @apply tw-bg-gray-900;
+}
+.tw-spinner-md{
+  @apply tw-h-5 tw-w-5;
+}
+
+@keyframes spinnerGrow {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+  }
+}

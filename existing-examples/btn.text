@@ -1,0 +1,108 @@
+<RouterLink 
+  :to="{name:'adv-type-create',query:{...router.currentRoute.value.query,console_id:currentConsole?.console.id}}" //
+  class="tw-btn-txt tw-btn-primary">
+  {{ $t('createType') }} // 
+</RouterLink>
+
+<button
+  type="button" //
+  @click="router.push({name:'adv-type',query:{...router.currentRoute.value.query,console_id:currentConsole?.console.id}})" //
+  class="tw-btn-txt tw-btn-primary-100 tw-mr-2 lg:tw-flex-grow" //
+>
+  {{ $t('cancel') }}
+</button>
+
+<button
+  type="button"
+  class="tw-btn-txt tw-btn-primary-100 d-none tw-m-0 tw-min-w-[88px]"
+  data-dismiss="modal" //
+>
+  取消
+</button>
+
+// overViewInfo, tableInfo, tableDelete: VTooltip > button
+<VTooltip :disabled="Boolean(list.deletable)">
+  <button
+    class="tw-btn-icon-xs tw-shrink-0 tw-text-gray-700"
+    :disabled="!Boolean(list.deletable) || currentConsoleUserPermission.view"
+    @click="handleDelete(list.id, list.article.title)"
+  >
+    <i class="far fa-trash"></i>
+  </button>
+  <template #popper>
+    {{ $t('enabledCannotDeleted') }}
+  </template>
+</VTooltip>
+
+// 
+<button
+  :class="[
+    'tw-btn-txt',
+    isLoading ? 'tw-btn-outline-gray-400' : 'tw-btn-primary',
+  ]"
+  :disabled="!beforeContent || isLoading"
+  @click="handleAiSuggest"
+>
+  <Loading v-if="isLoading" :isShow="true" class="tw-mx-auto tw-h-5 tw-w-5"/>
+  <template v-else>
+    {{ t('ai.AI-generated') }}
+  </template>
+</button>
+<button
+  :class="['tw-btn-outline-gray-400 tw-min-w-auto',{'tw-btn-icon':!filteredCount, 'tw-btn-icon-txt':filteredCount}]"
+  :disabled="!selectFilters.length"
+  data-test="filter-toggler"
+  @click="isShowSelect = !isShowSelect"
+  :data-text="filteredCount ? `(${filteredCount})` : ''"
+>
+  <i class="icon far fa-sliders-h tw-text-gray-700"></i>
+</button>
+<!-- 編輯 -->
+<router-link
+  :to="{
+    name: 'article-edit',
+    params: { id: article.id },
+    query: { team_id: env.workspace.team, article_type: article.type.id },
+  }"
+  custom
+  v-slot="{ href, navigate }"
+>
+<span :class="{ 'tw-cursor-not-allowed tw-opacity-25': !article.editable || article.locker.id === 0 }">
+  <a
+    :href="href"
+    :class="[
+      'tw-btn-icon-xs d-flex tw-items-center tw-shrink-0 tw-text-gray-700',
+      { 'tw-pointer-events-none': !article.editable || article.locker.id === 0 },
+    ]"
+    @click="navigate"
+  >
+    <i class="far fa-pen"></i>
+  </a>
+</span>
+</router-link>
+
+<button 
+type="submit" 
+class="tw-btn-txt tw-btn-primary lg:tw-flex-grow">
+  {{ router.currentRoute.value?.params?.id ? $t('update') : $t('create') }}
+</button>
+
+<button
+  v-if="currentConsoleUserPermission.view"
+  disabled //
+  class="tw-btn-icon-xs tw-shrink-0 tw-text-gray-700"
+  type="button"
+>
+  <i class="fa-regular fa-sliders"></i>
+</button> 
+<router-link
+  v-else
+  class="tw-btn-icon-xs tw-shrink-0 tw-text-gray-700"
+  :to="{
+    name: 'adv-type-edit',
+    params: { id: list.id },
+    query: { console_id: currentConsole?.console?.id || 0 }
+  }"
+>
+  <i class="fa-regular fa-sliders"></i>
+</router-link>
