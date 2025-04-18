@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import '@/scss/component/_ink-button.scss'
-import { useAttrs, computed } from 'vue'
+import { computed } from 'vue'
 import InkSpinner from '@/components/InkSpinner.vue'
+import { restAttrs } from '@/helper/attrs'
 
-const attrs = useAttrs()
-const { class: className, ...restAttrs } = attrs
 interface ButtonProps { 
   as?: 'a' | 'button' | 'router-link',
   type?: 'button' | 'submit' | 'reset',

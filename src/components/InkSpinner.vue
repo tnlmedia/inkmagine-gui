@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import '@/scss/component/_ink-spinner.scss'
-import { computed, useAttrs } from 'vue'
-
-const attrs = useAttrs()
-const { class: className, ...restAttrs } = attrs
+import { computed } from 'vue'
+import { restAttrs } from '@/helper/attrs'
 interface InkSpinnerProps {
   size?: 'md'
   theme?: 'gray'
@@ -19,5 +17,8 @@ const classList = computed(() => {
 })
 </script>
 <template>
-  <div :class="['tw-spinner-grow',classList]"></div>
+  <div 
+  v-bind="restAttrs"
+  :class="['tw-spinner-grow',classList]"
+  ></div>
 </template>
