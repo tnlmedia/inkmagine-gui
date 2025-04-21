@@ -325,3 +325,67 @@ InkMenu
 - 所有組件都預設套用了相應的樣式類
 - 可以通過 `class` 屬性來自定義樣式
 - 支援 Tailwind CSS 的樣式類
+
+### InkDisclosure 展開/收合組件
+
+InkDisclosure 是基於 @headlessui/vue 的 Disclosure 組件封裝，提供了一個可展開/收合的內容區塊解決方案。
+
+#### 基本用法
+```vue
+<InkDisclosure v-slot="{ open }" :defaultOpen="true">
+  <InkDisclosureButton>
+    標題
+  </InkDisclosureButton>
+  <InkDisclosurePanel>
+    展開的內容
+  </InkDisclosurePanel>
+</InkDisclosure>
+```
+
+#### 進階用法 - 群組展開
+```vue
+<InkDisclosure 
+  v-for="(item, index) in group" 
+  v-slot="{ open }" 
+  :defaultOpen="defaultOpen[index]"
+>
+  <InkDisclosureButton @click="onOpen(index)">
+    {{ item.name }}
+  </InkDisclosureButton>
+  <div v-show="open">
+    <InkDisclosurePanel static :unmount="false">
+      <DynamicComponent 
+        v-for="field in item.field" 
+        :key="field.id" 
+        :field="field"
+        :value="fieldValue.find(item => item.id === field.id)?.value" 
+      />
+    </InkDisclosurePanel>
+  </div>
+</InkDisclosure>
+```
+
+#### InkDisclosure 相關組件說明
+
+| 組件名稱 | @headlessui/vue 組件名稱 | 說明 | 屬性 | 預設值 | 可選值 |
+|---------|-------------------------|------|------|--------|--------|
+| `InkDisclosure` | `Disclosure` | 展開/收合容器，管理內容的展開狀態 |  -  |  -  |  -  |
+| `InkDisclosureButton` | `DisclosureButton` | 觸發按鈕，控制內容的展開/收合 | `as`<br>`type` | 'button'<br>'button' | string<br>string |
+| `InkDisclosurePanel` | `DisclosurePanel` | 可展開/收合的內容區塊 |  -  |  -  |  -  |
+
+#### 組件關係
+```
+InkDisclosure (展開/收合容器)
+├── InkDisclosureButton (觸發按鈕)
+└── InkDisclosurePanel (內容區塊)
+```
+
+#### 使用說明
+1. `InkDisclosure` 提供 `v-slot="{ open }"` 用於獲取當前的展開狀態
+2. `defaultOpen` 屬性可以設定預設是否展開
+3. `InkDisclosureButton` 預設包含展開/收合的箭頭圖標
+
+#### 樣式
+- 按鈕預設使用灰色主題 (`tw-disclosure-button-gray`)
+- 箭頭圖標會根據展開狀態自動旋轉
+- 支援 Tailwind CSS 的樣式類
