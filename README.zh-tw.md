@@ -294,10 +294,10 @@ InkMenu 是基於 @headlessui/vue 的 Menu 組件封裝，提供了一個完整�
 | 組件名稱 | @headlessui/vue 組件名稱 | 說明 | 屬性 | 預設值 | 可選值 |
 |---------|-------------------------|------|------|--------|--------|
 | `InkMenu` | `Menu` | 選單容器，管理選單的狀態和行為 | `as` | 'div' | string \| Component |
-| `InkMenuButton` | `MenuButton` | 觸發按鈕，控制選單的開啟/關閉 | `as` | 'template' | string \| Component |
+| `InkMenuButton` | `MenuButton` | 觸發按鈕，控制選單的開啟/關閉。<br> `as` 是 template 時 props 還是要從 `InkMenuButton` 往下傳遞。 | `as` | 'template' | string \| Component |
 | `InkMenuItems` | `MenuItems` | 選單項目容器，包含所有選單項目 | - | - | - |
 | `InkMenuItemsWrapper` | - | 選單項目包裝器，用於自定義選單項目的樣式 | - | - | - |
-| `InkMenuItem` | `MenuItem` | 選單項目，可以是連結、按鈕或其他元素 | `as` | 'template' | string |
+| `InkMenuItem` | `MenuItem` | 選單項目，可以是連結、按鈕或其他元素。<br> `as` 是 template 時，子層不能只放字串 | `as` | 'template' | string |
 
 #### 組件關係
 ```

@@ -1,4 +1,5 @@
 <!-- button example -->
+```vue
 <div class="tw-text-xlmix">==== INK ====</div>
 <strong>- string link</strong>
 <div class="tw-flex tw-gap-1">
@@ -173,3 +174,4 @@
   <InkButton as="a" href="#" variant="txt" :disabled="testLoading" :loading="testLoading"
     theme="primary"><i class="far fa-sliders-h"></i>loading</InkButton>
 </div>
+```

@@ -1,3 +1,4 @@
+```vue
 // 1. InkMenuItem dosen't setting the props as
 <InkMenu v-slot="{open, close}">
   <InkMenuButton>
@@ -127,3 +128,4 @@
       <div v-if="targetIsVisible" ref="target"></div>
     </InkMenuItemsWrapper>
   </InkMenuItems>
+```

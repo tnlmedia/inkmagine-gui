@@ -1,0 +1,68 @@
+// editCategory: Disclosure
+<Disclosure
+  v-for="(item, index) in group" // 外部傳進來資料
+  v-slot="{ open }"
+  :defaultOpen="defaultOpen[index]" // 預設 API value & consumer attr
+>
+  <DisclosureButton
+    class="tw-flex tw-w-full tw-items-center tw-justify-between tw-border-0 tw-bg-gray-100 tw-py-2.5 tw-pl-5 tw-pr-6" // 固定樣式
+    @click="onOpen(index)" // 固定 open 事件
+  >
+    <span class="tw-text-xlmix tw-font-semibold tw-text-gray-900">{{ item.name }}</span>// 固定樣式，外部傳進來的資料
+    <i
+      :class="[
+        'far fa-angle-down tw-text-base tw-text-gray-700', // 固定樣式 與 icon
+        { 'tw-rotate-180': open }, // 固定 open 樣式
+      ]"
+    ></i>
+  </DisclosureButton>
+  <div v-show="open">
+    <DisclosurePanel static class="tw-px-6 tw-py-4 lg:tw-px-4 [&>div+div]:tw-mt-4"> // 固定樣式
+     // 外部傳進來的資料||元件(slot)
+      <DynamicComponent
+        v-for="field in item.field"
+        :key="field.id"
+        :field="field"
+        :value="fieldValue.find(item => item.id === field.id)?.value"
+      />
+    </DisclosurePanel>
+  </div>
+</Disclosure>
+
+
+// sidebarTeamsList: Disclosure
+<!-- 品牌列表 -->
+<Disclosure as="div" class="brand-nav-item">
+  <DisclosureButton
+  class="nav-link tw-font-semibold tw-border-0 tw-bg-transparent tw-text-left"
+  >
+  <figure class="tw-border tw-border-solid tw-border-gray-300">
+      <img v-if="currentTeam.logo" :src="currentTeam.logo" :alt="currentTeam.name"/>
+    </figure>
+    <span class="brand-nav-item__title link-title text-break">
+      {{  currentTeam.name }}
+    </span>
+    <i v-if="env.team.length > 1" class="fal fa-chevron-down fa-fw link-arrow"></i>
+  </DisclosureButton>
+  <DisclosurePanel 
+   v-if="env.team.length > 1"
+   id="team_list"
+   v-slot="{ close }"
+  >
+    <ul class="nav sub-menu">
+      <template v-for="item in env.team" :key="item.id">
+      <li 
+        v-if="item.id !== currentTeam.id" 
+        class="nav-item"
+      >
+        <a href class="nav-link" @click.prevent="checkSwitchEnv({ team_id: item.id },close)">
+          <figure class="tw-border tw-border-solid tw-border-gray-300">
+            <img v-if="item.logo" :src="item.logo" :alt="item.name"/>
+          </figure>
+          <span class="link-title">{{ item.name }}</span>
+        </a>
+      </li>
+      </template>
+    </ul>
+  </DisclosurePanel>
+</Disclosure>
