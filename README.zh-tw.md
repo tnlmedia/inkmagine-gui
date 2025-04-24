@@ -21,6 +21,59 @@ export default {
   ],
 }
 ```
+## 全域設定說明
+
+### vue-i18n language
+
+在初始化應用程式時，可以透過 `inkmagineGui` 的選項來設定語言：
+
+```js
+import inkmagineGui from "@tnlmedia/inkmagine-gui"
+
+createApp(App)
+  .use(inkmagineGui, { lang: 'zh-tw' }) // 設定語言
+```
+
+#### 支援的語言
+- `zh-tw`: 繁體中文
+- `en-us`: 英文
+- `ja-jp`: 日文
+
+如果未指定語言，預設將使用 `en-us`。
+
+## 容器使用說明
+
+### InkNavbar 
+
+InkNavbar 是一個導航欄組件，提供網站頂部的導航功能，包含側邊欄切換、應用程式選單和用戶選單等功能。
+
+#### 基本用法
+```vue
+<InkNavbar 
+  :timezone="user?.timezone" 
+  :user="user" 
+  logoutUrl="/logout" 
+/>
+```
+
+#### 屬性說明
+
+| 屬性名稱 | 類型 | 必填 | 說明 |
+|---------|------|------|------|
+| `timezone` | string | 否 | 用戶的時區設定 |
+| `user` | object | 是 | 用戶資訊物件，包含以下屬性：<br>- `nickname`: 用戶暱稱<br>- `avatar`: 用戶頭像 URL<br>- `mail`: 用戶電子郵件 |
+| `logoutUrl` | string | 是 | 登出功能的 URL |
+
+#### 功能說明
+- 側邊欄切換按鈕
+- 時區顯示
+- 應用程式選單（包含 dashboard、member、team、cabinet 等應用）
+- 用戶選單（包含用戶資訊、個人資料和登出功能）
+
+#### 注意事項
+- 應用程式選單的 URL 會根據當前環境（sandbox、stage、production）自動調整
+- 用戶頭像若未設定，將顯示用戶電子郵件的第一個字母
+- 所有文字內容都支援多語言設定
 
 ## 組件使用說明
 

@@ -1,0 +1,25 @@
+{
+  "logout": "ログアウト",
+  "navbar": {
+    "apps": {
+        "service":"サービス",
+        "dashboard":{
+            "description": "Inkmagine の機能とサービスの概要",
+            "label": "サービスインデックス"
+        },
+        "cabinet": {
+            "description": "記事の編集、投稿者とカテゴリーの設定",
+            "label": "記事管理"
+        },
+        "member": {
+            "description": "個人アカウント情報の管理",
+            "label": "アカウント管理"
+        },
+        "team": {
+            "description": "ブランド作成、メンバー追加、使用者権限の設定",
+            "label": "ブランド管理"
+        }
+    },
+    "profile": "プロフィール"
+  }
+}

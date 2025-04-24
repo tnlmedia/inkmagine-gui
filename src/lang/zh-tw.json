@@ -1,0 +1,25 @@
+{
+  "logout":"登出",
+  "navbar": {
+    "apps": {
+        "service":"服務",
+        "dashboard":{
+            "description": "總覽 Inkmagine 特色與服務",
+            "label": "服務首頁"
+        },
+        "cabinet": {
+            "description": "編輯文章、設定作者與分類",
+            "label": "文章管理"
+        },
+        "member": {
+            "description": "管理個人帳戶資訊",
+            "label": "會員中心"
+        },
+        "team": {
+            "description": "你可以建立品牌，定義品牌內的角色並邀請成員",
+            "label": "品牌管理"
+        }
+    },
+    "profile": "個人資訊"
+  }
+}

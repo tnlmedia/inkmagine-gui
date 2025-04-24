@@ -9,6 +9,10 @@ import InkMenuItemsWrapper from '@/components/ink-menu/InkMenuItemsWrapper.vue'
 import InkDisclosure from './components/ink-disclosure/InkDisclosure.vue'
 import InkDisclosureButton from '@/components/ink-disclosure/InkDisclosureButton.vue'
 import InkDisclosurePanel from '@/components/ink-disclosure/InkDisclosurePanel.vue'
+import InkNavbar from '@/components/InkNavbar.vue'
+import { inkI18n } from '@/helper/i18n'
+import { setFont } from '@/helper/set-font'
+
 export {
   InkButton,
   InkSpinner,
@@ -19,20 +23,13 @@ export {
   InkMenuItemsWrapper,
   InkDisclosure,
   InkDisclosureButton,
-  InkDisclosurePanel
+  InkDisclosurePanel,
+  InkNavbar
 }
 
 export default {
-  install: (app: App) => {
-    app.component('InkButton', InkButton)
-    app.component('InkSpinner', InkSpinner)
-    app.component('InkMenu', InkMenu)
-    app.component('InkMenuButton', InkMenuButton)
-    app.component('InkMenuItems', InkMenuItems)
-    app.component('InkMenuItem', InkMenuItem)
-    app.component('InkMenuItemsWrapper', InkMenuItemsWrapper)
-    app.component('InkDisclosure', InkDisclosure)
-    app.component('InkDisclosureButton', InkDisclosureButton)
-    app.component('InkDisclosurePanel', InkDisclosurePanel)
+  install: (app: App, options: { lang?: 'zh-tw' | 'en-us' | 'ja-jp' }) => {
+    setFont(options.lang)
+    inkI18n.global.locale.value = options.lang || 'en-us'
   }
 } 

@@ -26,8 +26,18 @@ export default {
 <!-- example from example folder -->
 ## compoment example
 
+| 全域名稱 | 範例 |
+|---------|---------|
+| inkmagineGui| [範例程式碼](./ink-example/inkmagineGui.md)|
+
+| 容器名稱 | 範例 |
+|---------|---------|
+| InkNavbar |[範例程式碼](./ink-example/InkNavbar.md)|
+
 | 元件名稱 | 範例 |
 |---------|---------|
+| inkmagineGui| [範例程式碼](./ink-example/inkmagineGui.md)|
+| InkNavbar |[範例程式碼](./ink-example/InkNavbar.md)|
 | InkButton | [範例程式碼](./ink-example/InkButton.md) | 
 | InkMenu | [範例程式碼](./ink-example/InkMenu.md) | 
 | InkDisclosure | [範例程式碼](./ink-example/InkDisclosure.md) |

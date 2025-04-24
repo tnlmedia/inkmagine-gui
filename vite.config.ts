@@ -35,13 +35,18 @@ export default defineConfig({
       fileName: (format) => `inkmagine-gui.${format}.js`,
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'vue-i18n', 'dayjs', 'js-cookie','tailwindcss', '@headlessui/vue'],
       output: {
         dir: 'dist',
         // preserveModules: true,
         exports: 'named',
         globals: {
-          vue: 'Vue'
+          vue: 'Vue',
+          'vue-i18n': 'vue-i18n',
+          dayjs: 'dayjs',
+          'js-cookie': 'js-cookie',
+          'tailwindcss': 'tailwindcss',
+          '@headlessui/vue': '@headlessui/vue'
         },
         // Put chunk files at <output>/chunks
         chunkFileNames: 'chunks/[name].[hash].js',

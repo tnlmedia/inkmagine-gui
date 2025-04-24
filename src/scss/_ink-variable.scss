@@ -1,0 +1,42 @@
+// Sidebar
+$sidebar-width-lg: 300px;
+$sidebar-folded-width: 70px;
+// Sidebar
+
+// Navbar
+$navbar-height: 60px;
+$content-nav-width: 220px;
+// Navbar
+
+//btn
+// $btn-disabled-opacity: .4;
+//btn
+
+// icon
+$btn-icon-size: 32px;
+// icon
+
+// size
+$default-font-size: theme("fontSize.sm");
+// $border-radius: theme("borderRadius.md");
+$dropdown-padding-y: .5rem;
+//
+
+// color
+$sidebar-light-bg:#fff;
+$body-color: #fff;
+$border-color: #EBEBF0; // gray200
+$sidebar-dark-border-color: theme("colors.gray.300");
+$sidebar-light-border-color:theme("colors.gray.100");
+// $white:#fff;
+$text-muted: theme("colors.gray.600");
+$sidebar-dark-bg:theme("colors.gray.50");
+$theme-colors: (
+  "primary": #007bff,
+  "secondary": #676A88, // gray600
+  "light": #F3F3F6, // gray100
+);
+@function theme-color($color-name) {
+  @return map-get($theme-colors, $color-name);
+}
+// color

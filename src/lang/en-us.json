@@ -1,0 +1,25 @@
+{
+  "logout": "Logout",
+  "navbar": {
+    "apps": {
+        "service":"Service",
+        "dashboard":{
+            "description": "Overview Inkmagine Features and Services",
+            "label": "Service Index"
+        },
+        "cabinet": {
+            "description": "Edit articles, setting authors and categories",
+            "label": "Cabinet"
+        },
+        "member": {
+            "description": "Manage your account",
+            "label": "Member"
+        },
+        "team": {
+            "description": "Set up your team. You can define roles and invite team members.",
+            "label": "Team"
+        }
+    },
+    "profile": "Profile"
+  }
+}
