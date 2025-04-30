@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<DisclosureButtonProps>(), {
     :type=" as === 'button' ? type : undefined"
     v-bind="restAttrs"
     v-slot="slotProps"
-    class="tw-disclosure-button tw-disclosure-button-gray"
+    class="tw-disclosure-button tw-disclosure-button-gray tw-text-xlmix"
     :as="as"
     >
         <slot v-bind="slotProps" />

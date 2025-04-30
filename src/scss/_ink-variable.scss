@@ -1,3 +1,4 @@
+@use "sass:map";
 // Sidebar
 $sidebar-width-lg: 300px;
 $sidebar-folded-width: 70px;
@@ -37,6 +38,6 @@ $theme-colors: (
   "light": #F3F3F6, // gray100
 );
 @function theme-color($color-name) {
-  @return map-get($theme-colors, $color-name);
+  @return map.get($theme-colors, $color-name);
 }
 // color

@@ -1,4 +1,4 @@
-@import '@/scss/_ink-variable.scss';
+@use '@/scss/_ink-variable.scss' as *;
 .navbar {
     width: 100%;
     height: $navbar-height;

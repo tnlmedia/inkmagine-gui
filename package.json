@@ -33,12 +33,12 @@
     "watch": "vue-tsc -b && vite build --watch --mode development"
   },
   "peerDependencies": {
-    "@headlessui/vue": "^1.7.23",
+    "@headlessui/vue": "^1.6.2",
+    "dayjs": "^1.11.2",
+    "js-cookie": "^2.2.1",
     "tailwindcss": "^3.4.14",
     "vue": "^3.2.0",
-    "vue-i18n": "^9.1.10",
-    "dayjs": "^1.11.2",
-    "js-cookie": "^2.2.1"
+    "vue-i18n": "^9.1.10"
   },
   "repository": {
     "type": "git",
@@ -69,7 +69,7 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.23",
-    "dayjs": "^1.11.13",
-    "js-cookie": "^3.0.5"
+    "dayjs": "^1.11.2",
+    "js-cookie": "^2.2.1"
   }
 }

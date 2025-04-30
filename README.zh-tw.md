@@ -9,6 +9,11 @@ Inkmagine 是一個統一的組件和樣式庫，提供了一系列可重用的 
 ```bash
 npm install @tnlmedia/inkmagine-gui
 ```
+- 如果遇到 peerDependencies 的套件版本過低可以使用忽略 peerDependencies 套件的安裝方式
+
+```bash
+npm install @tnlmedia/inkmagine-gui --legacy-peer-deps
+```
 
 ## 可用樣式使用說明
 ### tailwind config
@@ -74,6 +79,99 @@ InkNavbar 是一個導航欄組件，提供網站頂部的導航功能，包含�
 - 應用程式選單的 URL 會根據當前環境（sandbox、stage、production）自動調整
 - 用戶頭像若未設定，將顯示用戶電子郵件的第一個字母
 - 所有文字內容都支援多語言設定
+
+### InkSidebar
+
+InkSidebar 是一個側邊欄組件，提供網站的主要導航功能，包含品牌切換、選單導航等功能。
+
+#### 基本用法
+```vue
+<InkSidebar
+  :currentAppName="$t('sandwich')" 
+  :currentMainSwitchItem="newcurrentConsole" 
+  :mainSwitchItems="user.permission.map((item:Permission) => item.console)"
+  @mainItemCheckSwitch="checkSwitchEnv"
+  :menu="menu"
+/>
+```
+
+#### 進階用法（使用插槽）
+```vue
+<InkSidebar 
+  :currentAppName="trans('cabinet.name')" 
+  :currentMainSwitchItem="currentTeam" 
+  :mainSwitchItems="env.team"
+  @mainItemCheckSwitch="checkSwitchEnv"
+  @tabItemCheckSwitch="checkSwitchEnv"
+  :menu="menu"
+  :currentTabSwitchItemId="env.workspace.console"
+  :tabSwitchItems="consoleList"
+>
+  <!-- 自定義內容 -->
+  <InkButton
+    as="router-link"
+    variant="txt"
+    theme="primary"
+    :to="{ name: 'article-create' }"
+  >
+    <i class="far fa-edit tw-text-base"></i>
+    <InkSidebarSimpleHide>
+      {{ trans('buttons.compose') }}
+    </InkSidebarSimpleHide>
+  </InkButton>
+</InkSidebar>
+```
+
+#### 屬性說明
+
+| 屬性名稱 | 類型 | 必填 | 說明 |
+|---------|------|------|------|
+| `currentAppName` | string | 是 | 當前應用程式名稱 |
+| `currentMainSwitchItem` | object | 是 | 當前選中的主要切換項目，包含以下屬性：<br>- `id`: 項目 ID<br>- `name`: 項目名稱<br>- `logo`: 項目圖標 URL |
+| `mainSwitchItems` | array | 是 | 主要切換項目列表，每個項目包含與 `currentMainSwitchItem` 相同的屬性 |
+| `currentTabSwitchItemId` | string \| number | 否 | 當前選中的標籤切換項目 ID |
+| `tabSwitchItems` | array | 否 | 標籤切換項目列表，每個項目包含與 `currentMainSwitchItem` 相同的屬性 |
+| `menu` | array | 是 | 選單項目列表，每個項目包含以下屬性：<br>- `id`: 項目 ID<br>- `name`: 項目名稱<br>- `icon`: 圖標類名<br>- `route`: 路由資訊（可選）<br>- `children`: 子選單項目（可選）<br>- `isAllow`: 是否允許訪問（可選） |
+
+#### 事件說明
+
+| 事件名稱 | 參數 | 說明 |
+|---------|------|------|
+| `mainItemCheckSwitch` | `(item: SwitchItem, close: () => void)` | 當主要切換項目被點擊時觸發 |
+| `tabItemCheckSwitch` | `(item: SwitchItem)` | 當標籤切換項目被點擊時觸發 |
+
+#### 功能說明
+- 側邊欄可折疊/展開
+- 支援品牌切換功能
+- 支援多層級選單結構
+- 支援路由導航
+- 支援權限控制
+- 支援自定義內容（通過插槽）
+
+#### 注意事項
+- 選單項目的 `isAllow` 屬性用於控制項目的顯示權限
+- 子選單項目的路由資訊必須包含 `name` 屬性
+- 側邊欄的折疊狀態會保存在 body 的 class 中
+
+#### 相關組件說明
+
+| 組件名稱 | 說明 | 屬性 | 預設值 | 可選值 |
+|---------|------|------|--------|--------|
+| `InkSidebarSimpleHide` | 側邊欄折疊時隱藏內容的包裝器 | `as` | 'span' | string \| Component |
+
+#### 組件關係
+```
+InkSidebar
+├──slot
+│  └── InkSidebarSimpleHide (折疊時隱藏內容)
+└── InkSidebarMenu (選單列表，已包含在容器內)
+```
+
+#### 使用說明
+1. `InkSidebarSimpleHide` 用於包裝需要在側邊欄折疊時隱藏的內容
+2. 可以通過 `as` 屬性來自定義渲染的標籤或組件
+3. 預設使用 `span` 標籤渲染
+4. 支援插槽內容
 
 ## 組件使用說明
 

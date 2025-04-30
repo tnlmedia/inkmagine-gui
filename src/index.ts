@@ -10,6 +10,8 @@ import InkDisclosure from './components/ink-disclosure/InkDisclosure.vue'
 import InkDisclosureButton from '@/components/ink-disclosure/InkDisclosureButton.vue'
 import InkDisclosurePanel from '@/components/ink-disclosure/InkDisclosurePanel.vue'
 import InkNavbar from '@/components/InkNavbar.vue'
+import InkSidebar from '@/components/ink-sidebar/InkSidebar.vue'
+import InkSidebarSimpleHide from '@/components/ink-sidebar/InkSidebarSimpleHide.vue'
 import { inkI18n } from '@/helper/i18n'
 import { setFont } from '@/helper/set-font'
 
@@ -24,7 +26,9 @@ export {
   InkDisclosure,
   InkDisclosureButton,
   InkDisclosurePanel,
-  InkNavbar
+  InkNavbar,
+  InkSidebar,
+  InkSidebarSimpleHide
 }
 
 export default {

@@ -3,7 +3,12 @@
   import '@/scss/component/_user-default-img.scss'
   import { handleSidebarTogglerClick } from '@/helper/handle-sidebar-toggler-click'
   import { utcTimezone } from '@/helper/dayjs'
-  import { InkButton, InkMenu, InkMenuButton, InkMenuItems, InkMenuItemsWrapper, InkMenuItem } from "@tnlmedia/inkmagine-gui"
+  import InkButton from '@/components/InkButton.vue'
+  import InkMenu from '@/components/ink-menu/InkMenu.vue'
+  import InkMenuButton from '@/components/ink-menu/InkMenuButton.vue'
+  import InkMenuItems from '@/components/ink-menu/InkMenuItems.vue'
+  import InkMenuItemsWrapper from '@/components/ink-menu/InkMenuItemsWrapper.vue'
+  import InkMenuItem from '@/components/ink-menu/InkMenuItem.vue'
   import { t } from '@/helper/i18n'
   interface NavbarProps {
     timezone?: string
