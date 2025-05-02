@@ -47,4 +47,5 @@ export default {
 | InkButton | [範例程式碼](./ink-example/InkButton.md) | 
 | InkMenu | [範例程式碼](./ink-example/InkMenu.md) | 
 | InkDisclosure | [範例程式碼](./ink-example/InkDisclosure.md) |
+| InkVTooltip | [範例程式碼](./ink-example/InkVTooltip.md) |
 

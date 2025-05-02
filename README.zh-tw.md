@@ -540,3 +540,68 @@ InkDisclosure (展開/收合容器)
 - 按鈕預設使用灰色主題 (`tw-disclosure-button-gray`)
 - 箭頭圖標會根據展開狀態自動旋轉
 - 支援 Tailwind CSS 的樣式類
+
+#### InkVTooltip 相關組件說明
+
+InkVTooltip 是基於 [floating-vue](https://floating-vue.starpad.dev/) 的 Tooltip 組件封裝，提供簡易的提示訊息功能，支援多種觸發方式（hover、focus、click）。
+
+##### 基本用法
+```vue
+<InkVTooltip>
+  <button type="button"><i class="fa-regular fa-circle-info"></i></button>
+  <template #popper>
+    {{ tipContent }}
+  </template>
+</InkVTooltip>
+```
+
+##### 禁用狀態
+```vue
+<InkVTooltip :disabled="Boolean(list.deletable)">
+  <InkButton
+    size="xs"
+    variant="icon"
+    theme="transparent"
+    :disabled="!Boolean(list.deletable) || currentConsoleUserPermission.view"
+    @click="handleDelete(list.id, list.article.title)"
+  >
+    <i class="far fa-trash"></i>
+  </InkButton>
+  <template #popper>
+    {{ $t('enabledCannotDeleted') }}
+  </template>
+</InkVTooltip>
+```
+
+##### 屬性說明
+
+| 屬性名稱   | 類型    | 預設值   | 說明                       |
+|------------|---------|----------|----------------------------|
+| `disabled` | Boolean | false    | 是否停用 Tooltip 顯示      |
+
+- 更多詳細屬性與用法，請參考 [floating-vue 官方 API 文件](https://floating-vue.starpad.dev/api/)，以獲得完整的組件參數說明。
+
+##### 插槽說明
+
+| 插槽名稱   | 說明                       |
+|------------|----------------------------|
+| default    | 觸發 Tooltip 的內容         |
+| popper     | Tooltip 彈出時顯示的內容   |
+
+##### 功能說明
+- 支援 hover、focus、click 觸發（預設同時啟用）
+- 可自訂提示內容（支援 slot）
+- 可透過 `disabled` 屬性停用提示
+- 彈出位置預設為下方（bottom）
+
+##### 組件關係
+```
+InkVTooltip
+└── Tooltip (floating-vue)
+    ├── slot (觸發內容)
+    └── slot name="popper" (提示內容)
+```
+
+##### 注意事項
+- 需安裝 floating-vue 及其樣式（已於組件內自動引入）
+- 適用於任何需要提示說明的場景
