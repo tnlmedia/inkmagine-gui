@@ -12,7 +12,7 @@ import InkDisclosurePanel from '@/components/ink-disclosure/InkDisclosurePanel.v
 import InkNavbar from '@/components/InkNavbar.vue'
 import InkSidebar from '@/components/ink-sidebar/InkSidebar.vue'
 import InkSidebarSimpleHide from '@/components/ink-sidebar/InkSidebarSimpleHide.vue'
-import InkVTooltip from '@/components/InkVTooltip.vue'
+import { InkVTooltip, vInkTooltip } from '@/components/ink-tooltip/Ink-tooltip'
 import { inkI18n } from '@/helper/i18n'
 import { setFont } from '@/helper/set-font'
 
@@ -30,7 +30,8 @@ export {
   InkNavbar,
   InkSidebar,
   InkSidebarSimpleHide,
-  InkVTooltip
+  InkVTooltip,
+  vInkTooltip
 }
 
 export default {

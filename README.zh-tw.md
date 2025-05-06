@@ -129,7 +129,7 @@ InkSidebar 是一個側邊欄組件，提供網站的主要導航功能，包含
 | `currentAppName` | string | 是 | 當前應用程式名稱 |
 | `currentMainSwitchItem` | object | 是 | 當前選中的主要切換項目，包含以下屬性：<br>- `id`: 項目 ID<br>- `name`: 項目名稱<br>- `logo`: 項目圖標 URL |
 | `mainSwitchItems` | array | 是 | 主要切換項目列表，每個項目包含與 `currentMainSwitchItem` 相同的屬性 |
-| `currentTabSwitchItemId` | string \| number | 否 | 當前選中的標籤切換項目 ID |
+| `currentTabSwitchItemId` | string \| number | 否 | 當前選中的 tabSwitchItems 切換項目的 id |
 | `tabSwitchItems` | array | 否 | 標籤切換項目列表，每個項目包含與 `currentMainSwitchItem` 相同的屬性 |
 | `menu` | array | 是 | 選單項目列表，每個項目包含以下屬性：<br>- `id`: 項目 ID<br>- `name`: 項目名稱<br>- `icon`: 圖標類名<br>- `route`: 路由資訊（可選）<br>- `children`: 子選單項目（可選）<br>- `isAllow`: 是否允許訪問（可選） |
 
@@ -152,6 +152,7 @@ InkSidebar 是一個側邊欄組件，提供網站的主要導航功能，包含
 - 選單項目的 `isAllow` 屬性用於控制項目的顯示權限
 - 子選單項目的路由資訊必須包含 `name` 屬性
 - 側邊欄的折疊狀態會保存在 body 的 class 中
+- InkSidebarMenu 組件使用 [Vue Router](https://router.vuejs.org/) 作為路由管理工具，請確保您的專案中已安裝此套件。
 
 #### 相關組件說明
 
@@ -540,6 +541,32 @@ InkDisclosure (展開/收合容器)
 - 按鈕預設使用灰色主題 (`tw-disclosure-button-gray`)
 - 箭頭圖標會根據展開狀態自動旋轉
 - 支援 Tailwind CSS 的樣式類
+
+#### vInkTooltip 相關組件說明
+
+vInkTooltip 是基於 [floating-vue](https://floating-vue.starpad.dev/) 的指令封裝，提供簡易的提示訊息功能。
+
+##### 基本用法
+```vue
+<span v-inkTooltip.right="'test'">test</span>
+```
+
+##### 功能說明
+- 支援多種位置設定（如 .right、.left、.top、.bottom 等）
+- 可自訂提示內容（支援字串或 HTML）
+- 適用於任何需要提示說明的場景
+- 更多詳細屬性與用法，請參考 [floating-vue 官方 API 文件](https://floating-vue.starpad.dev/api/)，以獲得完整的組件參數說明。
+
+##### 注意事項
+- 需安裝 floating-vue 及其樣式（已於組件內自動引入）
+- 建議用於簡單的文字提示場景
+- 如需更複雜的提示功能，請使用 InkVTooltip 組件
+
+##### 組件關係
+```
+vInkTooltip (指令)
+└── Tooltip (floating-vue)
+```
 
 #### InkVTooltip 相關組件說明
 

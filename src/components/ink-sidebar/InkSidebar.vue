@@ -3,7 +3,8 @@
   import "@/scss/component/_ink-sidebar-simple.scss"
   import { handleSidebarTogglerClick } from '@/helper/handle-sidebar-toggler-click'
   import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
-  import  InkSidebarMenu  from '@/components/ink-sidebar/InkSidebarMenu.vue'
+  import InkSidebarMenu from '@/components/ink-sidebar/InkSidebarMenu.vue'
+  import { vInkTooltip } from '@/components/ink-tooltip/Ink-tooltip'
   interface SwitchItem {
     id: string | number, // TODO 套用時跟後端確認:value 123 改用字串，後端改給 "123"; 之後後端 id to uuid "a456" 時前端不需要再修改
     name: string,
@@ -75,7 +76,7 @@
           v-for="item in tabSwitchItems"
           :key="item.id"
           :class="['nav-item', { active: item.id === currentTabSwitchItemId }]"
-          v-tooltip.right="item.name"
+          v-inkTooltip.right="item.name"
         >
           <button
             type="button"

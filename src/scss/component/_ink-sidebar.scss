@@ -132,6 +132,9 @@
                         }
                         .nav-link.router-link-active{
                           @apply tw-text-gray-900 tw-font-semibold;
+                          .icon{
+                            @apply tw-text-primary-500;
+                          }
                           &::before {
                               @apply tw-border-0 tw-bg-primary-500;
                           }
@@ -380,19 +383,19 @@
                         }
                     }
 
-                    &:hover,
-                    &.active {
-                        .nav-link {
-                            svg {
-                                color: inherit;
-                                fill: rgba(theme-color(light), 0.2);
-                            }
+                    // &:hover,
+                    // &.active {
+                    //     .nav-link {
+                    //         svg {
+                    //             color: inherit;
+                    //             fill: rgba(theme-color(light), 0.2);
+                    //         }
 
-                            .link-title {
-                                color: #28293d;
-                            }
-                        }
-                    }
+                    //         .link-title {
+                    //             color: #28293d;
+                    //         }
+                    //     }
+                    // }
                 }
             }
         }

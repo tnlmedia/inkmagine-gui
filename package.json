@@ -39,7 +39,8 @@
     "tailwindcss": "^3.4.14",
     "vue": "^3.2.0",
     "vue-i18n": "^9.1.10",
-    "floating-vue": "^5.2.2"
+    "floating-vue": "^5.2.2",
+    "vue-router": "^4.0.16"
   },
   "repository": {
     "type": "git",
