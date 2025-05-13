@@ -11,7 +11,8 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
     children?: MenuChildrenItemSchema[],
     isAllow?: boolean,
   }
-  export interface MenuChildrenItemSchema { 
+export interface MenuChildrenItemSchema { 
+    id: string | number,
     name: string,
     route: {
       name: string,
@@ -20,7 +21,8 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
     isAllow: boolean,
   }
   interface SidebarMenuProps {
-    menu:MenuItemSchema[]
+    menu:MenuItemSchema[],
+    currentMenuItemId: string | number,
   }
   const props = defineProps<SidebarMenuProps>()
 
@@ -61,7 +63,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
                       :to="{
                         ...subitem.route
                       }"
-                      :class="['nav-link tw-pl-10']"
+                      :class="['nav-link tw-pl-10', { 'router-link-active': currentMenuItemId === subitem?.id }]"
                     >
                       {{ subitem.name }}
                     </router-link>
@@ -72,7 +74,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
         </template>
         <!-- 無子選單 -->
         <template v-else>
-          <router-link :to="{ ...item.route }" class="nav-link before:tw-hidden">
+          <router-link :to="{ ...item.route }" :class="['nav-link before:tw-hidden', { 'router-link-active': currentMenuItemId === item.id }]">
             <i :class="['icon', 'far', 'fa-fw', item.icon]"></i>
             <span class="link-title tw-pt-0">{{ item.name }}</span>
           </router-link>

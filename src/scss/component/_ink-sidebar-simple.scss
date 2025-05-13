@@ -8,9 +8,9 @@
             }
         }
     }
-    .nav__title {
-        display: none;
-    }
+    // .nav__title {
+    //     display: none;
+    // }
     .page-wrapper {
         width: calc(100% - #{$sidebar-folded-width});
         margin-left: $sidebar-folded-width;

@@ -21,7 +21,8 @@
     children?: MenuChildrenItemSchema[],
     isAllow?: boolean,
   }
-  interface MenuChildrenItemSchema { 
+interface MenuChildrenItemSchema { 
+    id: string | number,
     name: string,
     route: {
       name: string,
@@ -36,7 +37,8 @@
     mainSwitchItems:SwitchItem[],
     currentTabSwitchItemId?:string | number,
     tabSwitchItems?:SwitchItem[],
-    menu:MenuItemSchema[],
+    menu: MenuItemSchema[],
+    currentMenuItemId: string | number,
   }
   const props = defineProps<SidebarProps>()
 
@@ -92,7 +94,7 @@
 
       <div class="nav" v-scrollBar>
         <div class="nav__header">
-          <h3 class="nav__title">{{ currentAppName }}</h3>
+          <h3 class="nav__title nav-simple-hide">{{ currentAppName }}</h3>
           <!-- 品牌列表 -->
           <Disclosure as="div" class="brand-nav-item">
             <DisclosureButton
@@ -129,7 +131,7 @@
           </Disclosure>
           <slot></slot>
         </div>
-        <InkSidebarMenu :menu="menu"/>
+        <InkSidebarMenu :menu="menu" :currentMenuItemId="currentMenuItemId"/>
       </div>
     </div>
   </nav>
