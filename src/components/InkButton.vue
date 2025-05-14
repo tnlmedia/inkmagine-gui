@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import '@/scss/component/_ink-button.scss'
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
 import InkSpinner from '@/components/InkSpinner.vue'
 import { restAttrs } from '@/helper/attrs'
 
@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   disabled: false,
   loading: false
 })
-
+const computedRestAttrs = computed(restAttrs)
 const classList = computed(() => {
   const list = []
   switch (props.variant) { 
@@ -45,7 +45,7 @@ const classList = computed(() => {
 </script>
 <template>
     <component 
-    v-bind="restAttrs"
+    v-bind="computedRestAttrs"
     :is="as"
     :type="as === 'button' ? type : undefined"
     :disabled="disabled"
