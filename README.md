@@ -23,6 +23,7 @@ import {inkTailwindConfig} from '@tnlmedia/inkmagine-gui/tailwind.config.js'
 export default {
   ...inkTailwindConfig,
   content: [
+    './node_modules/@tnlmedia/inkmagine-gui/**/*.{js,ts,vue}',
     'Set the file path to be scanned in the project'
   ],
 }

@@ -13,6 +13,9 @@ import InkNavbar from '@/components/InkNavbar.vue'
 import InkSidebar from '@/components/ink-sidebar/InkSidebar.vue'
 import InkSidebarSimpleHide from '@/components/ink-sidebar/InkSidebarSimpleHide.vue'
 import { InkVTooltip, vInkTooltip } from '@/components/ink-tooltip/Ink-tooltip'
+import InkField from '@/components/input/InkField.vue'
+import InkText from '@/components/input/InkText.vue'
+import InkUrl from '@/components/input/InkUrl.vue'
 import { inkI18n } from '@/helper/i18n'
 import { setFont } from '@/helper/set-font'
 
@@ -31,7 +34,10 @@ export {
   InkSidebar,
   InkSidebarSimpleHide,
   InkVTooltip,
-  vInkTooltip
+  vInkTooltip,
+  InkField,
+  InkText,
+  InkUrl
 }
 
 export default {

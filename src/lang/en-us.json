@@ -1,5 +1,7 @@
 {
   "logout": "Logout",
+  "requiredHint": "(Required)",
+  "add": "Add",
   "navbar": {
     "apps": {
         "service":"Service",

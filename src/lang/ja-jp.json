@@ -1,5 +1,7 @@
 {
   "logout": "ログアウト",
+  "requiredHint": "(必須)",
+  "add":"追加",
   "navbar": {
     "apps": {
         "service":"サービス",
