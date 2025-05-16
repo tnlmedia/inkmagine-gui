@@ -89,10 +89,11 @@ InkSidebar 是一個側邊欄組件，提供網站的主要導航功能，包含
 ```vue
 <InkSidebar
   :currentAppName="$t('sandwich')" 
-  :currentMainSwitchItem="newcurrentConsole" 
+  :currentMainSwitchItem="currentConsole?.console" 
   :mainSwitchItems="user.permission.map((item:Permission) => item.console)"
   @mainItemCheckSwitch="checkSwitchEnv"
   :menu="menu"
+  :currentMenuItemId="checkCurrentMenuItemId"
 />
 ```
 
@@ -105,6 +106,7 @@ InkSidebar 是一個側邊欄組件，提供網站的主要導航功能，包含
   @mainItemCheckSwitch="checkSwitchEnv"
   @tabItemCheckSwitch="checkSwitchEnv"
   :menu="menu"
+  :currentMenuItemId="checkCurrentMenuItemId"
   :currentTabSwitchItemId="env.workspace.console"
   :tabSwitchItems="consoleList"
 >
@@ -133,6 +135,7 @@ InkSidebar 是一個側邊欄組件，提供網站的主要導航功能，包含
 | `currentTabSwitchItemId` | string \| number | 否 | 當前選中的 tabSwitchItems 切換項目的 id |
 | `tabSwitchItems` | array | 否 | 標籤切換項目列表，每個項目包含與 `currentMainSwitchItem` 相同的屬性 |
 | `menu` | array | 是 | 選單項目列表，每個項目包含以下屬性：<br>- `id`: 項目 ID<br>- `name`: 項目名稱<br>- `icon`: 圖標類名<br>- `route`: 路由資訊（可選）<br>- `children`: 子選單項目（可選）<br>- `isAllow`: 是否允許訪問（可選） |
+| `currentMenuItemId` | string \| number | 是 | 當前選中的選單項目 ID |
 
 #### 事件說明
 
@@ -141,9 +144,45 @@ InkSidebar 是一個側邊欄組件，提供網站的主要導航功能，包含
 | `mainItemCheckSwitch` | `(item: SwitchItem, close: () => void)` | 當主要切換項目被點擊時觸發 |
 | `tabItemCheckSwitch` | `(item: SwitchItem)` | 當標籤切換項目被點擊時觸發 |
 
+#### 選單結構範例
+```js
+const menu = [
+  {
+    id: 'deliveryArticle',
+    icon: 'fa-file-waveform',
+    name: 'deliveryArticle',
+    children: [{
+      id: 'deliveryArticleOverview',
+      name: 'overview',
+      route: {
+        name: 'article-delivery-overview',
+        query: {
+          console_id: currentConsole?.console?.id
+        }
+      },
+      isAllow: true,
+    }],
+  },
+  {
+    id: 'setting',
+    icon: 'fa-gear',
+    name: 'setting',
+    children: [{
+      id: 'deliveryPosition',
+      name: 'deliveryPosition',
+      route: {
+        name: 'position',
+        query: {
+          console_id: currentConsole?.console?.id
+        }
+      },
+      isAllow: true,
+    }],
+  },
+];
+```
+
 #### 功能說明
-- 側邊欄可折疊/展開
-- 支援品牌切換功能
 - 支援多層級選單結構
 - 支援路由導航
 - 支援權限控制
@@ -153,7 +192,8 @@ InkSidebar 是一個側邊欄組件，提供網站的主要導航功能，包含
 - 選單項目的 `isAllow` 屬性用於控制項目的顯示權限
 - 子選單項目的路由資訊必須包含 `name` 屬性
 - 側邊欄的折疊狀態會保存在 body 的 class 中
-- InkSidebarMenu 組件使用 [Vue Router](https://router.vuejs.org/) 作為路由管理工具，請確保您的專案中已安裝此套件。
+- InkSidebarMenu 組件使用 [Vue Router](https://router.vuejs.org/) 作為路由管理工具，請確保您的專案中已安裝此套件
+- 當使用 `tabSwitchItems` 時，需要同時提供 `currentTabSwitchItemId` 屬性
 
 #### 相關組件說明
 

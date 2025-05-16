@@ -2,10 +2,11 @@
 // not use slot
   <InkSidebar
   :currentAppName="$t('sandwich')" 
-  :currentMainSwitchItem="newcurrentConsole" 
+  :currentMainSwitchItem="currentConsole?.console" 
   :mainSwitchItems="user.permission.map((item:Permission) => item.console)"
   @mainItemCheckSwitch="checkSwitchEnv"
   :menu="menu"
+  :currentMenuItemId="checkCurrentMenuItemId"
   />
 // use slot
   <InkSidebar 
@@ -15,6 +16,7 @@
   @mainItemCheckSwitch="checkSwitchEnv"
   @tabItemCheckSwitch="checkSwitchEnv"
   :menu="menu"
+  :currentMenuItemId="checkCurrentMenuItemId"
   :currentTabSwitchItemId="env.workspace.console"
   :tabSwitchItems="consoleList"
   >
@@ -88,12 +90,13 @@
   </InkSidebar>
 
   // menu array 參考 1
-  const menu = computed<MenuItemSchema[]>(() => [
+const menu = computed<MenuItemSchema[]>(() => [
       {
       id: 'deliveryArticle',
       icon: 'fa-file-waveform',
       name: $t('deliveryArticle'),
       children: [{
+          id: 'deliveryArticleOverview',
           name: $t('overview'),
           route: {
             name: 'article-delivery-overview',
@@ -103,6 +106,7 @@
           },
           isAllow: basePermission.value,
         },{
+          id: 'deliveryArticleList',
           name: $t('deliveryArticleList'),
           route: {
             name: 'article-delivery',
@@ -130,6 +134,7 @@
       icon: 'fa-gear',
       name: $t('setting'),
       children: [{
+        id: 'deliveryPosition',
         name: $t('deliveryPosition'),
         route: {
           name: 'position',
@@ -139,6 +144,7 @@
         },
         isAllow: currentConsoleUserPermission.value.manage,
       },{
+        id: 'displayAdvType',
         name: $t('displayAdvType'),
         route: {
           name: 'adv-type',
@@ -172,8 +178,9 @@
       url: 'categories-list',
       icon: 'fa-folder-open',
       name: trans('cabinet.sidebar.menu.categories'),
-      children: globalStore.env.term_type?.map(({name, slug}) => {
+      children: globalStore.env.term_type?.map(({id, name, slug}) => {
         return {
+          id,
           name,
           slug,
           route: {
