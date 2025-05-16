@@ -7,5 +7,5 @@ const props = defineProps({
 })
 </script>
 <template>
-  <em :class="'tw-description-message tw-block'" v-html="props.descriptionText"></em>
+  <em :class="'tw-field-message tw-block'" v-html="props.descriptionText"></em>
 </template>

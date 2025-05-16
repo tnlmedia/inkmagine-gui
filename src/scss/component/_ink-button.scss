@@ -114,3 +114,8 @@
     @apply tw-bg-transparent;
   }
   /* button style end */
+
+  // exception button
+  .tw-btn-remove {
+    @apply tw-border-0 tw-border-solid tw-border-gray-400 tw-bg-gray-100 tw-p-2.5 tw-leading-none tw-text-gray-700;
+  }

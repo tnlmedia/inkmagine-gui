@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import '@/scss/component/_ink-form.scss';
 import { InkVTooltip } from '@/components/ink-tooltip/Ink-tooltip';
 import InkButton from '@/components/InkButton.vue';
 import { t } from '@/helper/i18n';
 import { defineAsyncComponent, computed, watch } from 'vue';
 import type { FieldDataSharp } from '@/components/input/field-data-interface';
 import { useFieldArray } from 'vee-validate';
-import InkDescriptionMessage from '@/components/input/InkDescriptionMessage.vue';
+import InkFieldMessage from '@/components/input/InkFieldMessage.vue';
 import { fieldDefaultValue, checkFieldMax } from '@/components/input/input-default-value';
 interface DraggableItemOrder {
     inputId: string;
@@ -116,7 +117,7 @@ if(fields.value.length === 0) {
     @removeInputItemFn="onRemoveItemHandler"
     >
     </component>
-    <InkDescriptionMessage v-if="field.description" :descriptionText="field.description"/>
+    <InkFieldMessage v-if="field.description" :descriptionText="field.description"/>
     <InkButton
       v-if="inputTotal < checkFieldMax(field.max)"
       as="button"
