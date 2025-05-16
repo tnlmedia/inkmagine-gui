@@ -35,6 +35,8 @@ type Placeholder = {
 // type Description = {
 //   description?: string;
 // }
+export type NumberLimit = [number | false, number | false];
+export type FileLimit = [number, string[]];
 type Limit = {
   /* false is no range
     Text: chars range
@@ -44,7 +46,7 @@ type Limit = {
     file: size, mime type
     image: width and height range
   */
-  limit?: boolean | number[] | boolean[];
+  limit?: false | NumberLimit | number[] | FileLimit;
 }
 // type Type = {
 //   type?: string;

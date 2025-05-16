@@ -2,6 +2,21 @@
   "logout":"登出",
   "requiredHint": "(必填)",
   "add":"新增",
+  
+
+  "required":"必填",
+  "isSlug":"只能以小寫英文字母、數字、連接線(-)及底線(_)及點(.)組成",
+  "isMoreThenTextLimit": "超過最大字數，請縮短到 {length} 字元以下",
+  "isLessThenTextLimit": "不能小於 {length} 個字元",
+  "isMoreThenNumberLimit": "數字必須小於或等於 {length}",
+  "isLessThenNumberLimit": "數字必須大於或等於 {length}",
+  "isMoreThenMax": "不能大於 {length} 個項目",
+  "isLessThenMin": "不能小於 {length} 個項目",
+  "isUrl": "請輸入有效的網址",
+  "isEmail": "請輸入有效的電子郵件",
+  "isJson": "請符合 JSON 格式",
+  "Words": "字",
+
   "navbar": {
     "apps": {
         "service":"服務",

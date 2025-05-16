@@ -2,6 +2,20 @@
   "logout": "Logout",
   "requiredHint": "(Required)",
   "add": "Add",
+
+  "required":"Required",
+  "isSlug":"Can only be composed of lowercase English letters, numbers, connecting lines (-) and underscores (_) and dot(.)",
+  "isMoreThenTextLimit": "Exceeds the maximum number of characters, please shorten it to {length} characters or less",
+  "isLessThenTextLimit": "Text must be at least {length} characters",
+  "isMoreThenNumberLimit": "Number must be less than or equal to {length}",
+  "isLessThenNumberLimit": "Number must be greater than or equal to {length}",
+  "isMoreThenMax": "Must be less than or equal to {length} item",
+  "isLessThenMin": "Must be greater than or equal to {length} item",
+  "isUrl": "Please enter a valid URL",
+  "isEmail": "Please match the email format",
+  "isJson": "Please match the JSON format",
+  "Words": "Words",
+
   "navbar": {
     "apps": {
         "service":"Service",

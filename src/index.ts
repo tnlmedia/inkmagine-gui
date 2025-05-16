@@ -18,6 +18,7 @@ import InkText from '@/components/input/InkText.vue'
 import InkUrl from '@/components/input/InkUrl.vue'
 import { inkI18n } from '@/helper/i18n'
 import { setFont } from '@/helper/set-font'
+import useInkDefineRule from '@/helper/useDefineRule'
 
 export {
   InkButton,
@@ -44,5 +45,6 @@ export default {
   install: (app: App, options: { lang?: 'zh-tw' | 'en-us' | 'ja-jp' }) => {
     setFont(options.lang)
     inkI18n.global.locale.value = options.lang || 'en-us'
+    useInkDefineRule()
   }
 } 

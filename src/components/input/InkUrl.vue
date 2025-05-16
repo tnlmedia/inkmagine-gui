@@ -33,7 +33,9 @@ const props = defineProps({
 const emit = defineEmits(['removeInputItemFn']);
 const rules = computed(() => ({
   required: props.required,
+  url: true,
 }));
+
 const { value, errorMessage } = useField(`${props.field.id}[${props.index}]`, rules);
 </script>
 <template>

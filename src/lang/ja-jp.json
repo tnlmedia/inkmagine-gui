@@ -2,6 +2,20 @@
   "logout": "ログアウト",
   "requiredHint": "(必須)",
   "add":"追加",
+
+  "required":"必須項目",
+  "isSlug":"小文字の英字、数字、ダッシュ(-)、アンダースコア(_)、ドット(.)で構成してください",
+  "isMoreThenTextLimit": "最大文字数を超えています。{length} 文字以下に短縮してください。",
+  "isLessThenTextLimit": "{length}文字以上にしてください",
+  "isMoreThenNumberLimit": "数字は{length}以下で入力してください",
+  "isLessThenNumberLimit": "数字は{length}以上で入力してください",
+  "isMoreThenMax": "{length}項目以下にしてください",
+  "isLessThenMin": "{length}項目以上にしてください",
+  "isUrl": "有効なURLを入力してください",
+  "isEmail": "正しいemailの形式で入力してください",
+  "isJson": "JSON 形式に合わせてください",
+  "Words": "文字",
+
   "navbar": {
     "apps": {
         "service":"サービス",
