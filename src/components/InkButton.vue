@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import '@/scss/component/_ink-button.scss'
-import { computed, useAttrs } from 'vue'
+import { computed } from 'vue'
 import InkSpinner from '@/components/InkSpinner.vue'
-import { restAttrs } from '@/helper/attrs'
+import { useRestAttrs } from '@/helper/useAttrs'
 
 interface ButtonProps { 
   as?: 'a' | 'button' | 'router-link',
@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   disabled: false,
   loading: false
 })
-const computedRestAttrs = computed(restAttrs)
+const restAttrs = useRestAttrs()
 const classList = computed(() => {
   const list = []
   switch (props.variant) { 
@@ -45,7 +45,7 @@ const classList = computed(() => {
 </script>
 <template>
     <component 
-    v-bind="computedRestAttrs"
+    v-bind="restAttrs"
     :is="as"
     :type="as === 'button' ? type : undefined"
     :disabled="disabled"

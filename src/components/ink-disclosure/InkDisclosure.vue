@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Disclosure } from '@headlessui/vue'
-import { restAttrs } from '@/helper/attrs'
-const computedRestAttrs = computed(restAttrs)
+import { useRestAttrs } from '@/helper/useAttrs'
+const restAttrs = useRestAttrs()
 </script>
 <template>
     <Disclosure
-    v-bind="computedRestAttrs"
+    v-bind="restAttrs"
     v-slot="slotProps"
     >
         <slot v-bind="slotProps" />

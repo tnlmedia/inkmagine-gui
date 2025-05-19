@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { DisclosurePanel } from '@headlessui/vue'
-import { restAttrs } from '@/helper/attrs'
-import { computed } from 'vue'
-const computedRestAttrs = computed(restAttrs)
+import { useRestAttrs } from '@/helper/useAttrs'
+const restAttrs = useRestAttrs()
 </script>
 <template>
     <DisclosurePanel
-    v-bind="computedRestAttrs"
+    v-bind="restAttrs"
     v-slot="slotProps"
     class="tw-disclosure-panel"
     >

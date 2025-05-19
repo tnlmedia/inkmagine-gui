@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { MenuItems } from '@headlessui/vue'
-import { computed } from 'vue'
-import { restAttrs } from '@/helper/attrs'
-const computedRestAttrs = computed(restAttrs)
+import { useRestAttrs } from '@/helper/useAttrs'
+const restAttrs = useRestAttrs()
 </script>
 <template>
   <MenuItems 
-  v-bind="computedRestAttrs"
+  v-bind="restAttrs"
   v-slot="slotProps"
   class="tw-menu-items"
   >

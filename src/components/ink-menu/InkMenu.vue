@@ -2,8 +2,7 @@
 import '@/scss/component/_ink-menu.scss'
 import { type Component } from 'vue'
 import { Menu } from '@headlessui/vue'
-import { restAttrs } from '@/helper/attrs'
-import { computed } from 'vue'
+import { useRestAttrs } from '@/helper/useAttrs'
 
 interface MenuProps { 
   as?: string | Component,
@@ -11,11 +10,11 @@ interface MenuProps {
 const props = withDefaults(defineProps<MenuProps>(), {
   as: 'div'
 })
-const computedRestAttrs = computed(restAttrs)
+const restAttrs = useRestAttrs()
 </script>
 <template>
   <Menu 
-  v-bind="computedRestAttrs"
+  v-bind="restAttrs"
   :as="as"
   v-slot="slotProps"
   class="tw-menu"

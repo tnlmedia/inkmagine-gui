@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { type Component } from 'vue'
 import { MenuButton } from '@headlessui/vue'
-import { restAttrs } from '@/helper/attrs'
-import { computed } from 'vue'
-const computedRestAttrs = computed(restAttrs)
+import { useRestAttrs } from '@/helper/useAttrs'
+const restAttrs = useRestAttrs()
 interface MenuButtonProps { 
   as?: string | Component,
 }
@@ -13,7 +12,7 @@ const props = withDefaults(defineProps<MenuButtonProps>(), {
 </script>
 <template>
   <MenuButton
-  v-bind="computedRestAttrs"
+  v-bind="restAttrs"
   :as="as"
   v-slot="slotProps"
   >
