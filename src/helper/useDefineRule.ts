@@ -36,21 +36,21 @@ export default () => {
   // })
 
   // form cabinet
-  // defineRule('wordLimit', (value: string, [min, max]: [number, number]) => {
-  //   if (typeof value === 'undefined') return true; // for removed item data
+  defineRule('wordLimit', (value: string, [min, max]: [number, number]) => {
+    if (typeof value === 'undefined') return true; // for removed item data
 
-  //   min = min === 0 ? -Infinity : min;
-  //   max = max === 0 ? Infinity : max;
+    min = min === 0 ? -Infinity : min;
+    max = max === 0 ? Infinity : max;
 
-  //   const length = value ? value.trim().length : 0;
-  //   if (length < min) {
-  //     return t('isLessThenTextLimit', {length: min});
-  //   }
-  //   if (length > max) {
-  //     return t('isMoreThenTextLimit', {length: max});
-  //   }
-  //   return true;
-  // });
+    const length = value ? value.trim().length : 0;
+    if (length < min) {
+      return t('isLessThenTextLimit', {length: min});
+    }
+    if (length > max) {
+      return t('isMoreThenTextLimit', {length: max});
+    }
+    return true;
+  });
   // defineRule('numberLimit', (value: number, [min, max]: NumberLimit) => {
   //   if (typeof value === 'undefined') return true; // for removed item data
 

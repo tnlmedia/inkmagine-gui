@@ -1,3 +1,22 @@
+export const defaultInputProps = {
+  index: {
+    type: Number,
+    default: 0
+  },
+  required: {
+    type: Boolean,
+    default:false
+  },
+  disabled: {
+    type: Boolean,
+    default:false
+  },
+  inputTotal: {
+    type: Number,
+    default: 0
+  },
+}
+
 export const fieldDefaultValue = (type: string) => {
   return{
       id: '',

@@ -6,24 +6,9 @@ import InputWrapper from '@/components/input/InputWrapper.vue';
 import InputInner from '@/components/input/InputInner.vue';
 import InkErrorMessage from '@/components/input/InkErrorMessage.vue';
 import InputFrame from '@/components/input/InputFrame.vue';
-import { fieldDefaultValue, checkFieldMax } from '@/components/input/input-default-value';
+import { defaultInputProps, fieldDefaultValue, checkFieldMax } from '@/components/input/input-default-value';
 const props = defineProps({
-  index: {
-    type: Number,
-    default: 0
-  },
-  required: {
-    type: Boolean,
-    default:false
-  },
-  disabled: {
-    type: Boolean,
-    default:false
-  },
-  inputTotal: {
-    type: Number,
-    default: 0
-  },
+  ...defaultInputProps,
   field: {
     type: Object as PropType<UrlSharp>,
     required: true,
@@ -37,6 +22,7 @@ const rules = computed(() => ({
 }));
 
 const { value, errorMessage } = useField(`${props.field.id}[${props.index}]`, rules);
+
 </script>
 <template>
   <InputWrapper>
