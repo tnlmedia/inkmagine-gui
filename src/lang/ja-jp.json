@@ -14,7 +14,7 @@
   "isUrl": "有効なURLを入力してください",
   "isEmail": "正しいemailの形式で入力してください",
   "isJson": "JSON 形式に合わせてください",
-  "Words": "文字",
+  "words": "文字",
 
   "navbar": {
     "apps": {

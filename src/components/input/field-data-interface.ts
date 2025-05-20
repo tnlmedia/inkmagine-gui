@@ -37,6 +37,7 @@ type Placeholder = {
 // }
 export type NumberLimit = [number | false, number | false];
 export type FileLimit = [number, string[]];
+export type TextLimit = number[];
 type Limit = {
   /* false is no range
     Text: chars range
@@ -46,7 +47,7 @@ type Limit = {
     file: size, mime type
     image: width and height range
   */
-  limit?: false | NumberLimit | number[] | FileLimit;
+  limit?: false | NumberLimit | TextLimit | FileLimit;
 }
 // type Type = {
 //   type?: string;
@@ -106,6 +107,7 @@ type Option = {
 export type ModelValueSharp = Default;
 
 export type TextSharp = Base & Placeholder & Prefix & Suffix & Limit;
+export type TextareaSharp = Base & Placeholder & Limit;
 export type UrlSharp = Base & Placeholder;
 
 export type FieldDataSharp = Base & TextSharp & Step & Ratio & Viewport & Fluid & Hierarchy & Choosable & Option & Total;

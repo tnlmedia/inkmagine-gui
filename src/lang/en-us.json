@@ -14,7 +14,7 @@
   "isUrl": "Please enter a valid URL",
   "isEmail": "Please match the email format",
   "isJson": "Please match the JSON format",
-  "Words": "Words",
+  "words": "Words",
 
   "navbar": {
     "apps": {

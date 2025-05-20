@@ -1,4 +1,5 @@
 import { App } from 'vue'
+import '@/scss/component/_ink-text-color.scss'
 import InkButton from '@/components/InkButton.vue'
 import InkSpinner from '@/components/InkSpinner.vue'
 import InkMenu from '@/components/ink-menu/InkMenu.vue'

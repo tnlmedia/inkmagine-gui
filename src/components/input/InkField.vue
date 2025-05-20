@@ -7,7 +7,7 @@ import { defineAsyncComponent, computed, watch } from 'vue';
 import type { FieldDataSharp } from '@/components/input/field-data-interface';
 import { useFieldArray } from 'vee-validate';
 import InkFieldMessage from '@/components/input/InkFieldMessage.vue';
-import { fieldDefaultValue, checkFieldMax } from '@/components/input/input-default-value';
+import { fieldDefaultValue, useMergeFieldProps } from '@/components/input/input-default-value';
 interface DraggableItemOrder {
     inputId: string;
     value: string | number | boolean | object;
@@ -19,18 +19,25 @@ interface FieldProps {
 }
 
 const props = withDefaults(defineProps<FieldProps>(), {
-  field: () => (fieldDefaultValue('text')),
 });
+
 
 const componentMap = {
   text: defineAsyncComponent(() => import('@/components/input/InkText.vue')),
   url: defineAsyncComponent(() => import('@/components/input/InkUrl.vue')),
+  textarea: defineAsyncComponent(() => import('@/components/input/InkTextarea.vue')),
 } as const;
 
 type FieldType = keyof typeof componentMap;
 
+// 使用 computed 來獲取當前的欄位類型
+const fieldType = computed(() => props.field.type as FieldType);
+
+const { checkFieldMax, mergeField } = useMergeFieldProps<FieldDataSharp>(fieldType.value, props.field);
+
+
 const dynamicComponent = computed(() => {
-  return componentMap[props.field.type as FieldType];
+  return componentMap[mergeField.value.type as FieldType];
 });
 
 
@@ -50,11 +57,9 @@ type GetFieldValueType<T extends FieldType> =
     ? number | object
     : never;
 
-// 使用 computed 來獲取當前的欄位類型
-const fieldType = computed(() => props.field.type as FieldType);
 
 // 使用 fieldType.value 來決定 useFieldArray 的類型
-const { remove, push, fields, update, replace } = useFieldArray<GetFieldValueType<typeof fieldType.value>>(props.field.id);
+const { remove, push, fields, update, replace } = useFieldArray<GetFieldValueType<typeof fieldType.value>>(mergeField.value.id);
 
 const inputTotal = computed(() => fields.value.length);
 
@@ -74,7 +79,7 @@ const onPushItem = () => {
     case 'url':
     // case 'password':
     // case 'time':
-    // case 'textarea':
+    case 'textarea':
     // case 'html':
       push('');
       break;
@@ -92,12 +97,12 @@ if(fields.value.length === 0) {
 
 <template>
   <fieldset class="js-dynamic-component tw-flex tw-flex-col tw-flex-wrap tw-gap-2">
-    <legend v-if="field.name" :class="['tw-mb-2 tw-text-base tw-font-semibold tw-flex tw-items-center tw-gap-1']">
-      {{ field.name }}
-      <InkVTooltip v-if="field.tip">
+    <legend v-if="mergeField.name" :class="['tw-mb-2 tw-text-base tw-font-semibold tw-flex tw-items-center tw-gap-1']">
+      {{ mergeField.name }}
+      <InkVTooltip v-if="mergeField.tip">
         <button type="button" class="tw-btn-transparent tw-btn-icon-xs"><i class="fa-regular fa-circle-info"></i></button>
         <template #popper>
-          {{ field.tip }}
+          {{ mergeField.tip }}
         </template>
       </InkVTooltip>
       <span v-if="required" class="tw-text-primary-500">
@@ -106,20 +111,20 @@ if(fields.value.length === 0) {
     </legend>
     <!-- <slot/> -->
     <component 
-    v-for="(item, index) in fields"
-    :key="`${item.key}-${index}`"
+    v-for="(item, valueIndex) in fields"
+    :key="`${item.key}-${valueIndex}`"
     :is="dynamicComponent"
-    :index="index"
+    :valueIndex="valueIndex"
     :inputTotal="inputTotal"
-    :field="field"
+    :field="mergeField"
     :required="required"
     :disabled="disabled"
     @removeInputItemFn="onRemoveItemHandler"
     >
     </component>
-    <InkFieldMessage v-if="field.description" :descriptionText="field.description"/>
+    <InkFieldMessage v-if="mergeField.description" :descriptionText="mergeField.description"/>
     <InkButton
-      v-if="inputTotal < checkFieldMax(field.max)"
+      v-if="inputTotal < checkFieldMax"
       as="button"
       type="button"
       variant="txt"

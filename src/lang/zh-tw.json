@@ -15,7 +15,7 @@
   "isUrl": "請輸入有效的網址",
   "isEmail": "請輸入有效的電子郵件",
   "isJson": "請符合 JSON 格式",
-  "Words": "字",
+  "words": "字",
 
   "navbar": {
     "apps": {
