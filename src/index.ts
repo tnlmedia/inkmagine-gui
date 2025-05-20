@@ -17,6 +17,7 @@ import { InkVTooltip, vInkTooltip } from '@/components/ink-tooltip/Ink-tooltip'
 import InkField from '@/components/input/InkField.vue'
 import InkText from '@/components/input/InkText.vue'
 import InkUrl from '@/components/input/InkUrl.vue'
+import InkTextarea from '@/components/input/InkTextarea.vue'
 import { inkI18n } from '@/helper/i18n'
 import { setFont } from '@/helper/set-font'
 import useInkDefineRule from '@/helper/useDefineRule'
@@ -39,7 +40,8 @@ export {
   vInkTooltip,
   InkField,
   InkText,
-  InkUrl
+  InkUrl,
+  InkTextarea
 }
 
 export default {
