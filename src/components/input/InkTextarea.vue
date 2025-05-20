@@ -35,6 +35,7 @@ const emit = defineEmits(['removeInputItemFn']);
     <InputInner>
       <!-- InputInner for other input type prefix in here -->
       <InputFrame 
+      :inputType="mergeField.type"
       :max="checkFieldMax" 
       :disabled="disabled" 
       :inputTotal="inputTotal"

@@ -95,6 +95,7 @@ textarea{
 .tw-element-wrapper,  /* for Sandwich */
 .input-frame{
   &:has(.tw-btn-remove){
+    textarea,
     .tw-input-txt{
       @apply tw-pr-10;
     }
