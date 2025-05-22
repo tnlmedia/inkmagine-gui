@@ -18,6 +18,7 @@ import InkField from '@/components/input/InkField.vue'
 import InkText from '@/components/input/InkText.vue'
 import InkUrl from '@/components/input/InkUrl.vue'
 import InkTextarea from '@/components/input/InkTextarea.vue'
+import InkSelect from '@/components/input/InkSelect.vue'
 import { inkI18n } from '@/helper/i18n'
 import { setFont } from '@/helper/set-font'
 import useInkDefineRule from '@/helper/useDefineRule'
@@ -41,7 +42,8 @@ export {
   InkField,
   InkText,
   InkUrl,
-  InkTextarea
+  InkTextarea,
+  InkSelect,
 }
 
 export default {

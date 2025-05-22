@@ -1,5 +1,5 @@
-
-import { computed } from "vue";
+import { computed, Ref } from "vue";
+import { UnKnownOptions } from "./field-data-interface";
 
 export const defaultInputProps = {
   valueIndex: {
@@ -18,6 +18,13 @@ export const defaultInputProps = {
     type: Number,
     default: 0
   },
+  inputOn: {
+    type: Object,
+  },
+  inputBind: {
+    type: Object,
+    default: () => ({}),
+  },
 }
 
 export const fieldDefaultValue = (type: string) => {
@@ -29,14 +36,16 @@ export const fieldDefaultValue = (type: string) => {
     }
 }
 
-export const useMergeFieldProps = <T>(type: string, field: T) => { 
+export const useMergeFieldProps = <T extends Record<string, any>>(type: string, field: Ref<T>) => { 
   const defaultField = fieldDefaultValue(type);
   const mergeField = computed(() => {
     return {
       ...defaultField,
-      ...field,
+      ...field.value,
     }
-  })
+  });
+  // console.log('field',field);
+  // console.log('mergeField',mergeField.value);
   const minLength = computed(() => {
     return Array.isArray(mergeField.value.limit) && typeof mergeField.value.limit[0] === 'number' ? mergeField.value.limit[0] : undefined;
   });
@@ -53,4 +62,32 @@ export const useMergeFieldProps = <T>(type: string, field: T) => {
     }
   )
   return { mergeField, minLength, maxLength, checkFieldMax };
+}
+
+// select
+const defaultSelectInputBind = () => {
+  return {
+    hasNextPage: false,
+    activeStyle: false,
+    options: [],
+    reduce: (option: UnKnownOptions) => option.key,
+    label: 'name',
+    clearable: false,
+    filterable: false,
+    searchable: false,
+    autoscroll: false,
+    selectable: (option: UnKnownOptions) => !option.disabled,
+    infiniteFn: undefined as (() => void) | undefined,
+    openFn: undefined as (() => void) | undefined,
+    closeFn: undefined as (() => void) | undefined,
+  }
+}
+export const useMergeSelectInputBind = (inputBind: Ref<Record<string, any>>) => {
+  const mergeInputBind = computed(() => {
+    return {
+      ...defaultSelectInputBind(),
+      ...inputBind.value,
+    }
+  })
+  return { mergeInputBind };
 }

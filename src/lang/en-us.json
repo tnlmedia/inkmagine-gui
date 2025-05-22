@@ -2,6 +2,7 @@
   "logout": "Logout",
   "requiredHint": "(Required)",
   "add": "Add",
+  "loading":"Loading...",
 
   "required":"Required",
   "isSlug":"Can only be composed of lowercase English letters, numbers, connecting lines (-) and underscores (_) and dot(.)",

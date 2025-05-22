@@ -1,9 +1,10 @@
-// /resources/docs/internal/fields/type.md
+// resources/docs/internal/fields/type.md
+// resources/docs/internal/articles/structure.md
 type Base = {
   id: string;
   type: string;
   name?: string;
-  require?: number[];
+  require?: boolean | number[]; // resources/docs/internal/authors/structure.md
   slug?: string;
   description?: string;
   position?: 'left' | 'center' | 'right';
@@ -94,13 +95,20 @@ type Choosable = {
 type Total = {
   total?: number;
 };
-type Option = {
+type Options = {
   key?: string;
   name?: string;
   own?: boolean;
   status?: boolean;
-  children?: Option[];
+  children?: Options[];
   total?: number;
+}
+
+type OptionsObject = {
+  options?: UnKnownOptions[];
+}
+export type UnKnownOptions = {
+  [key: string]: unknown;
 }
 // END
 
@@ -109,5 +117,6 @@ export type ModelValueSharp = Default;
 export type TextSharp = Base & Placeholder & Prefix & Suffix & Limit;
 export type TextareaSharp = Base & Placeholder & Limit;
 export type UrlSharp = Base & Placeholder;
+export type SelectSharp = Base & OptionsObject & Total & Choosable & Hierarchy & Placeholder;
 
-export type FieldDataSharp = Base & TextSharp & Step & Ratio & Viewport & Fluid & Hierarchy & Choosable & Option & Total;
+export type FieldDataSharp = Base & TextSharp & Step & Ratio & Viewport & Fluid & Hierarchy & Choosable & OptionsObject & Total;

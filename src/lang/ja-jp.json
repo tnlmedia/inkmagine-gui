@@ -2,6 +2,7 @@
   "logout": "ログアウト",
   "requiredHint": "(必須)",
   "add":"追加",
+  "loading":"Loading...",
 
   "required":"必須項目",
   "isSlug":"小文字の英字、数字、ダッシュ(-)、アンダースコア(_)、ドット(.)で構成してください",

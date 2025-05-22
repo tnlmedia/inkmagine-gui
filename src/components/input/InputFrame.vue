@@ -27,6 +27,7 @@ const emit = defineEmits(['removeComponent']);
 <template>
   <div class="input-frame tw-flex tw-flex-grow tw-relative">
     <slot/>
+    <template v-if="inputType !== 'select' && inputType !== 'checkbox' && inputType !== 'radio'">
     <button
       type="button"
       v-if="(disabled && max === Infinity) || max > 1"
@@ -36,5 +37,6 @@ const emit = defineEmits(['removeComponent']);
     >
       <i class="far fa-trash"></i>
     </button>
+    </template>
   </div>
 </template>

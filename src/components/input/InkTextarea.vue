@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useField } from 'vee-validate';
-import { computed, type PropType } from "vue";
+import { computed, type PropType, toRef } from "vue";
 import type { TextareaSharp } from '@/components/input/field-data-interface';
 import InputWrapper from '@/components/input/InputWrapper.vue';
 import InputInner from '@/components/input/InputInner.vue';
@@ -17,7 +17,7 @@ const props = defineProps({
   }
 });
 
-const {mergeField, minLength, maxLength, checkFieldMax} = useMergeFieldProps<TextareaSharp>('textarea', props.field);
+const {mergeField, minLength, maxLength, checkFieldMax} = useMergeFieldProps<TextareaSharp>('textarea', toRef(props, 'field'));
 
 const rules = computed(() => ({
   required: props.required,

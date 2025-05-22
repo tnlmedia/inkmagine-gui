@@ -43,7 +43,8 @@ export default defineConfig({
         'tailwindcss',
         '@headlessui/vue',
         'vue-router',
-        'vee-validate'
+        'vee-validate',
+        'vue-select'
       ],
       output: {
         dir: 'dist',
@@ -57,7 +58,8 @@ export default defineConfig({
           'tailwindcss': 'tailwindcss',
           '@headlessui/vue': '@headlessui/vue',
           'vue-router': 'vue-router',
-          'vee-validate': 'vee-validate'
+          'vee-validate': 'vee-validate',
+          'vue-select': 'vue-select'
         },
         // Put chunk files at <output>/chunks
         chunkFileNames: 'chunks/[name].[hash].js',

@@ -3,8 +3,8 @@ import '@/scss/component/_ink-form.scss';
 import { InkVTooltip } from '@/components/ink-tooltip/Ink-tooltip';
 import InkButton from '@/components/InkButton.vue';
 import { t } from '@/helper/i18n';
-import { defineAsyncComponent, computed, watch } from 'vue';
-import type { FieldDataSharp } from '@/components/input/field-data-interface';
+import { defineAsyncComponent, computed, watch, toRef } from 'vue';
+import type { FieldDataSharp, UnKnownOptions} from '@/components/input/field-data-interface';
 import { useFieldArray } from 'vee-validate';
 import InkFieldMessage from '@/components/input/InkFieldMessage.vue';
 import { fieldDefaultValue, useMergeFieldProps } from '@/components/input/input-default-value';
@@ -16,6 +16,8 @@ interface FieldProps {
   field: FieldDataSharp; // field require for attribute required calculate data
   disabled?: boolean; // for attribute disabled
   required?: boolean; // for attribute required
+  inputBind?: Record<string, any>;
+  inputOn?: Record<string, any>;
 }
 
 const props = withDefaults(defineProps<FieldProps>(), {
@@ -26,6 +28,7 @@ const componentMap = {
   text: defineAsyncComponent(() => import('@/components/input/InkText.vue')),
   url: defineAsyncComponent(() => import('@/components/input/InkUrl.vue')),
   textarea: defineAsyncComponent(() => import('@/components/input/InkTextarea.vue')),
+  select: defineAsyncComponent(() => import('@/components/input/InkSelect.vue')),
 } as const;
 
 type FieldType = keyof typeof componentMap;
@@ -33,8 +36,11 @@ type FieldType = keyof typeof componentMap;
 // 使用 computed 來獲取當前的欄位類型
 const fieldType = computed(() => props.field.type as FieldType);
 
-const { checkFieldMax, mergeField } = useMergeFieldProps<FieldDataSharp>(fieldType.value, props.field);
+const { checkFieldMax, mergeField } = useMergeFieldProps<FieldDataSharp>(fieldType.value, toRef(props, 'field'));
 
+// watch(() => props.field, (newField) => {
+//   console.log('watch field d1',newField);
+// }, { deep: true });
 
 const dynamicComponent = computed(() => {
   return componentMap[mergeField.value.type as FieldType];
@@ -52,7 +58,7 @@ type GetFieldValueType<T extends FieldType> =
     : T extends 'json'
     ? object 
     : T extends 'select' | 'checkbox' | 'radio' | 'hashtag'
-    ? object | string
+    ? UnKnownOptions | string | null | undefined
     : T extends 'file' | 'image'
     ? number | object
     : never;
@@ -84,7 +90,7 @@ const onPushItem = () => {
       push('');
       break;
     default:
-      push('');
+      push(undefined);
       break;
   }
 }
@@ -120,6 +126,8 @@ if(fields.value.length === 0) {
     :required="required"
     :disabled="disabled"
     @removeInputItemFn="onRemoveItemHandler"
+    :inputBind="inputBind"
+    :inputOn="inputOn"
     >
     </component>
     <InkFieldMessage v-if="mergeField.description" :descriptionText="mergeField.description"/>
