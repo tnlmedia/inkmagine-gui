@@ -36,7 +36,7 @@ export const fieldDefaultValue = (type: string) => {
     }
 }
 
-export const useMergeFieldProps = <T extends Record<string, any>>(type: string, field: Ref<T>) => { 
+export const useMergeFieldProps = <T extends Record<string, unknown>>(type: string, field: Ref<T>) => { 
   const defaultField = fieldDefaultValue(type);
   const mergeField = computed(() => {
     return {
@@ -82,7 +82,7 @@ const defaultSelectInputBind = () => {
     closeFn: undefined as (() => void) | undefined,
   }
 }
-export const useMergeSelectInputBind = (inputBind: Ref<Record<string, any>>) => {
+export const useMergeSelectInputBind = (inputBind: Ref<Record<string, unknown>>) => {
   const mergeInputBind = computed(() => {
     return {
       ...defaultSelectInputBind(),

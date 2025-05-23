@@ -1,0 +1,66 @@
+.v-select.vs--multiple {
+    // 大部分跟 .vs--single 一樣
+    // display: inline-block;
+    margin: 1px;
+    .vs__dropdown-menu {
+        top: calc(100% + 4px);
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0px 4px 20px rgba(199, 201, 217, 0.5);
+    }
+    .vs__dropdown-option {
+        padding: 0;
+        color: #28293d;
+        font-size: 14px;
+        line-height: 21px;
+    }
+    .vs__dropdown-option--highlight {
+        color: #28293d;
+        background: transparent;
+        div,
+        span {
+            background: #e6ecfe;
+        }
+    }
+    .vs__dropdown-toggle {
+        @apply tw-pb-0;
+    }
+    .vs__selected-options {
+        padding: 2px 9px;
+        // 自訂項目
+        @apply tw-items-center;
+        min-height: 34px;
+    }
+    .vs__actions {
+        padding: 0;
+    }
+    // .vs__search,
+    // .vs__search:focus {
+    //     margin: 0;
+    //     padding: 0;
+    //     // height: 0;
+    //     // 自訂項目
+    //     min-height: 1.2em;
+    //     @apply tw-text-sm
+    // }
+    // .vs__search {
+    //     &::placeholder {
+    //         @apply tw-text-gray-600
+    //     }
+    // }
+    .vs__selected {
+        // display: block;
+        border: none;
+        // border-radius: 0;
+        // color: #28293d;
+        // margin: 0;
+        // padding: 0;
+        // line-height: 1;
+        // position: static !important;
+        // opacity: 1 !important;
+        // 自訂項目
+        @apply tw-bg-primary-50 tw-px-2 tw-py-1 tw-text-xs tw-mr-1 tw-ml-0 tw-my-0.5
+
+    }
+}

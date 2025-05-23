@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import '@/scss/component/vue-select/_ink-vue-select.scss';
 import { computed, useTemplateRef, defineEmits, nextTick, PropType, watch, toRef, ref } from 'vue';
 import vSelect from 'vue-select'
 import { useField } from 'vee-validate';
@@ -119,7 +120,7 @@ const elStyle = computed(() => {
           <template #option="{ name, depth }">
             <div :class="['option']">
               <span 
-              class="tw-mr-2.5 tw-rounded-sm tw-py-1 tw-px-2"
+              class="tw-mr-2.5 tw-rounded-sm tw-py-1"
               :style="{ 'padding-left': `calc(${depth > 0 ? depth - 1 : 0}em + 0.5rem)` }"
               >
                 <i v-if="depth > 0" class="fal fa-angle-left -tw-rotate-45"></i>
