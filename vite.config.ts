@@ -44,7 +44,8 @@ export default defineConfig({
         '@headlessui/vue',
         'vue-router',
         'vee-validate',
-        'vue-select'
+        'vue-select',
+        '@vueuse/core'
       ],
       output: {
         dir: 'dist',
@@ -59,7 +60,8 @@ export default defineConfig({
           '@headlessui/vue': '@headlessui/vue',
           'vue-router': 'vue-router',
           'vee-validate': 'vee-validate',
-          'vue-select': 'vue-select'
+          'vue-select': 'vue-select',
+          '@vueuse/core': '@vueuse/core'
         },
         // Put chunk files at <output>/chunks
         chunkFileNames: 'chunks/[name].[hash].js',

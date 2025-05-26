@@ -29,6 +29,7 @@ const componentMap = {
   url: defineAsyncComponent(() => import('@/components/input/InkUrl.vue')),
   textarea: defineAsyncComponent(() => import('@/components/input/InkTextarea.vue')),
   select: defineAsyncComponent(() => import('@/components/input/InkSelect.vue')),
+  checkbox: defineAsyncComponent(() => import('@/components/input/InkCheckbox.vue')),
 } as const;
 
 type FieldType = keyof typeof componentMap;
@@ -58,7 +59,7 @@ type GetFieldValueType<T extends FieldType> =
     : T extends 'json'
     ? object 
     : T extends 'select' | 'checkbox' | 'radio' | 'hashtag'
-    ? UnKnownOptions | string | null | undefined
+    ? UnKnownOptions[] | string[] | number[] | null | undefined
     : T extends 'file' | 'image'
     ? number | object
     : never;
@@ -116,6 +117,7 @@ if(fields.value.length === 0) {
       </span>
     </legend>
     <!-- <slot/> -->
+    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio'">
     <component 
     v-for="(item, valueIndex) in fields"
     :key="`${item.key}-${valueIndex}`"
@@ -130,7 +132,22 @@ if(fields.value.length === 0) {
     :inputOn="inputOn"
     >
     </component>
+    </template>
+    <template v-else>
+    <component 
+    :is="dynamicComponent"
+    :inputTotal="inputTotal"
+    :field="mergeField"
+    :required="required"
+    :disabled="disabled"
+    @removeInputItemFn="onRemoveItemHandler"
+    :inputBind="inputBind"
+    :inputOn="inputOn"
+    >
+    </component>
+    </template>
     <InkFieldMessage v-if="mergeField.description" :descriptionText="mergeField.description"/>
+    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio'">
     <InkButton
       v-if="inputTotal < checkFieldMax"
       as="button"
@@ -145,5 +162,6 @@ if(fields.value.length === 0) {
       <i class="far fa-plus tw-text-base"></i>
       {{ t('add') }}
     </InkButton>
+    </template>
   </fieldset>
 </template>

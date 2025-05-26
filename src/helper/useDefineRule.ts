@@ -7,7 +7,7 @@ export default () => {
   defineRule('required', (value: any) => {
     if (typeof value === 'number') return true;
     if (typeof value === 'string' && value.trim() !== '') return true; // string is not empty
-    if (Array.isArray(value) && value.length > 0) return true; // array is not empty
+    if (Array.isArray(value) && value[0]) return true; // array is not empty
     return t('required');
   });
 

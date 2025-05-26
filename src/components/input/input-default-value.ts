@@ -1,5 +1,5 @@
 import { computed, Ref } from "vue";
-import { UnKnownOptions } from "./field-data-interface";
+import type { CheckBoxInputBind, SelectInputBind, UnKnownOptions } from "./field-data-interface";
 
 export const defaultInputProps = {
   valueIndex: {
@@ -20,10 +20,6 @@ export const defaultInputProps = {
   },
   inputOn: {
     type: Object,
-  },
-  inputBind: {
-    type: Object,
-    default: () => ({}),
   },
 }
 
@@ -83,11 +79,48 @@ const defaultSelectInputBind = () => {
   }
 }
 export const useMergeSelectInputBind = (inputBind: Ref<Record<string, unknown>>) => {
-  const mergeInputBind = computed(() => {
+  const mergeInputBind = computed<SelectInputBind>(() => {
     return {
       ...defaultSelectInputBind(),
       ...inputBind.value,
     }
   })
-  return { mergeInputBind };
+  const clearInputBind = computed<SelectInputBind>(() => {
+    const clearInputBind:Record<string, unknown> = {}
+    Object.keys(mergeInputBind.value).forEach(key => {
+      if(key !== 'infiniteFn' && key !== 'openFn' && key !== 'closeFn' && key !== 'hasNextPage' && key !== 'activeStyle'){
+        clearInputBind[key] = mergeInputBind.value[key as keyof SelectInputBind];
+      }
+    })
+    return clearInputBind;
+  });
+  return { mergeInputBind, clearInputBind };
+}
+
+// checkbox
+const defaultCheckBoxInputBind = (): CheckBoxInputBind => {
+  return {
+    hasNextPage: false,
+    options: [],
+  }
+}
+export const useMergeCheckBoxInputBind = (inputBind: Ref<Record<string, unknown>>) => { 
+  const mergeInputBind = computed<CheckBoxInputBind>(() => {
+    return {
+      ...defaultCheckBoxInputBind() as CheckBoxInputBind,
+      ...inputBind.value,
+    }
+  })
+  const clearInputBind = computed(() => {
+    const clearInputBind: Record<string, unknown> = {}
+    Object.keys(mergeInputBind.value).forEach(key => {
+      if(key !== 'hasNextPage' && key !== 'infiniteFn' && key !== 'options' && key !== 'label' && key !== 'valueKey'){
+        clearInputBind[key] = mergeInputBind.value[key as keyof CheckBoxInputBind];
+      }
+    })
+    return clearInputBind;
+  });
+
+  // console.log('mergeInputBind',mergeInputBind.value);
+  return { mergeInputBind, clearInputBind };
 }

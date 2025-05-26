@@ -1,4 +1,3 @@
-// resources/docs/internal/fields/type.md
 // resources/docs/internal/articles/structure.md
 type Base = {
   id: string;
@@ -108,9 +107,39 @@ type OptionsObject = {
   options?: UnKnownOptions[];
 }
 export type UnKnownOptions = {
-  [key: string]: unknown;
+  [key: string | number]: unknown;
 }
+
+// select
+export type SelectInputBind = {
+  options?: SelectOptions[];
+  hasNextPage?: boolean;
+  activeStyle?: boolean;
+  openFn?: () => void;
+  closeFn?: () => void;
+  infiniteFn?: () => void;
+};
+export type SelectOptions = {
+  disabled?: boolean;
+  depth?: number;
+} & UnKnownOptions;
+
+// checkbox 
+export type CheckBoxInputBind = {
+  options?: CheckBoxOptions[];
+  label?: string;
+  valueKey?: string;
+  hasNextPage?: boolean;
+  infiniteFn?: () => void;
+}
+
+export type CheckBoxOptions = {
+  disabled?: boolean;
+  depth?: number;
+} & UnKnownOptions;
 // END
+
+// resources/docs/internal/fields/type.md
 
 export type ModelValueSharp = Default;
 
@@ -118,5 +147,6 @@ export type TextSharp = Base & Placeholder & Prefix & Suffix & Limit;
 export type TextareaSharp = Base & Placeholder & Limit;
 export type UrlSharp = Base & Placeholder;
 export type SelectSharp = Base & OptionsObject & Total & Choosable & Hierarchy & Placeholder;
+export type CheckBoxSharp = Base & OptionsObject & Total & Choosable & Hierarchy;
 
 export type FieldDataSharp = Base & TextSharp & Step & Ratio & Viewport & Fluid & Hierarchy & Choosable & OptionsObject & Total;

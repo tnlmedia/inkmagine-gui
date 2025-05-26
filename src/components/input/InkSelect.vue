@@ -10,18 +10,22 @@ import InputFrame from '@/components/input/InputFrame.vue';
 import { defaultInputProps, useMergeFieldProps, useMergeSelectInputBind } from '@/components/input/input-default-value';
 import { SelectSharp } from '@/components/input/field-data-interface';
 import { t } from '@/helper/i18n';
-import { UnKnownOptions } from '@/components/input/field-data-interface';
+import type { SelectInputBind } from '@/components/input/field-data-interface';
 const props = defineProps({
   ...defaultInputProps,
   field: {
     type: Object as PropType<SelectSharp>,
     required: true,
   },
+  inputBind: {
+    type: Object as PropType<SelectInputBind>,
+    default: () => ({}),
+  },
 });
 const emit = defineEmits(['removeInputItemFn']);
 
 const {mergeField, checkFieldMax} = useMergeFieldProps<SelectSharp>('select', toRef(props, 'field'));
-const { mergeInputBind } = useMergeSelectInputBind(toRef(props, 'inputBind'));
+const { mergeInputBind, clearInputBind } = useMergeSelectInputBind(toRef(props, 'inputBind'));
 
 const isObserver = ref(false);
 const load = useTemplateRef('load');
@@ -85,7 +89,7 @@ const { value, errorMessage } = useField<string | object>(`${mergeField.value.id
 // style
 const elStyle = computed(() => {
   return {
-    'active': mergeInputBind.value.activeStyle && value,
+    'active': mergeInputBind.value.activeStyle && value.value,
     'is-error': errorMessage.value,
   };
 });
@@ -113,7 +117,7 @@ const elStyle = computed(() => {
         class="tw-w-full"
         :class="elStyle"
         :inputId="`${mergeField.id}[${props.valueIndex}]`"
-        v-bind="mergeInputBind"
+        v-bind="clearInputBind"
         v-on="inputOn"
         >
           <!-- 選項內容 -->
