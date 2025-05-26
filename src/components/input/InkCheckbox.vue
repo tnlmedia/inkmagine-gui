@@ -42,10 +42,16 @@ const onChange = (id: number | string, event: Event) => {
     // newValue = [...value.value, id];
     newValue = value.value.filter(item => item !== undefined).concat(id);
   }else{
-    newValue = value.value.filter(item => item !== id && item !== undefined);
-    if(newValue.length === 0){
-      newValue = [undefined];
-    }
+    newValue = value.value.filter(item => {
+      if(typeof item === 'object' && item !== null){
+        return item[checkedValueKey.value] !== id && item !== undefined;
+      }else{
+        return item !== id && item !== undefined;
+      }
+    });
+  }
+  if(newValue.length === 0){
+    newValue = [undefined];
   }
   // emit('update:modelValue', newValue);
   handleChange(newValue);

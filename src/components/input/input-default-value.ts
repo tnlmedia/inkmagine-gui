@@ -66,7 +66,7 @@ const defaultSelectInputBind = () => {
     hasNextPage: false,
     activeStyle: false,
     options: [],
-    reduce: (option: UnKnownOptions) => option.key,
+    reduce: (option: UnKnownOptions) => option.key as string | number | undefined | null,
     label: 'name',
     clearable: false,
     filterable: false,

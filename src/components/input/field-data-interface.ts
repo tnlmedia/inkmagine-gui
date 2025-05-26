@@ -118,6 +118,7 @@ export type SelectInputBind = {
   openFn?: () => void;
   closeFn?: () => void;
   infiniteFn?: () => void;
+  reduce?: (option: UnKnownOptions) => string | number | undefined | null;
 };
 export type SelectOptions = {
   disabled?: boolean;
@@ -137,6 +138,9 @@ export type CheckBoxOptions = {
   disabled?: boolean;
   depth?: number;
 } & UnKnownOptions;
+
+// radio
+
 // END
 
 // resources/docs/internal/fields/type.md
@@ -148,5 +152,6 @@ export type TextareaSharp = Base & Placeholder & Limit;
 export type UrlSharp = Base & Placeholder;
 export type SelectSharp = Base & OptionsObject & Total & Choosable & Hierarchy & Placeholder;
 export type CheckBoxSharp = Base & OptionsObject & Total & Choosable & Hierarchy;
+export type RadioSharp = Base & OptionsObject & Total;
 
 export type FieldDataSharp = Base & TextSharp & Step & Ratio & Viewport & Fluid & Hierarchy & Choosable & OptionsObject & Total;

@@ -10,7 +10,7 @@ import InputFrame from '@/components/input/InputFrame.vue';
 import { defaultInputProps, useMergeFieldProps, useMergeSelectInputBind } from '@/components/input/input-default-value';
 import { SelectSharp } from '@/components/input/field-data-interface';
 import { t } from '@/helper/i18n';
-import type { SelectInputBind } from '@/components/input/field-data-interface';
+import type { SelectInputBind, UnKnownOptions } from '@/components/input/field-data-interface';
 const props = defineProps({
   ...defaultInputProps,
   field: {
@@ -84,7 +84,15 @@ const rules = computed(() => ({
   required: props.required,
 }));
 
-const { value, errorMessage } = useField<string | object>(`${mergeField.value.id}[${props.valueIndex}]`, rules);
+const { value, errorMessage, setValue } = useField<string | number | undefined | null | object>(`${mergeField.value.id}[${props.valueIndex}]`, rules);
+
+watch(()=>value.value, (newVal) => {
+  if(newVal && typeof newVal === 'object' && newVal !== null){
+    if(mergeInputBind.value.reduce){
+      setValue(mergeInputBind.value.reduce(newVal as UnKnownOptions));
+    }
+  }
+}, { immediate: true });
 
 // style
 const elStyle = computed(() => {
