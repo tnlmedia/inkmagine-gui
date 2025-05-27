@@ -30,6 +30,7 @@ const componentMap = {
   textarea: defineAsyncComponent(() => import('@/components/input/InkTextarea.vue')),
   select: defineAsyncComponent(() => import('@/components/input/InkSelect.vue')),
   checkbox: defineAsyncComponent(() => import('@/components/input/InkCheckbox.vue')),
+  radio: defineAsyncComponent(() => import('@/components/input/InkRadio.vue')),
 } as const;
 
 type FieldType = keyof typeof componentMap;

@@ -46,10 +46,8 @@ textarea{
 .form-radio-label{
   @apply tw-text-sm tw-mb-0 tw-relative tw-cursor-pointer;
 }
-// checkbox
-.form-check{
-  @apply tw-relative ;
-}
+// checkbox & radio
+.form-radio-label,
 .form-check-label {
   @apply tw-pl-7;
   input{
@@ -63,6 +61,10 @@ textarea{
     z-index: 1;
   }
 }
+// checkbox
+.form-check{
+  @apply tw-relative ;
+}
 .tw-check {
   @apply tw-flex tw-items-center tw-justify-center tw-absolute tw-top-0 tw-left-0 tw-h-[18px] tw-w-[18px] tw-rounded-[3px] tw-border tw-border-solid tw-border-gray-400 peer-checked:tw-border-none peer-checked:tw-bg-[#FFA350];
   @apply peer-checked:before:tw-font-awesome peer-checked:before:tw-text-xxs peer-checked:before:tw-flex peer-checked:before:tw-items-center peer-checked:before:tw-justify-center  peer-checked:before:tw-relative peer-checked:before:tw-left-[-1px] peer-checked:before:tw-rounded-full peer-checked:before:tw-text-white peer-checked:before:tw-content-['\f00c'];
@@ -70,9 +72,6 @@ textarea{
 }
 // radio
 .form-radio{
-}
-.form-radio-label{
-  @apply tw-pl-7 ;
 }
 .tw-radio {
   top: 0;

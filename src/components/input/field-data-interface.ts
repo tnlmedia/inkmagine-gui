@@ -141,6 +141,17 @@ export type CheckBoxOptions = {
 } & UnKnownOptions;
 
 // radio
+export type RadioInputBind = {
+  options?: RadioOptions[];
+  label?: string;
+  valueKey?: string;
+  hasNextPage?: boolean;
+  infiniteFn?: () => void;
+}
+
+export type RadioOptions = {
+  disabled?: boolean;
+} & UnKnownOptions;
 
 // END
 
