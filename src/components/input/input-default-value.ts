@@ -1,5 +1,5 @@
 import { computed, Ref } from "vue";
-import type { CheckBoxInputBind, SelectInputBind, UnKnownOptions } from "./field-data-interface";
+import type { CheckBoxInputBind, SelectInputBind, SelectReduceReturn, UnKnownOptions } from "./field-data-interface";
 
 export const defaultInputProps = {
   valueIndex: {
@@ -66,7 +66,7 @@ const defaultSelectInputBind = () => {
     hasNextPage: false,
     activeStyle: false,
     options: [],
-    reduce: (option: UnKnownOptions) => option.key as string | number | undefined | null,
+    reduce: (option: UnKnownOptions) => option.key as SelectReduceReturn,
     label: 'name',
     clearable: false,
     filterable: false,

@@ -7,7 +7,7 @@ import InkErrorMessage from '@/components/input/InkErrorMessage.vue';
 import InputFrame from '@/components/input/InputFrame.vue';
 import { defaultInputProps, useMergeFieldProps, useMergeCheckBoxInputBind } from '@/components/input/input-default-value';
 import { useIntersectionObserver } from '@vueuse/core';
-import type { CheckBoxSharp, CheckBoxInputBind} from '@/components/input/field-data-interface';
+import type { CheckBoxSharp, CheckBoxInputBind, UnKnownOptions} from '@/components/input/field-data-interface';
 // import InkCheckBoxInput from '@/components/input/InkCheckBoxInput.vue';
 import { t } from '@/helper/i18n';
 
@@ -93,7 +93,7 @@ watch(() => mergeInputBind.value.hasNextPage, (newValue) => {
 const rules = computed(() => ({
   required: props.required,
 }));
-const { value, errorMessage, handleChange } = useField<number[] | string[]>(mergeField.value.id, rules);
+const { value, errorMessage, handleChange } = useField<number[] | string[] | UnKnownOptions[]>(mergeField.value.id, rules);
 
 </script>
 

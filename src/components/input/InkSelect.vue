@@ -10,7 +10,7 @@ import InputFrame from '@/components/input/InputFrame.vue';
 import { defaultInputProps, useMergeFieldProps, useMergeSelectInputBind } from '@/components/input/input-default-value';
 import { SelectSharp } from '@/components/input/field-data-interface';
 import { t } from '@/helper/i18n';
-import type { SelectInputBind, UnKnownOptions } from '@/components/input/field-data-interface';
+import type { SelectInputBind, UnKnownOptions, SelectReduceReturn } from '@/components/input/field-data-interface';
 const props = defineProps({
   ...defaultInputProps,
   field: {
@@ -84,12 +84,17 @@ const rules = computed(() => ({
   required: props.required,
 }));
 
-const { value, errorMessage, setValue } = useField<string | number | undefined | null | object>(`${mergeField.value.id}[${props.valueIndex}]`, rules);
+const { value, errorMessage, setValue } = useField<SelectReduceReturn | UnKnownOptions>(`${mergeField.value.id}[${props.valueIndex}]`, rules);
 
 watch(()=>value.value, (newVal) => {
   if(newVal && typeof newVal === 'object' && newVal !== null){
     if(mergeInputBind.value.reduce){
-      setValue(mergeInputBind.value.reduce(newVal as UnKnownOptions));
+      const reduceValue = mergeInputBind.value.reduce(newVal);
+      if(!reduceValue){
+        setValue(mergeInputBind.value.reduce(newVal));
+      }
+    }else{
+      console.warn('InkSelect - inputBind.reduce is not defined. Please check it.');
     }
   }
 }, { immediate: true });

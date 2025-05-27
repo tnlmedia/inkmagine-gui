@@ -111,6 +111,7 @@ export type UnKnownOptions = {
 }
 
 // select
+export type SelectReduceReturn = string | number | undefined | null;
 export type SelectInputBind = {
   options?: SelectOptions[];
   hasNextPage?: boolean;
@@ -118,7 +119,7 @@ export type SelectInputBind = {
   openFn?: () => void;
   closeFn?: () => void;
   infiniteFn?: () => void;
-  reduce?: (option: UnKnownOptions) => string | number | undefined | null;
+  reduce?: (option: UnKnownOptions) => SelectReduceReturn;
 };
 export type SelectOptions = {
   disabled?: boolean;
