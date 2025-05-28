@@ -21,6 +21,7 @@ import InkTextarea from '@/components/input/InkTextarea.vue'
 import InkSelect from '@/components/input/InkSelect.vue'
 import InkCheckbox from '@/components/input/InkCheckbox.vue'
 import InkRadio from '@/components/input/InkRadio.vue'
+import InkSwitch from '@/components/input/InkSwitch.vue'
 import { inkI18n } from '@/helper/i18n'
 import { setFont } from '@/helper/set-font'
 import useInkDefineRule from '@/helper/useDefineRule'
@@ -48,6 +49,7 @@ export {
   InkSelect,
   InkCheckbox,
   InkRadio,
+  InkSwitch,
 }
 
 export default {

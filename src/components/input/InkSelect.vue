@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import '@/scss/component/vue-select/_ink-vue-select.scss';
-import { computed, useTemplateRef, defineEmits, nextTick, PropType, watch, toRef, ref } from 'vue';
+import { computed, useTemplateRef, defineEmits, nextTick, type PropType, watch, toRef, ref } from 'vue';
 import vSelect from 'vue-select'
 import { useField } from 'vee-validate';
 import InputWrapper from '@/components/input/InputWrapper.vue';

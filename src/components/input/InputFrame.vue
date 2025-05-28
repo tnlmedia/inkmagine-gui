@@ -27,7 +27,7 @@ const emit = defineEmits(['removeComponent']);
 <template>
   <div class="input-frame tw-flex tw-flex-grow tw-relative">
     <slot/>
-    <template v-if="inputType !== 'select' && inputType !== 'checkbox' && inputType !== 'radio'">
+    <template v-if="inputType !== 'select' && inputType !== 'checkbox' && inputType !== 'radio' && inputType !== 'switch'">
     <button
       type="button"
       v-if="(disabled && max === Infinity) || max > 1"

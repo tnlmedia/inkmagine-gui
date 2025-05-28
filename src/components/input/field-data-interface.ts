@@ -165,5 +165,6 @@ export type UrlSharp = Base & Placeholder;
 export type SelectSharp = Base & OptionsObject & Total & Choosable & Hierarchy & Placeholder;
 export type CheckBoxSharp = Base & OptionsObject & Total & Choosable & Hierarchy;
 export type RadioSharp = Base & OptionsObject & Total;
+export type SwitchSharp = Base;
 
 export type FieldDataSharp = Base & TextSharp & Step & Ratio & Viewport & Fluid & Hierarchy & Choosable & OptionsObject & Total;

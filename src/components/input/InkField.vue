@@ -31,6 +31,7 @@ const componentMap = {
   select: defineAsyncComponent(() => import('@/components/input/InkSelect.vue')),
   checkbox: defineAsyncComponent(() => import('@/components/input/InkCheckbox.vue')),
   radio: defineAsyncComponent(() => import('@/components/input/InkRadio.vue')),
+  switch: defineAsyncComponent(() => import('@/components/input/InkSwitch.vue')),
 } as const;
 
 type FieldType = keyof typeof componentMap;
@@ -97,15 +98,21 @@ const onPushItem = () => {
   }
 }
 
-if(fields.value.length === 0) {
+if (fields.value.length === 0) {
   onPushItem()
 }
 
 </script>
 
 <template>
-  <fieldset class="js-dynamic-component tw-flex tw-flex-col tw-flex-wrap tw-gap-2">
-    <legend v-if="mergeField.name" :class="['tw-mb-2 tw-text-base tw-font-semibold tw-flex tw-items-center tw-gap-1']">
+  <fieldset 
+  class="js-dynamic-component tw-flex tw-flex-wrap tw-gap-2"
+  :class="{
+    'tw-flex-row tw-items-center': mergeField.type === 'switch',
+    'tw-flex-col': mergeField.type !== 'switch',
+  }"
+  >
+    <div v-if="mergeField.name" :class="['tw-text-base tw-font-semibold tw-flex tw-items-center tw-gap-1']">
       {{ mergeField.name }}
       <InkVTooltip v-if="mergeField.tip">
         <button type="button" class="tw-btn-transparent tw-btn-icon-xs"><i class="fa-regular fa-circle-info"></i></button>
@@ -116,9 +123,9 @@ if(fields.value.length === 0) {
       <span v-if="required" class="tw-text-primary-500">
          {{ t('requiredHint') }}
       </span>
-    </legend>
+    </div>
     <!-- <slot/> -->
-    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio'">
+    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio' && mergeField.type !== 'switch'">
     <component 
     v-for="(item, valueIndex) in fields"
     :key="`${item.key}-${valueIndex}`"
@@ -148,7 +155,7 @@ if(fields.value.length === 0) {
     </component>
     </template>
     <InkFieldMessage v-if="mergeField.description" :descriptionText="mergeField.description"/>
-    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio'">
+    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio' && mergeField.type !== 'switch'">
     <InkButton
       v-if="inputTotal < checkFieldMax"
       as="button"

@@ -6,6 +6,7 @@ export default () => {
   // from sandwich
   defineRule('required', (value: any) => {
     if (typeof value === 'number') return true;
+    if (typeof value === 'boolean') return true;
     if (typeof value === 'string' && value.trim() !== '') return true; // string is not empty
     if (Array.isArray(value) && value[0]) return true; // array is not empty
     if (typeof value === 'object' && value !== null && !Array.isArray(value)) return true; // object is not empty, if object is for empty object, change value to undefined || null

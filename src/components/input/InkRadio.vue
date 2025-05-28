@@ -112,7 +112,6 @@ const { value, errorMessage, handleChange } = useField<number | string | UnKnown
               type="radio" 
               class="form-check-input tw-peer"
               :checked="isChecked(option[checkedValueKey] as string | number)" 
-              :name="mergeField.id"
               :value="option[checkedValueKey] as string | number" 
               :disabled="disabled || option.disabled"
               @change="onChange(option[checkedValueKey] as string | number, $event)" 
