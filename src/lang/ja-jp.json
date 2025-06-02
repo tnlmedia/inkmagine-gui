@@ -13,6 +13,8 @@
   "isMoreThenMax": "{length}項目以下にしてください",
   "isLessThenMin": "{length}項目以上にしてください",
   "isUrl": "有効なURLを入力してください",
+  "isMoreThenDatetimeRestrict": "時間は {datetime} より大きい必要があります",
+  "isLessThenDatetimeRestrict": "時間は {datetime} 以下である必要があります",
   "isEmail": "正しいemailの形式で入力してください",
   "isJson": "JSON 形式に合わせてください",
   "words": "文字",

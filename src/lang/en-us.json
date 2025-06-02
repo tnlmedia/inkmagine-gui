@@ -12,6 +12,8 @@
   "isLessThenNumberLimit": "Number must be greater than or equal to {length}",
   "isMoreThenMax": "Must be less than or equal to {length} item",
   "isLessThenMin": "Must be greater than or equal to {length} item",
+  "isMoreThenDatetimeRestrict": "Time must be greater than {datetime}",
+  "isLessThenDatetimeRestrict": "Time must less than or equal to {datetime}",
   "isUrl": "Please enter a valid URL",
   "isEmail": "Please match the email format",
   "isJson": "Please match the JSON format",

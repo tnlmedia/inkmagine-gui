@@ -1,5 +1,5 @@
 import { computed, Ref } from "vue";
-import type { CheckBoxInputBind, SelectInputBind, SelectReduceReturn, UnKnownOptions } from "./field-data-interface";
+import type { CheckBoxInputBind, SelectInputBind, SelectReduceReturn, UnKnownOptions, DatetimePickerInputBind } from "./field-data-interface";
 
 export const defaultInputProps = {
   valueIndex: {
@@ -122,5 +122,37 @@ export const useMergeCheckBoxInputBind = (inputBind: Ref<Record<string, unknown>
   });
 
   // console.log('mergeInputBind',mergeInputBind.value);
+  return { mergeInputBind, clearInputBind };
+}
+
+// datetime picker
+const defaultDatetimePickerInputBind = () => { 
+  return {
+    isClearable: true,
+    type: 'datetime',
+    format: 'YYYY/MM/DD HH:mm',
+    clearable: false,
+    teleported: true,
+    valueFormat: 'X',
+  }
+}
+export const useMergeDatetimePickerInputBind = (inputBind: Ref<Record<string, unknown>>) => {
+  const mergeInputBind = computed<DatetimePickerInputBind>(() => {
+    return {
+      ...defaultDatetimePickerInputBind(),
+      ...inputBind.value,
+      popperClass: `${inputBind.value.popperClass} js-datetime-popper`,
+    }
+  })
+
+  const clearInputBind = computed(() => {
+    const clearInputBind: Record<string, unknown> = {}
+    Object.keys(mergeInputBind.value).forEach(key => {
+      if(key !== 'isClearable'){
+        clearInputBind[key] = mergeInputBind.value[key as keyof DatetimePickerInputBind];
+      }
+    })
+    return clearInputBind;
+  })
   return { mergeInputBind, clearInputBind };
 }

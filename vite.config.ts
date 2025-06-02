@@ -45,7 +45,8 @@ export default defineConfig({
         'vue-router',
         'vee-validate',
         'vue-select',
-        '@vueuse/core'
+        '@vueuse/core',
+        'element-plus'
       ],
       output: {
         dir: 'dist',
@@ -61,7 +62,8 @@ export default defineConfig({
           'vue-router': 'vue-router',
           'vee-validate': 'vee-validate',
           'vue-select': 'vue-select',
-          '@vueuse/core': '@vueuse/core'
+          '@vueuse/core': '@vueuse/core',
+          'element-plus': 'element-plus'
         },
         // Put chunk files at <output>/chunks
         chunkFileNames: 'chunks/[name].[hash].js',

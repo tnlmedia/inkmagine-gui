@@ -13,6 +13,8 @@
   "isLessThenNumberLimit": "數字必須大於或等於 {length}",
   "isMoreThenMax": "不能大於 {length} 個項目",
   "isLessThenMin": "不能小於 {length} 個項目",
+  "isMoreThenDatetimeRestrict": "時間需大於 {datetime}",
+  "isLessThenDatetimeRestrict": "時間需小於等於 {datetime}",
   "isUrl": "請輸入有效的網址",
   "isEmail": "請輸入有效的電子郵件",
   "isJson": "請符合 JSON 格式",

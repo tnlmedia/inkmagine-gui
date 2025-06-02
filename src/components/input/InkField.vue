@@ -32,6 +32,7 @@ const componentMap = {
   checkbox: defineAsyncComponent(() => import('@/components/input/InkCheckbox.vue')),
   radio: defineAsyncComponent(() => import('@/components/input/InkRadio.vue')),
   switch: defineAsyncComponent(() => import('@/components/input/InkSwitch.vue')),
+  datetime: defineAsyncComponent(() => import('@/components/input/InkDatetime.vue')),
 } as const;
 
 type FieldType = keyof typeof componentMap;
@@ -55,7 +56,7 @@ type GetFieldValueType<T extends FieldType> =
   T extends 'text' | 'slug' | 'email' | 'url' | 'password' | 'time' | 'textarea' | 'html'
     ? string 
     : T extends 'number' | 'datetime'
-    ? number 
+    ? number | undefined
     : T extends 'switch' 
     ? boolean 
     : T extends 'json'
@@ -120,12 +121,12 @@ if (fields.value.length === 0) {
           {{ mergeField.tip }}
         </template>
       </InkVTooltip>
-      <span v-if="required" class="tw-text-primary-500">
+      <span v-if="required && mergeField.type !== 'switch'" class="tw-text-primary-500">
          {{ t('requiredHint') }}
       </span>
     </div>
     <!-- <slot/> -->
-    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio' && mergeField.type !== 'switch'">
+    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio' && mergeField.type !== 'switch' && mergeField.type !== 'datetime'">
     <component 
     v-for="(item, valueIndex) in fields"
     :key="`${item.key}-${valueIndex}`"
@@ -155,7 +156,7 @@ if (fields.value.length === 0) {
     </component>
     </template>
     <InkFieldMessage v-if="mergeField.description" :descriptionText="mergeField.description"/>
-    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio' && mergeField.type !== 'switch'">
+    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio' && mergeField.type !== 'switch' && mergeField.type !== 'datetime'">
     <InkButton
       v-if="inputTotal < checkFieldMax"
       as="button"

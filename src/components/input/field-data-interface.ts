@@ -153,6 +153,15 @@ export type RadioOptions = {
   disabled?: boolean;
 } & UnKnownOptions;
 
+// datetime picker
+export type DatetimePickerInputBind = {
+  isClearable?: boolean;
+  timezone?: string; // for display UTC timezone. if need validate restrict, must be set timezone.
+  restrict?: {
+    earliest?: number; // Timestamp type must be same as inputBind.valueFormat
+    latest?: number; // Timestamp type must be same as inputBind.valueFormat
+  };
+} & UnKnownOptions
 // END
 
 // resources/docs/internal/fields/type.md
@@ -166,5 +175,6 @@ export type SelectSharp = Base & OptionsObject & Total & Choosable & Hierarchy &
 export type CheckBoxSharp = Base & OptionsObject & Total & Choosable & Hierarchy;
 export type RadioSharp = Base & OptionsObject & Total;
 export type SwitchSharp = Base;
+export type DatetimeSharp = Base & Placeholder;
 
 export type FieldDataSharp = Base & TextSharp & Step & Ratio & Viewport & Fluid & Hierarchy & Choosable & OptionsObject & Total;
