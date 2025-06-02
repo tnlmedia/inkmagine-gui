@@ -22,6 +22,7 @@ import InkSelect from '@/components/input/InkSelect.vue'
 import InkCheckbox from '@/components/input/InkCheckbox.vue'
 import InkRadio from '@/components/input/InkRadio.vue'
 import InkSwitch from '@/components/input/InkSwitch.vue'
+import InkElConfigProvider from '@/components/input/InkElConfigProvider.vue'
 import InkDatetime from '@/components/input/InkDatetime.vue'
 import { inkI18n } from '@/helper/i18n'
 import { setFont } from '@/helper/set-font'
@@ -51,6 +52,7 @@ export {
   InkCheckbox,
   InkRadio,
   InkSwitch,
+  InkElConfigProvider,
   InkDatetime,
 }
 
