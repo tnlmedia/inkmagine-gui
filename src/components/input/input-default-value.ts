@@ -68,7 +68,7 @@ const defaultSelectInputBind = () => {
     options: [],
     reduce: (option: UnKnownOptions) => option.key as SelectReduceReturn,
     label: 'name',
-    clearable: false,
+    clearable: true,
     filterable: false,
     searchable: false,
     autoscroll: false,
