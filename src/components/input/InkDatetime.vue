@@ -10,8 +10,8 @@ import InkErrorMessage from '@/components/input/InkErrorMessage.vue';
 import InputFrame from '@/components/input/InputFrame.vue';
 import { defaultInputProps, useMergeFieldProps, useMergeDatetimePickerInputBind } from '@/components/input/input-default-value';
 import type { DatetimeSharp, DatetimePickerInputBind } from '@/components/input/field-data-interface';
-import { utcTimezone, formatTimeToUnix, formatTimeToValueOf, convertUnixToStartOf, convertValueOfToStartOf } from '@/helper/dayjs';
-
+import dayjs, { utcTimezone, formatTimeToUnix, formatTimeToValueOf, convertUnixToStartOf, convertValueOfToStartOf } from '@/helper/dayjs';
+import { RestrictTypeMode } from '@/components/input/field-data-interface';
 
 type DatePickerType = 'year' | 'month' | 'date' | 'datetime' | 'week' | 'datetimerange' | 'daterange';
 
@@ -34,34 +34,40 @@ const clearTime = () => {
   handleChange(undefined);
 };
 const disabledDate = (date: Date) => {
-  if(!mergeInputBind.value.restrict) return false;
-  if(!mergeInputBind.value.restrict.earliest && !mergeInputBind.value.restrict.latest) return false;
+  // if(!mergeInputBind.value.restrict) return false;
+  // if(!mergeInputBind.value.restrict.earliest && !mergeInputBind.value.restrict.latest) return false;
 
-  let dateTimestamp;
-  if(mergeInputBind.value.valueFormat === 'X'){
-    dateTimestamp = formatTimeToUnix(date);
-  } else {
-    dateTimestamp = formatTimeToValueOf(date);
-  }
+  // let dateTimestamp;
+  // if(mergeInputBind.value.valueFormat === 'X'){
+  //   dateTimestamp = formatTimeToUnix(date);
+  // } else {
+  //   dateTimestamp = formatTimeToValueOf(date);
+  // }
 
-  let getEarliestStartOfDayTimestamp;
-  if(mergeInputBind.value.restrict?.earliest){
-    if(mergeInputBind.value.valueFormat === 'X'){
-      getEarliestStartOfDayTimestamp = convertUnixToStartOf(mergeInputBind.value.restrict.earliest);
-    }else{
-      getEarliestStartOfDayTimestamp = convertValueOfToStartOf(mergeInputBind.value.restrict.earliest);
-    }
-    if(dateTimestamp < getEarliestStartOfDayTimestamp){
-      // true means disabled the date
-      // disabled early then restrict.earliest date
-      return true;
-    }
-  }
+  // let getEarliestStartOfDayTimestamp;
+  // if(mergeInputBind.value.restrict?.earliest){
+  //   if(mergeInputBind.value.valueFormat === 'X'){
+  //     getEarliestStartOfDayTimestamp = convertUnixToStartOf(mergeInputBind.value.restrict.earliest);
+  //   }else{
+  //     getEarliestStartOfDayTimestamp = convertValueOfToStartOf(mergeInputBind.value.restrict.earliest);
+  //   }
+  //   if(dateTimestamp < getEarliestStartOfDayTimestamp){
+  //     // true means disabled the date
+  //     // disabled early then restrict.earliest date
+  //     return true;
+  //   }
+  // }
 
-  if((mergeInputBind.value.restrict?.latest && dateTimestamp > mergeInputBind.value.restrict.latest)){
-    // disabled later then restrict.latest date
-    return true;
-  }
+  // if((mergeInputBind.value.restrict?.latest && dateTimestamp > mergeInputBind.value.restrict.latest)){
+  //   // disabled later then restrict.latest date
+  //   return true;
+  // }
+  if(mergeInputBind.value.restrict.disbledType === RestrictTypeMode.PAST) {
+    return formatTimeToUnix(date) > dayjs().unix()
+  };
+  if(mergeInputBind.value.restrict.disbledType === RestrictTypeMode.FUTURE) {
+    return formatTimeToUnix(date) < dayjs().startOf('day').unix()
+  };
   return false;
 }
 
@@ -90,9 +96,6 @@ const panelTimezone = () => {
       el.prepend(utcEl);
     })
 }
-const onFocus = () => {
-}
-
 
 const elStyle = computed(() => {
   return {
@@ -125,7 +128,7 @@ onMounted(() => {
 
 const rules = computed(() => ({
   required: props.required,
-  datetimeRestrict: [mergeInputBind.value.restrict, mergeInputBind.value.timezone, mergeInputBind.value.valueFormat, mergeInputBind.value.format]
+  datetimeRestrict: [mergeInputBind.value.restrict, mergeInputBind.value.timezone, mergeInputBind.value.format]
 }));
 const { value: startValue, errorMessage: startErrorMessage, handleChange } = useField<number | undefined>(`${mergeField.value.id}[${props.valueIndex}]`, rules);
 
@@ -157,7 +160,6 @@ const { value: startValue, errorMessage: startErrorMessage, handleChange } = use
           :placeholder="mergeField.placeholder"
           :disabled="disabled"
           :disabled-date="disabledDate"
-          @focus="onFocus"
           v-bind="clearInputBind"
           v-on="inputOn"
         />

@@ -1,7 +1,9 @@
 import { defineRule } from 'vee-validate';
 import { t } from '@/helper/i18n';
 import type { NumberLimit, FileLimit } from '@/components/input/field-data-interface';
-import { formatUnixTime, formatValueOfTime } from '@/helper/dayjs';
+import { formatUnixTime, formatValueOfTime, formatTimeToUnix } from '@/helper/dayjs';
+import type { DatetimePickerInputBind } from '@/components/input/field-data-interface';
+import { RestrictTypeMode } from '@/components/input/field-data-interface';
 export default () => {
   // from sandwich
   defineRule('required', (value: any) => {
@@ -67,26 +69,38 @@ export default () => {
   //   }
   //   return true;
   // });
-  defineRule('datetimeRestrict', (value: number, [restrict, timezone, valueFormat, format]: [{ earliest?: number, latest?: number }, string, string, string]) => {
-    if (typeof value === 'undefined') return true; // for required check
-    if(!restrict) return true; // for no need restrict, because not set restrict
-    const formatValue = (restrictTimestamp: number) => {
-      if (valueFormat === 'X') { 
-        return formatUnixTime(timezone, restrictTimestamp, format);
-      } else {
-        return formatValueOfTime(timezone, restrictTimestamp, format);
-      }
+  defineRule('datetimeRestrict', (value: number, [restrict, timezone, format]: [DatetimePickerInputBind['restrict'], string, string]) => {
+    if (restrict.disbledType === RestrictTypeMode.UNLIMITED) return true;
+    
+    const restrictTimestamp = formatTimeToUnix() + (restrict.shiftSecond || 0);
+    if(restrict.disbledType === RestrictTypeMode.PAST && value > restrictTimestamp ) {
+      return t('isLessThenDatetimeRestrict', {datetime: formatUnixTime(timezone, restrictTimestamp, format)});
     }
-    if (restrict.earliest && value < restrict.earliest) {
-      // future datetime chooseable (schedule)
-      return t('isMoreThenDatetimeRestrict', {datetime: formatValue(restrict.earliest)});
-    }
-    if (restrict.latest && value > restrict.latest) {
-      // past datetime chooseable (publish)
-      return t('isLessThenDatetimeRestrict', {datetime: formatValue(restrict.latest)});
+    if(restrict.disbledType === RestrictTypeMode.FUTURE && value < restrictTimestamp ) {
+      return t('isMoreThenDatetimeRestrict', {datetime: formatUnixTime(timezone, restrictTimestamp, format)});
     }
     return true
   });
+  // defineRule('datetimeRestrict', (value: number, [restrict, timezone, valueFormat, format]: [{ earliest?: number, latest?: number }, string, string, string]) => {
+  //   if (typeof value === 'undefined') return true; // for required check
+  //   if(!restrict) return true; // for no need restrict, because not set restrict
+  //   const formatValue = (restrictTimestamp: number) => {
+  //     if (valueFormat === 'X') { 
+  //       return formatUnixTime(timezone, restrictTimestamp, format);
+  //     } else {
+  //       return formatValueOfTime(timezone, restrictTimestamp, format);
+  //     }
+  //   }
+  //   if (restrict.earliest && value < restrict.earliest) {
+  //     // future datetime chooseable (schedule)
+  //     return t('isMoreThenDatetimeRestrict', {datetime: formatValue(restrict.earliest)});
+  //   }
+  //   if (restrict.latest && value > restrict.latest) {
+  //     // past datetime chooseable (publish)
+  //     return t('isLessThenDatetimeRestrict', {datetime: formatValue(restrict.latest)});
+  //   }
+  //   return true
+  // });
   defineRule('url', (value: string) => {
     if (typeof value === 'undefined') return true; // for removed item data
     const pattern = /^https?:\/\//;

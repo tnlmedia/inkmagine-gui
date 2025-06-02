@@ -154,13 +154,18 @@ export type RadioOptions = {
 } & UnKnownOptions;
 
 // datetime picker
+export const RestrictTypeMode = {
+  PAST: 'past',
+  FUTURE: 'future',
+  UNLIMITED: 'unlimited',
+} as const;
 export type DatetimePickerInputBind = {
   isClearable?: boolean;
   timezone?: string; // for display UTC timezone. if need validate restrict, must be set timezone.
-  restrict?: {
-    earliest?: number; // Timestamp type must be same as inputBind.valueFormat
-    latest?: number; // Timestamp type must be same as inputBind.valueFormat
-  };
+  restrict: {
+    disbledType?: (typeof RestrictTypeMode)[keyof typeof RestrictTypeMode]; 
+    shiftSecond?: number;
+  }
 } & UnKnownOptions
 // END
 

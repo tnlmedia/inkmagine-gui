@@ -1,5 +1,6 @@
 import { computed, Ref } from "vue";
-import type { CheckBoxInputBind, SelectInputBind, SelectReduceReturn, UnKnownOptions, DatetimePickerInputBind } from "./field-data-interface";
+import type { CheckBoxInputBind, SelectInputBind, SelectReduceReturn, UnKnownOptions, DatetimePickerInputBind } from "@/components/input/field-data-interface";
+import { RestrictTypeMode } from "@/components/input/field-data-interface";
 
 export const defaultInputProps = {
   valueIndex: {
@@ -134,6 +135,10 @@ const defaultDatetimePickerInputBind = () => {
     clearable: false,
     teleported: true,
     valueFormat: 'X',
+    restrict: {
+      disbledType: RestrictTypeMode.UNLIMITED,
+      shiftSecond: 0,
+    },
   }
 }
 export const useMergeDatetimePickerInputBind = (inputBind: Ref<Record<string, unknown>>) => {
@@ -148,7 +153,7 @@ export const useMergeDatetimePickerInputBind = (inputBind: Ref<Record<string, un
   const clearInputBind = computed(() => {
     const clearInputBind: Record<string, unknown> = {}
     Object.keys(mergeInputBind.value).forEach(key => {
-      if(key !== 'isClearable'){
+      if(key !== 'isClearable' && key !== 'restrict'){
         clearInputBind[key] = mergeInputBind.value[key as keyof DatetimePickerInputBind];
       }
     })
