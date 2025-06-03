@@ -70,13 +70,13 @@ export default () => {
   //   return true;
   // });
   defineRule('datetimeRestrict', (value: number, [restrict, timezone, format]: [DatetimePickerInputBind['restrict'], string, string]) => {
-    if (restrict.disbledType === RestrictTypeMode.UNLIMITED) return true;
+    if (restrict.restrictType === RestrictTypeMode.UNLIMITED) return true;
     
     const restrictTimestamp = formatTimeToUnix() + (restrict.shiftSecond || 0);
-    if(restrict.disbledType === RestrictTypeMode.PAST && value > restrictTimestamp ) {
+    if(restrict.restrictType === RestrictTypeMode.PAST && value > restrictTimestamp ) {
       return t('isLessThenDatetimeRestrict', {datetime: formatUnixTime(timezone, restrictTimestamp, format)});
     }
-    if(restrict.disbledType === RestrictTypeMode.FUTURE && value < restrictTimestamp ) {
+    if(restrict.restrictType === RestrictTypeMode.FUTURE && value < restrictTimestamp ) {
       return t('isMoreThenDatetimeRestrict', {datetime: formatUnixTime(timezone, restrictTimestamp, format)});
     }
     return true

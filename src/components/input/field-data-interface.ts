@@ -163,7 +163,7 @@ export type DatetimePickerInputBind = {
   isClearable?: boolean;
   timezone?: string; // for display UTC timezone. if need validate restrict, must be set timezone.
   restrict: {
-    disbledType?: (typeof RestrictTypeMode)[keyof typeof RestrictTypeMode]; 
+    restrictType?: (typeof RestrictTypeMode)[keyof typeof RestrictTypeMode]; 
     shiftSecond?: number;
   }
 } & UnKnownOptions

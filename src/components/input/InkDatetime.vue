@@ -62,10 +62,10 @@ const disabledDate = (date: Date) => {
   //   // disabled later then restrict.latest date
   //   return true;
   // }
-  if(mergeInputBind.value.restrict.disbledType === RestrictTypeMode.PAST) {
+  if(mergeInputBind.value.restrict.restrictType === RestrictTypeMode.PAST) {
     return formatTimeToUnix(date) > dayjs().unix()
   };
-  if(mergeInputBind.value.restrict.disbledType === RestrictTypeMode.FUTURE) {
+  if(mergeInputBind.value.restrict.restrictType === RestrictTypeMode.FUTURE) {
     return formatTimeToUnix(date) < dayjs().startOf('day').unix()
   };
   return false;

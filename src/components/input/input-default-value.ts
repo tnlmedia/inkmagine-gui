@@ -136,7 +136,7 @@ const defaultDatetimePickerInputBind = () => {
     teleported: true,
     valueFormat: 'X',
     restrict: {
-      disbledType: RestrictTypeMode.UNLIMITED,
+      restrictType: RestrictTypeMode.UNLIMITED,
       shiftSecond: 0,
     },
   }
