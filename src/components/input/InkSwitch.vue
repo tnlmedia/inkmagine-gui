@@ -45,7 +45,7 @@ const { value, errorMessage, handleChange } = useField<boolean>(`${mergeField.va
         type="button"
         :class="[
           'tw-switch',
-          value ? 'tw-bg-info-500' : 'tw-bg-gray-400',
+          value ? 'tw-bg-secondary-800' : 'tw-bg-gray-400',
         ]"
         :disabled="disabled"
         @click="onChange()"
