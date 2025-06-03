@@ -1,6 +1,7 @@
 import { App } from 'vue'
 import '@/scss/component/_ink-text-color.scss'
 import InkButton from '@/components/InkButton.vue'
+import InkBadge from '@/components/InkBadge.vue'
 import InkSpinner from '@/components/InkSpinner.vue'
 import InkMenu from '@/components/ink-menu/InkMenu.vue'
 import InkMenuButton from '@/components/ink-menu/InkMenuButton.vue'
@@ -30,6 +31,7 @@ import useInkDefineRule from '@/helper/useDefineRule'
 
 export {
   InkButton,
+  InkBadge,
   InkSpinner,
   InkMenu,
   InkMenuButton,

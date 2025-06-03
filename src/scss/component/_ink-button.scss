@@ -1,7 +1,8 @@
 /* button content start */
-  a.tw-disabled,
+  
+  *.tw-disabled,
   button:disabled{
-    @apply tw-opacity-45 focus:tw-outline-transparent;
+    @apply tw-opacity-45 focus:tw-outline-transparent tw-cursor-not-allowed;
   }
 
   .tw-btn-base{
