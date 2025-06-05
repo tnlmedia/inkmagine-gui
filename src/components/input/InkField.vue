@@ -33,6 +33,9 @@ const componentMap = {
   radio: defineAsyncComponent(() => import('@/components/input/InkRadio.vue')),
   switch: defineAsyncComponent(() => import('@/components/input/InkSwitch.vue')),
   datetime: defineAsyncComponent(() => import('@/components/input/InkDatetime.vue')),
+  date: defineAsyncComponent(() => import('@/components/input/InkDatetime.vue')),
+  datetimerng: defineAsyncComponent(() => import('@/components/input/InkDatetimerng.vue')),
+  daterng: defineAsyncComponent(() => import('@/components/input/InkDatetimerng.vue')),
 } as const;
 
 type FieldType = keyof typeof componentMap;
@@ -55,7 +58,7 @@ const dynamicComponent = computed(() => {
 type GetFieldValueType<T extends FieldType> = 
   T extends 'text' | 'slug' | 'email' | 'url' | 'password' | 'time' | 'textarea' | 'html'
     ? string 
-    : T extends 'number' | 'datetime'
+    : T extends 'number' | 'datetime' | 'date' | 'datetimerng' | 'daterng'
     ? number | undefined
     : T extends 'switch' 
     ? boolean 
@@ -126,7 +129,7 @@ if (fields.value.length === 0) {
       </span>
     </div>
     <!-- <slot/> -->
-    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio' && mergeField.type !== 'switch' && mergeField.type !== 'datetime'">
+    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio' && mergeField.type !== 'switch' && mergeField.type !== 'datetime' && mergeField.type !== 'date' && mergeField.type !== 'datetimerng' && mergeField.type !== 'daterng'">
     <component 
     v-for="(item, valueIndex) in fields"
     :key="`${item.key}-${valueIndex}`"
@@ -156,7 +159,7 @@ if (fields.value.length === 0) {
     </component>
     </template>
     <InkFieldMessage v-if="mergeField.description" :descriptionText="mergeField.description"/>
-    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio' && mergeField.type !== 'switch' && mergeField.type !== 'datetime'">
+    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio' && mergeField.type !== 'switch' && mergeField.type !== 'datetime' && mergeField.type !== 'date' && mergeField.type !== 'datetimerng' && mergeField.type !== 'daterng'">
     <InkButton
       v-if="inputTotal < checkFieldMax"
       as="button"

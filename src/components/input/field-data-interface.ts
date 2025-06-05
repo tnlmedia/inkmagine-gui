@@ -37,7 +37,8 @@ type Placeholder = {
 // }
 export type NumberLimit = [number | false, number | false];
 export type FileLimit = [number, string[]];
-export type TextLimit = number[];
+export type TextLimit = [number, number];
+export type DatetimerngLimit = [number, number];
 type Limit = {
   /* false is no range
     Text: chars range
@@ -47,7 +48,7 @@ type Limit = {
     file: size, mime type
     image: width and height range
   */
-  limit?: false | NumberLimit | TextLimit | FileLimit;
+  limit?: false | NumberLimit | TextLimit | FileLimit | DatetimerngLimit;
 }
 // type Type = {
 //   type?: string;
@@ -154,6 +155,8 @@ export type RadioOptions = {
 } & UnKnownOptions;
 
 // datetime picker
+type DatePickerType = 'year' | 'month' | 'date' | 'datetime' | 'week';
+
 export const RestrictTypeMode = {
   PAST: 'past',
   FUTURE: 'future',
@@ -162,10 +165,22 @@ export const RestrictTypeMode = {
 export type DatetimePickerInputBind = {
   isClearable?: boolean;
   timezone?: string; // for display UTC timezone. if need validate restrict, must be set timezone.
+  format?: string;
+  type?: DatePickerType;
   restrict: {
     restrictType?: (typeof RestrictTypeMode)[keyof typeof RestrictTypeMode]; 
     shiftSecond?: number;
   }
+} & UnKnownOptions
+// END
+
+// datetimerange
+export type DatetimerngInputBind = {
+  isClearable?: boolean;
+  activeStyle?: boolean;
+  timezone?: string; // for display UTC timezone. if need validate restrict, must be set timezone.
+  format?: string;
+  type?: DatePickerType;
 } & UnKnownOptions
 // END
 
@@ -181,5 +196,6 @@ export type CheckBoxSharp = Base & OptionsObject & Total & Choosable & Hierarchy
 export type RadioSharp = Base & OptionsObject & Total;
 export type SwitchSharp = Base;
 export type DatetimeSharp = Base & Placeholder;
+export type DatetimerngSharp = Base & Placeholder & Limit;
 
 export type FieldDataSharp = Base & TextSharp & Step & Ratio & Viewport & Fluid & Hierarchy & Choosable & OptionsObject & Total;

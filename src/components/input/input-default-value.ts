@@ -1,6 +1,7 @@
 import { computed, Ref } from "vue";
-import type { CheckBoxInputBind, SelectInputBind, SelectReduceReturn, UnKnownOptions, DatetimePickerInputBind } from "@/components/input/field-data-interface";
+import type { CheckBoxInputBind, SelectInputBind, SelectReduceReturn, UnKnownOptions, DatetimePickerInputBind, DatetimerngInputBind } from "@/components/input/field-data-interface";
 import { RestrictTypeMode } from "@/components/input/field-data-interface";
+import { utcTimezone } from "@/helper/dayjs";
 
 export const defaultInputProps = {
   valueIndex: {
@@ -44,10 +45,10 @@ export const useMergeFieldProps = <T extends Record<string, unknown>>(type: stri
   // console.log('field',field);
   // console.log('mergeField',mergeField.value);
   const minLength = computed(() => {
-    return Array.isArray(mergeField.value.limit) && typeof mergeField.value.limit[0] === 'number' ? mergeField.value.limit[0] : undefined;
+    return Array.isArray(mergeField.value.limit) && typeof mergeField.value.limit[0] === 'number' && mergeField.value.limit[0] ? mergeField.value.limit[0] : undefined;
   });
   const maxLength = computed(() => {
-    return Array.isArray(mergeField.value.limit) && typeof mergeField.value.limit[1] === 'number' ? mergeField.value.limit[1] : undefined;
+    return Array.isArray(mergeField.value.limit) && typeof mergeField.value.limit[1] === 'number' && mergeField.value.limit[1] ? mergeField.value.limit[1] : undefined;
   });
   const checkFieldMax = computed(() => { 
       if (mergeField.value.max) {
@@ -126,15 +127,54 @@ export const useMergeCheckBoxInputBind = (inputBind: Ref<Record<string, unknown>
   return { mergeInputBind, clearInputBind };
 }
 
-// datetime picker
-const defaultDatetimePickerInputBind = () => { 
+// all datetime
+const defaultAllDatetimeInputBind = () => { 
   return {
     isClearable: true,
-    type: 'datetime',
-    format: 'YYYY/MM/DD HH:mm',
     clearable: false,
     teleported: true,
     valueFormat: 'X',
+  }
+}
+const defaultAllDatetimeMethod = () => {
+
+  const mainInputModeNone = () => {
+
+  }
+  const panelInputModeNone = () => {
+    const popperEls = document.querySelectorAll(`.js-datetime-popper`);
+    popperEls.forEach((popperEl) => {
+      const inputEls = popperEl.querySelectorAll('input');
+      if (inputEls) {
+        inputEls.forEach(inputEl => {
+          inputEl.setAttribute("inputmode", "none");
+        })
+      }
+    })
+  }
+  const panelTimezone = (timezone:DatetimePickerInputBind['timezone']) => {
+    if(!timezone) return;
+      let els = document.querySelectorAll<HTMLElement>('.el-picker-panel__footer');
+      els.forEach(el => {
+        let remarkTimezone = el.querySelector<HTMLElement>('.js-remarkTimezone');
+        if (remarkTimezone) return;
+        let utcEl = document.createElement('span');
+        utcEl.className = 'js-remarkTimezone remark-timezone tw-text-gray tw-text-sm mr-auto';
+        utcEl.textContent = `(${utcTimezone(timezone)})`;
+        el.prepend(utcEl);
+      })
+  }
+
+  return {
+    panelInputModeNone,
+    panelTimezone,
+  }
+}
+
+// datetime series
+const defaultDatetimePickerInputBind = () => { 
+  return {
+    ...defaultAllDatetimeInputBind(),
     restrict: {
       restrictType: RestrictTypeMode.UNLIMITED,
       shiftSecond: 0,
@@ -153,11 +193,38 @@ export const useMergeDatetimePickerInputBind = (inputBind: Ref<Record<string, un
   const clearInputBind = computed(() => {
     const clearInputBind: Record<string, unknown> = {}
     Object.keys(mergeInputBind.value).forEach(key => {
-      if(key !== 'isClearable' && key !== 'restrict'){
+      if(key !== 'isClearable' && key !== 'restrict' && key !== 'timezone'){
         clearInputBind[key] = mergeInputBind.value[key as keyof DatetimePickerInputBind];
       }
     })
     return clearInputBind;
   })
-  return { mergeInputBind, clearInputBind };
+  
+  return { mergeInputBind, clearInputBind, ...defaultAllDatetimeMethod() };
+}
+
+// datetimerange series
+const defaultDatetimerngInputBind = () => { 
+  return {
+    ...defaultAllDatetimeInputBind(),
+    activeStyle: false,
+  }
+}
+export const useMergeDatetimerngInputBind = (inputBind: Ref<Record<string, unknown>>) => { 
+  const mergeInputBind = computed<DatetimerngInputBind>(() => {
+    return {
+      ...defaultDatetimerngInputBind(),
+      ...inputBind.value,
+    }
+  })
+  const clearInputBind = computed(() => {
+    const clearInputBind: Record<string, unknown> = {}
+    Object.keys(mergeInputBind.value).forEach(key => {
+      if(key !== 'isClearable' && key !== 'activeStyle' && key !== 'timezone'){
+        clearInputBind[key] = mergeInputBind.value[key as keyof DatetimerngInputBind];
+      }
+    })
+    return clearInputBind;
+  })
+  return { mergeInputBind, clearInputBind, ...defaultAllDatetimeMethod() };
 }

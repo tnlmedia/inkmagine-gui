@@ -19,6 +19,10 @@
   "isJson": "JSON 形式に合わせてください",
   "words": "文字",
 
+  "pleaseSelect":"選択してください",
+  "startDate":"開始日",
+  "endDate":"終了日",
+
   "navbar": {
     "apps": {
         "service":"サービス",

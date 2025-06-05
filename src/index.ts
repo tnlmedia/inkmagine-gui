@@ -25,6 +25,9 @@ import InkRadio from '@/components/input/InkRadio.vue'
 import InkSwitch from '@/components/input/InkSwitch.vue'
 import InkElConfigProvider from '@/components/input/InkElConfigProvider.vue'
 import InkDatetime from '@/components/input/InkDatetime.vue'
+import InkDate from '@/components/input/InkDatetime.vue'
+import InkDatetimerng from '@/components/input/InkDatetimerng.vue'
+import InkDaterng from '@/components/input/InkDatetimerng.vue'
 import { inkI18n } from '@/helper/i18n'
 import { setFont } from '@/helper/set-font'
 import useInkDefineRule from '@/helper/useDefineRule'
@@ -56,6 +59,9 @@ export {
   InkSwitch,
   InkElConfigProvider,
   InkDatetime,
+  InkDate,
+  InkDatetimerng,
+  InkDaterng
 }
 
 export default {

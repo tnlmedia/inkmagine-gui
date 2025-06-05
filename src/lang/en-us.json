@@ -19,6 +19,10 @@
   "isJson": "Please match the JSON format",
   "words": "Words",
 
+  "pleaseSelect":"Please select",
+  "startDate":"Start Date",
+  "endDate":"End Date",
+
   "navbar": {
     "apps": {
         "service":"Service",

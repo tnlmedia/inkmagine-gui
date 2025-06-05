@@ -1,8 +1,7 @@
 import { defineRule } from 'vee-validate';
 import { t } from '@/helper/i18n';
-import type { NumberLimit, FileLimit } from '@/components/input/field-data-interface';
+import type { NumberLimit, FileLimit, DatetimerngLimit, DatetimePickerInputBind } from '@/components/input/field-data-interface';
 import { formatUnixTime, formatValueOfTime, formatTimeToUnix } from '@/helper/dayjs';
-import type { DatetimePickerInputBind } from '@/components/input/field-data-interface';
 import { RestrictTypeMode } from '@/components/input/field-data-interface';
 export default () => {
   // from sandwich
@@ -69,6 +68,7 @@ export default () => {
   //   }
   //   return true;
   // });
+
   defineRule('datetimeRestrict', (value: number, [restrict, timezone, format]: [DatetimePickerInputBind['restrict'], string, string]) => {
     if (restrict.restrictType === RestrictTypeMode.UNLIMITED) return true;
     
@@ -81,26 +81,32 @@ export default () => {
     }
     return true
   });
-  // defineRule('datetimeRestrict', (value: number, [restrict, timezone, valueFormat, format]: [{ earliest?: number, latest?: number }, string, string, string]) => {
-  //   if (typeof value === 'undefined') return true; // for required check
-  //   if(!restrict) return true; // for no need restrict, because not set restrict
-  //   const formatValue = (restrictTimestamp: number) => {
-  //     if (valueFormat === 'X') { 
-  //       return formatUnixTime(timezone, restrictTimestamp, format);
-  //     } else {
-  //       return formatValueOfTime(timezone, restrictTimestamp, format);
-  //     }
-  //   }
-  //   if (restrict.earliest && value < restrict.earliest) {
-  //     // future datetime chooseable (schedule)
-  //     return t('isMoreThenDatetimeRestrict', {datetime: formatValue(restrict.earliest)});
-  //   }
-  //   if (restrict.latest && value > restrict.latest) {
-  //     // past datetime chooseable (publish)
-  //     return t('isLessThenDatetimeRestrict', {datetime: formatValue(restrict.latest)});
-  //   }
-  //   return true
-  // });
+  defineRule('datetimerngStartLimit', (value: number, [endValue, minLength, maxLength, timezone, format]: [number, number, number, string, string]) => {
+    if (typeof value === 'undefined') return true;
+    if (minLength && value < minLength) {
+      return 'start tiem:' + t('isMoreThenDatetimeRestrict',{datetime: formatUnixTime(timezone, minLength, format)});
+    }
+    if (maxLength && value > maxLength) {
+      return 'start tiem:' + t('isLessThenDatetimeRestrict',{datetime: formatUnixTime(timezone, maxLength, format)});
+    }
+    if (endValue && value > endValue) {
+      return 'start tiem:' + t('isLessThenDatetimeRestrict',{datetime: formatUnixTime(timezone, endValue, format)});
+    }
+    return true
+  });
+  defineRule('datetimerngEndLimit', (value: number, [startValue, minLength, maxLength, timezone, format]: [number, number, number, string, string]) => {
+    if (typeof value === 'undefined') return true;
+    if (minLength && value < minLength) {
+      return 'end tiem:' + t('isMoreThenDatetimeRestrict',{datetime: formatUnixTime(timezone, minLength, format)});
+    }
+    if (maxLength && value > maxLength) {
+      return 'end tiem:' + t('isLessThenDatetimeRestrict',{datetime: formatUnixTime(timezone, maxLength, format)});
+    }
+    if (startValue && value < startValue) {
+      return 'end tiem:' + t('isMoreThenDatetimeRestrict',{datetime: formatUnixTime(timezone, startValue, format)});
+    }
+    return true
+  });
   defineRule('url', (value: string) => {
     if (typeof value === 'undefined') return true; // for removed item data
     const pattern = /^https?:\/\//;

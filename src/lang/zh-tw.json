@@ -20,6 +20,10 @@
   "isJson": "請符合 JSON 格式",
   "words": "字",
 
+  "pleaseSelect":"請選擇",
+  "startDate":"開始日期",
+  "endDate":"結束日期",
+
   "navbar": {
     "apps": {
         "service":"服務",

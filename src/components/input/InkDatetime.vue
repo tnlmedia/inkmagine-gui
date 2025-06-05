@@ -10,10 +10,8 @@ import InkErrorMessage from '@/components/input/InkErrorMessage.vue';
 import InputFrame from '@/components/input/InputFrame.vue';
 import { defaultInputProps, useMergeFieldProps, useMergeDatetimePickerInputBind } from '@/components/input/input-default-value';
 import type { DatetimeSharp, DatetimePickerInputBind } from '@/components/input/field-data-interface';
-import dayjs, { utcTimezone, formatTimeToUnix, formatTimeToValueOf, convertUnixToStartOf, convertValueOfToStartOf } from '@/helper/dayjs';
+import dayjs, { formatTimeToUnix } from '@/helper/dayjs';
 import { RestrictTypeMode } from '@/components/input/field-data-interface';
-
-type DatePickerType = 'year' | 'month' | 'date' | 'datetime' | 'week' | 'datetimerange' | 'daterange';
 
 const props = defineProps({
   ...defaultInputProps,
@@ -27,41 +25,31 @@ const props = defineProps({
   },
 });
 const emit = defineEmits(['removeInputItemFn']);
-const { mergeField, checkFieldMax } = useMergeFieldProps<DatetimeSharp>('datetime', toRef(props, 'field'));
-const { mergeInputBind, clearInputBind } = useMergeDatetimePickerInputBind(toRef(props, 'inputBind'));
+const { mergeField, checkFieldMax } = useMergeFieldProps<DatetimeSharp>(props.field.type, toRef(props, 'field'));
+const { mergeInputBind, clearInputBind, panelInputModeNone, panelTimezone } = useMergeDatetimePickerInputBind(toRef(props, 'inputBind'));
 
+const datetimeType = computed(() => {
+  if(mergeInputBind.value.type) return mergeInputBind.value.type;
+  switch(mergeField.value.type){
+    case 'date':
+    return 'date'
+    default:
+    return 'datetime'
+  }
+});
+const datetimeFormat = computed(() => {
+  if(mergeInputBind.value.format) return mergeInputBind.value.format;
+  switch(mergeField.value.type){
+    case 'date':
+    return 'YYYY/MM/DD'
+    default:
+    return 'YYYY/MM/DD HH:mm'
+  }
+});
 const clearTime = () => {
   handleChange(undefined);
 };
 const disabledDate = (date: Date) => {
-  // if(!mergeInputBind.value.restrict) return false;
-  // if(!mergeInputBind.value.restrict.earliest && !mergeInputBind.value.restrict.latest) return false;
-
-  // let dateTimestamp;
-  // if(mergeInputBind.value.valueFormat === 'X'){
-  //   dateTimestamp = formatTimeToUnix(date);
-  // } else {
-  //   dateTimestamp = formatTimeToValueOf(date);
-  // }
-
-  // let getEarliestStartOfDayTimestamp;
-  // if(mergeInputBind.value.restrict?.earliest){
-  //   if(mergeInputBind.value.valueFormat === 'X'){
-  //     getEarliestStartOfDayTimestamp = convertUnixToStartOf(mergeInputBind.value.restrict.earliest);
-  //   }else{
-  //     getEarliestStartOfDayTimestamp = convertValueOfToStartOf(mergeInputBind.value.restrict.earliest);
-  //   }
-  //   if(dateTimestamp < getEarliestStartOfDayTimestamp){
-  //     // true means disabled the date
-  //     // disabled early then restrict.earliest date
-  //     return true;
-  //   }
-  // }
-
-  // if((mergeInputBind.value.restrict?.latest && dateTimestamp > mergeInputBind.value.restrict.latest)){
-  //   // disabled later then restrict.latest date
-  //   return true;
-  // }
   if(mergeInputBind.value.restrict.restrictType === RestrictTypeMode.PAST) {
     return formatTimeToUnix(date) > dayjs().unix()
   };
@@ -73,44 +61,12 @@ const disabledDate = (date: Date) => {
 
 const startDatePickerRef = useTemplateRef('startDatePicker');
 
-const panelInputModeNone = () => {
-  const popperEls = document.querySelectorAll(`.js-datetime-popper`);
-  popperEls.forEach((popperEl) => {
-    const inputEls = popperEl.querySelectorAll('input');
-    if (inputEls) {
-      inputEls.forEach(inputEl => {
-        inputEl.setAttribute("inputmode", "none");
-      })
-    }
-  })
-}
-const panelTimezone = () => {
-   if(!mergeInputBind.value.timezone) return;
-    let els = document.querySelectorAll<HTMLElement>('.el-picker-panel__footer');
-    els.forEach(el => {
-      let remarkTimezone = el.querySelector<HTMLElement>('.js-remarkTimezone');
-      if (remarkTimezone) return;
-      let utcEl = document.createElement('span');
-      utcEl.className = 'js-remarkTimezone remark-timezone tw-text-gray tw-text-sm mr-auto';
-      utcEl.textContent = `(${utcTimezone(mergeInputBind.value.timezone as string)})`;
-      el.prepend(utcEl);
-    })
-}
-
 const elStyle = computed(() => {
   return {
     'tw-border-danger-400': startErrorMessage.value,
     'tw-disabled': props.disabled,
   };
 });
-
-// watch(()=>mergeInputBind.value.restrict, ()=>{
-//   let restrictTipCount = 0;
-//   if(mergeInputBind.value.restrict && !restrictTipCount){
-//     restrictTipCount++;
-//     console.warn('InkDatetime inputBind.restrict Tip: Please check the inputBind.timezone is set and inputBind.restrict timestamp type is sanme as inputBind.valueFormat')
-//   }
-// })
 
 onMounted(() => {
   const datePickerRefs = [startDatePickerRef.value];
@@ -123,7 +79,7 @@ onMounted(() => {
     }
   })
   panelInputModeNone();
-  panelTimezone();
+  panelTimezone(mergeInputBind.value.timezone);
 })
 
 const rules = computed(() => ({
@@ -162,6 +118,8 @@ const { value: startValue, errorMessage: startErrorMessage, handleChange } = use
           :disabled-date="disabledDate"
           v-bind="clearInputBind"
           v-on="inputOn"
+          :type="datetimeType"
+          :format="datetimeFormat"
         />
         <button
           v-if="mergeInputBind.isClearable && !disabled"
