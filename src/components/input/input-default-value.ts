@@ -62,7 +62,9 @@ export const useMergeFieldProps = <T extends Record<string, unknown>>(type: stri
   return { mergeField, minLength, maxLength, checkFieldMax };
 }
 
-// select
+// vue select series
+
+// select series (single select)
 const defaultSelectInputBind = () => {
   return {
     hasNextPage: false,
@@ -98,6 +100,8 @@ export const useMergeSelectInputBind = (inputBind: Ref<Record<string, unknown>>)
   });
   return { mergeInputBind, clearInputBind };
 }
+
+// hashtag series (multiple select)
 
 // checkbox
 const defaultCheckBoxInputBind = (): CheckBoxInputBind => {
@@ -186,6 +190,7 @@ export const useMergeDatetimePickerInputBind = (inputBind: Ref<Record<string, un
     return {
       ...defaultDatetimePickerInputBind(),
       ...inputBind.value,
+      timezone: inputBind.value.timezone as DatetimePickerInputBind['timezone'],
       popperClass: `${inputBind.value.popperClass} js-datetime-popper`,
     }
   })
@@ -215,6 +220,7 @@ export const useMergeDatetimerngInputBind = (inputBind: Ref<Record<string, unkno
     return {
       ...defaultDatetimerngInputBind(),
       ...inputBind.value,
+      timezone: inputBind.value.timezone as DatetimePickerInputBind['timezone'],
     }
   })
   const clearInputBind = computed(() => {

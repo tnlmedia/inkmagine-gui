@@ -163,8 +163,8 @@ export const RestrictTypeMode = {
   UNLIMITED: 'unlimited',
 } as const;
 export type DatetimePickerInputBind = {
+  timezone: string; // for display date and display UTC timezone. if need validate restrict, must be set timezone.
   isClearable?: boolean;
-  timezone?: string; // for display UTC timezone. if need validate restrict, must be set timezone.
   format?: string;
   type?: DatePickerType;
   restrict: {
@@ -176,9 +176,9 @@ export type DatetimePickerInputBind = {
 
 // datetimerange
 export type DatetimerngInputBind = {
+  timezone: string; // for display date and display UTC timezone. if need validate restrict, must be set timezone.
   isClearable?: boolean;
   activeStyle?: boolean;
-  timezone?: string; // for display UTC timezone. if need validate restrict, must be set timezone.
   format?: string;
   type?: DatePickerType;
 } & UnKnownOptions
@@ -196,6 +196,6 @@ export type CheckBoxSharp = Base & OptionsObject & Total & Choosable & Hierarchy
 export type RadioSharp = Base & OptionsObject & Total;
 export type SwitchSharp = Base;
 export type DatetimeSharp = Base & Placeholder;
-export type DatetimerngSharp = Base & Placeholder & Limit;
+export type DatetimerngSharp = Base & Limit;
 
 export type FieldDataSharp = Base & TextSharp & Step & Ratio & Viewport & Fluid & Hierarchy & Choosable & OptionsObject & Total;

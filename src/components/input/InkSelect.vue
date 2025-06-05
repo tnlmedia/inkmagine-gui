@@ -124,7 +124,7 @@ const elStyle = computed(() => {
         v-model="value"
         :disabled="disabled"
         :required="required"
-        :placeholder="mergeField.placeholder || t('pleaseSelect')"
+        :placeholder="mergeField.placeholder || t('select')"
         @open="onOpen"
         @close="onClose"
         class="tw-w-full"
