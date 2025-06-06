@@ -2,7 +2,7 @@
 import '@/scss/component/_ink-element-plus-datetime.scss';
 import { ElDatePicker } from 'element-plus';
 import 'element-plus/es/components/date-picker/style/css';
-import { computed, onMounted, PropType, useTemplateRef, toRef } from "vue";
+import { computed, onMounted, PropType, useTemplateRef, toRef, watch, ref } from "vue";
 import { useField } from "vee-validate";
 import InputWrapper from '@/components/input/InputWrapper.vue';
 import InputInner from '@/components/input/InputInner.vue';
@@ -10,7 +10,7 @@ import InkErrorMessage from '@/components/input/InkErrorMessage.vue';
 import InputFrame from '@/components/input/InputFrame.vue';
 import { defaultInputProps, useMergeFieldProps, useMergeDatetimePickerInputBind } from '@/components/input/input-default-value';
 import type { DatetimeSharp, DatetimePickerInputBind } from '@/components/input/field-data-interface';
-import dayjs, { formatTimeToUnix } from '@/helper/dayjs';
+import dayjs, { formatTimeToUnix, formatUnixTime } from '@/helper/dayjs';
 import { RestrictTypeMode } from '@/components/input/field-data-interface';
 
 const props = defineProps({
@@ -48,6 +48,7 @@ const datetimeFormat = computed(() => {
 });
 const clearTime = () => {
   handleChange(undefined);
+  displayValue.value = undefined;
 };
 const disabledDate = (date: Date) => {
   if(mergeInputBind.value.restrict.restrictType === RestrictTypeMode.PAST) {
@@ -88,6 +89,21 @@ const rules = computed(() => ({
 }));
 const { value: startValue, errorMessage: startErrorMessage, handleChange } = useField<number | undefined>(`${mergeField.value.id}[${props.valueIndex}]`, rules);
 
+const displayValue = ref<string | undefined>();
+watch(startValue, () => {
+  if(startValue.value) {
+    displayValue.value = formatUnixTime(mergeInputBind.value.timezone, startValue.value, datetimeFormat.value);
+  }
+},{once:true})
+watch(displayValue, (newVal, oldVal) => {
+  if(newVal) {
+    const targetTime = dayjs.tz(newVal, mergeInputBind.value.timezone).format();
+    const utcTimestamp = formatTimeToUnix(targetTime);
+    handleChange(utcTimestamp);
+  }else{
+    handleChange(undefined);
+  }
+})
 </script>
 
 <template>
@@ -111,7 +127,7 @@ const { value: startValue, errorMessage: startErrorMessage, handleChange } = use
       >
         <el-date-picker
           ref="startDatePicker"
-          v-model.number="startValue"
+          v-model="displayValue"
           class="datetime-picker-input"
           :placeholder="mergeField.placeholder"
           :disabled="disabled"
@@ -120,6 +136,7 @@ const { value: startValue, errorMessage: startErrorMessage, handleChange } = use
           v-on="inputOn"
           :type="datetimeType"
           :format="datetimeFormat"
+          :value-format="datetimeFormat"
         />
         <button
           v-if="mergeInputBind.isClearable && !disabled"

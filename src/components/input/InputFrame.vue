@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { singleFieldTypes } from '@/components/input/input-default-value';
 
 interface InputFrameProps {
   max: number;
@@ -27,7 +28,7 @@ const emit = defineEmits(['removeComponent']);
 <template>
   <div class="input-frame tw-flex tw-flex-grow tw-relative">
     <slot/>
-    <template v-if="inputType !== 'select' && inputType !== 'checkbox' && inputType !== 'radio' && inputType !== 'switch' && inputType !== 'datetime' && inputType !== 'date' && inputType !== 'datetimerng' && inputType !== 'daterng'">
+    <template v-if="inputType && !singleFieldTypes.includes(inputType)">
     <button
       type="button"
       v-if="(disabled && max === Infinity) || max > 1"

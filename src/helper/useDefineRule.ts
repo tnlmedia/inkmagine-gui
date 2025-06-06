@@ -54,6 +54,21 @@ export default () => {
     }
     return true;
   });
+  defineRule('itemLimit', (value: string, [min, max]: [number, number]) => {
+    if ( !value || typeof value === 'undefined') return true; // for removed item data
+
+    min = min === 0 ? -Infinity : min;
+    max = max === 0 ? Infinity : max;
+
+    const length = value.length;
+    if (length < min) {
+      return t('isLessThenMin', {length: min});
+    }
+    if (length > max) {
+      return t('isMoreThenMax', {length: max});
+    }
+    return true;
+  });
   // defineRule('numberLimit', (value: number, [min, max]: NumberLimit) => {
   //   if (typeof value === 'undefined') return true; // for removed item data
 

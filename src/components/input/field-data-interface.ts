@@ -127,6 +127,15 @@ export type SelectOptions = {
   depth?: number;
 } & UnKnownOptions;
 
+// hashtag
+export type HashtagInputBind = {
+  noDrop: boolean;
+  loading: boolean;
+  options?: HashtagOptions[];
+  activeStyle?: boolean;
+} 
+type HashtagOptions = UnKnownOptions
+
 // checkbox 
 export type CheckBoxInputBind = {
   options?: CheckBoxOptions[];
@@ -192,6 +201,7 @@ export type TextSharp = Base & Placeholder & Prefix & Suffix & Limit;
 export type TextareaSharp = Base & Placeholder & Limit;
 export type UrlSharp = Base & Placeholder;
 export type SelectSharp = Base & OptionsObject & Total & Choosable & Hierarchy & Placeholder;
+export type HashtagSharp = Base & Placeholder & Limit;
 export type CheckBoxSharp = Base & OptionsObject & Total & Choosable & Hierarchy;
 export type RadioSharp = Base & OptionsObject & Total;
 export type SwitchSharp = Base;

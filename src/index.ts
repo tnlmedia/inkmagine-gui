@@ -20,6 +20,7 @@ import InkText from '@/components/input/InkText.vue'
 import InkUrl from '@/components/input/InkUrl.vue'
 import InkTextarea from '@/components/input/InkTextarea.vue'
 import InkSelect from '@/components/input/InkSelect.vue'
+import InkHashtag from '@/components/input/InkHashtag.vue'
 import InkCheckbox from '@/components/input/InkCheckbox.vue'
 import InkRadio from '@/components/input/InkRadio.vue'
 import InkSwitch from '@/components/input/InkSwitch.vue'
@@ -54,6 +55,7 @@ export {
   InkUrl,
   InkTextarea,
   InkSelect,
+  InkHashtag,
   InkCheckbox,
   InkRadio,
   InkSwitch,

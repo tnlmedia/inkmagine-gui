@@ -1,7 +1,9 @@
 import { computed, Ref } from "vue";
-import type { CheckBoxInputBind, SelectInputBind, SelectReduceReturn, UnKnownOptions, DatetimePickerInputBind, DatetimerngInputBind } from "@/components/input/field-data-interface";
+import type { CheckBoxInputBind, SelectInputBind, SelectReduceReturn, UnKnownOptions, DatetimePickerInputBind, DatetimerngInputBind, HashtagInputBind } from "@/components/input/field-data-interface";
 import { RestrictTypeMode } from "@/components/input/field-data-interface";
 import { utcTimezone } from "@/helper/dayjs";
+
+export const singleFieldTypes = ['select', 'checkbox', 'radio', 'switch', 'datetime', 'date', 'datetimerng', 'daterng', 'hashtag'];
 
 export const defaultInputProps = {
   valueIndex: {
@@ -63,19 +65,23 @@ export const useMergeFieldProps = <T extends Record<string, unknown>>(type: stri
 }
 
 // vue select series
-
+const defaultAllSelectInputBind = () => {
+  return {
+    activeStyle: false,
+    options: [],
+    label: 'name',
+    filterable: false,
+    clearable: true,
+    autoscroll: false,
+  }
+}
 // select series (single select)
 const defaultSelectInputBind = () => {
   return {
+    ...defaultAllSelectInputBind(),
     hasNextPage: false,
-    activeStyle: false,
-    options: [],
-    reduce: (option: UnKnownOptions) => option.key as SelectReduceReturn,
-    label: 'name',
-    clearable: true,
-    filterable: false,
     searchable: false,
-    autoscroll: false,
+    reduce: (option: UnKnownOptions) => option.key as SelectReduceReturn,
     selectable: (option: UnKnownOptions) => !option.disabled,
     infiniteFn: undefined as (() => void) | undefined,
     openFn: undefined as (() => void) | undefined,
@@ -102,7 +108,33 @@ export const useMergeSelectInputBind = (inputBind: Ref<Record<string, unknown>>)
 }
 
 // hashtag series (multiple select)
-
+// noDrop, , loading,
+const defaultHashtagInputBind = () => {
+  return {
+    ...defaultAllSelectInputBind(),
+    searchable: true,
+  }
+}
+export const useMergeHashtagInputBind = (inputBind: Ref<Record<string, unknown>>) => {
+  const mergeInputBind = computed(() => {
+    return {
+      ...defaultHashtagInputBind(),
+      ...inputBind.value,
+      noDrop: inputBind.value.noDrop,
+      loading: inputBind.value.loading,
+    }
+  })
+  const clearInputBind = computed(() => {
+    const clearInputBind: Record<string, unknown> = {}
+    Object.keys(mergeInputBind.value).forEach(key => {
+      if(key !== 'activeStyle'){
+        clearInputBind[key] = mergeInputBind.value[key as keyof HashtagInputBind];
+      }
+    })
+    return clearInputBind;
+  });
+  return { mergeInputBind, clearInputBind };
+}
 // checkbox
 const defaultCheckBoxInputBind = (): CheckBoxInputBind => {
   return {
@@ -137,7 +169,6 @@ const defaultAllDatetimeInputBind = () => {
     isClearable: true,
     clearable: false,
     teleported: true,
-    valueFormat: 'X',
   }
 }
 const defaultAllDatetimeMethod = () => {

@@ -10,7 +10,7 @@ import InkErrorMessage from '@/components/input/InkErrorMessage.vue';
 import InputFrame from '@/components/input/InputFrame.vue';
 import { defaultInputProps, useMergeFieldProps, useMergeDatetimerngInputBind } from '@/components/input/input-default-value';
 import type { DatetimerngSharp, DatetimerngInputBind } from '@/components/input/field-data-interface';
-import { formatTimeToUnix, convertUnixToStartOf } from '@/helper/dayjs';
+import dayjs, { formatTimeToUnix, convertUnixToStartOf, formatUnixTime } from '@/helper/dayjs';
 import { t } from '@/helper/i18n';
 
 const props = defineProps({
@@ -49,6 +49,10 @@ const rngElFormat = computed(() => {
 const clearTime = () => {
   handleChangeStart(undefined);
   handleChangeEnd(undefined);
+  displayStartValue.value = undefined;
+  displayEndValue.value = undefined;
+  startValueUnix.value = undefined;
+  endValueUnix.value = undefined;
 };
 const startDisabledDate = (date: Date) => {
   if(minLength.value && formatTimeToUnix(date) < minLength.value){
@@ -105,26 +109,60 @@ onMounted(() => {
 //   datetimerngEndLimit?: [number | undefined, false | NumberLimit | TextLimit | FileLimit | DatetimerngLimit, string, unknown];
 // };
 
-const startValueRef = ref<number | undefined>();
-const endValueRef = ref<number | undefined>();
+const startValueUnix = ref<number | undefined>();
+const endValueUnix = ref<number | undefined>();
+const displayStartValue = ref<string | undefined>();
+const displayEndValue = ref<string | undefined>();
 
 const startRules = computed(() => ({
   required: props.required,
-  datetimerngStartLimit: [endValueRef.value, minLength.value, maxLength.value, mergeInputBind.value.timezone, mergeInputBind.value.format]
+  datetimerngStartLimit: [endValueUnix.value, minLength.value, maxLength.value, mergeInputBind.value.timezone, mergeInputBind.value.format]
 }));
 
 const endRules = computed(() => ({
   required: props.required,
-  datetimerngEndLimit: [startValueRef.value, minLength.value, maxLength.value, mergeInputBind.value.timezone, mergeInputBind.value.format]
+  datetimerngEndLimit: [startValueUnix.value, minLength.value, maxLength.value, mergeInputBind.value.timezone, mergeInputBind.value.format]
 }));
 
 const { value: startValue, errorMessage: startErrorMessage, handleChange: handleChangeStart } = useField<number | undefined>(`${mergeField.value.id}[0]`, startRules);
 const { value: endValue, errorMessage: endErrorMessage, handleChange: handleChangeEnd } = useField<number | undefined>(`${mergeField.value.id}[1]`, endRules);
 
 // 同步 ref 值
-watch(startValue, (val) => startValueRef.value = val);
-watch(endValue, (val) => endValueRef.value = val);
+watch(startValue, () => {
+  if(startValue.value) {
+    displayStartValue.value = formatUnixTime(mergeInputBind.value.timezone, startValue.value, rngElFormat.value);
+    startValueUnix.value = startValue.value;
+  }
+}, {once:true});
+watch(endValue, () => {
+  if(endValue.value) {
+    displayEndValue.value = formatUnixTime(mergeInputBind.value.timezone, endValue.value, rngElFormat.value);
+    endValueUnix.value = endValue.value;
+  }
+}, {once:true});
 
+watch(displayStartValue, (newVal, oldVal) => {
+  if(newVal) {
+    const targetTime = dayjs.tz(newVal, mergeInputBind.value.timezone).format();
+    const utcTimestamp = formatTimeToUnix(targetTime);
+    handleChangeStart(utcTimestamp);
+    startValueUnix.value = utcTimestamp;
+  }else{
+    handleChangeStart(undefined);
+    startValueUnix.value = undefined;
+  }
+})
+watch(displayEndValue, (newVal, oldVal) => {
+  if(newVal) {
+    const targetTime = dayjs.tz(newVal, mergeInputBind.value.timezone).format();
+    const utcTimestamp = formatTimeToUnix(targetTime);
+    handleChangeEnd(utcTimestamp);
+    endValueUnix.value = utcTimestamp;
+  }else{
+    handleChangeEnd(undefined);
+    endValueUnix.value = undefined;
+  }
+})
 </script>
 
 <template>
@@ -148,7 +186,7 @@ watch(endValue, (val) => endValueRef.value = val);
       >
         <el-date-picker
           ref="startDatePicker"
-          v-model.number="startValue"
+          v-model="displayStartValue"
           class="datetime-picker-input datetimerng-input"
           :placeholder="t('startDate')"
           :disabled="disabled"
@@ -157,11 +195,12 @@ watch(endValue, (val) => endValueRef.value = val);
           v-on="inputOn"
           :type="rngElType"
           :format="rngElFormat"
+          :value-format="rngElFormat"
         />
         <i class="far fa-arrow-right tw-text-xs tw-text-gray-700"></i>
         <el-date-picker
           ref="endDatePicker"
-          v-model.number="endValue"
+          v-model="displayEndValue"
           class="datetime-picker-input datetimerng-input"
           :placeholder="t('endDate')"
           :disabled="disabled"
@@ -170,6 +209,7 @@ watch(endValue, (val) => endValueRef.value = val);
           v-on="inputOn"
           :type="rngElType"
           :format="rngElFormat"
+          :value-format="rngElFormat"
         />
         <button
           v-if="mergeInputBind.isClearable && !disabled"

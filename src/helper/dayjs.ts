@@ -15,7 +15,7 @@ export const formatValueOfTime = (tz: string, time: number, format = 'YYYY-MM-DD
   return dayjs(time).tz( tz ).format(format);
 }
 // Timestamp
-export const formatTimeToUnix = (time?: Date) => {
+export const formatTimeToUnix = (time?: Date | string) => {
   // seconds
   return dayjs(time).unix();
 }

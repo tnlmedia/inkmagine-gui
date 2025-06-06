@@ -8,6 +8,7 @@ import type { FieldDataSharp, UnKnownOptions} from '@/components/input/field-dat
 import { useFieldArray } from 'vee-validate';
 import InkFieldMessage from '@/components/input/InkFieldMessage.vue';
 import { fieldDefaultValue, useMergeFieldProps } from '@/components/input/input-default-value';
+import { singleFieldTypes } from '@/components/input/input-default-value';
 interface DraggableItemOrder {
     inputId: string;
     value: string | number | boolean | object;
@@ -29,6 +30,7 @@ const componentMap = {
   url: defineAsyncComponent(() => import('@/components/input/InkUrl.vue')),
   textarea: defineAsyncComponent(() => import('@/components/input/InkTextarea.vue')),
   select: defineAsyncComponent(() => import('@/components/input/InkSelect.vue')),
+  hashtag: defineAsyncComponent(() => import('@/components/input/InkHashtag.vue')),
   checkbox: defineAsyncComponent(() => import('@/components/input/InkCheckbox.vue')),
   radio: defineAsyncComponent(() => import('@/components/input/InkRadio.vue')),
   switch: defineAsyncComponent(() => import('@/components/input/InkSwitch.vue')),
@@ -62,9 +64,9 @@ type GetFieldValueType<T extends FieldType> =
     ? number | undefined
     : T extends 'switch' 
     ? boolean 
-    : T extends 'json'
+    : T extends 'json' | 'hashtag'
     ? object 
-    : T extends 'select' | 'checkbox' | 'radio' | 'hashtag'
+    : T extends 'select' | 'checkbox' | 'radio'
     ? UnKnownOptions[] | string[] | number[] | null | undefined
     : T extends 'file' | 'image'
     ? number | object
@@ -129,7 +131,7 @@ if (fields.value.length === 0) {
       </span>
     </div>
     <!-- <slot/> -->
-    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio' && mergeField.type !== 'switch' && mergeField.type !== 'datetime' && mergeField.type !== 'date' && mergeField.type !== 'datetimerng' && mergeField.type !== 'daterng'">
+    <template v-if="!singleFieldTypes.includes(mergeField.type)">
     <component 
     v-for="(item, valueIndex) in fields"
     :key="`${item.key}-${valueIndex}`"
@@ -159,7 +161,7 @@ if (fields.value.length === 0) {
     </component>
     </template>
     <InkFieldMessage v-if="mergeField.description" :descriptionText="mergeField.description"/>
-    <template v-if="mergeField.type !== 'select' && mergeField.type !== 'checkbox' && mergeField.type !== 'radio' && mergeField.type !== 'switch' && mergeField.type !== 'datetime' && mergeField.type !== 'date' && mergeField.type !== 'datetimerng' && mergeField.type !== 'daterng'">
+    <template v-if="!singleFieldTypes.includes(mergeField.type)">
     <InkButton
       v-if="inputTotal < checkFieldMax"
       as="button"
