@@ -42,12 +42,12 @@ const elStyle = computed(() => {
   };
 });
 
-const deleteSelectItemIsEmpty = ()=>{
-  if(value.value.length === 0)return;
-  value.value = value.value.filter((item: UnKnownOptions) => item);
-}
+// const deleteSelectItemIsEmpty = ()=>{
+//   if(value.value.length === 0)return;
+//   value.value = value.value.filter((item: UnKnownOptions) => item);
+// }
 onMounted(() => {
-  deleteSelectItemIsEmpty();
+  // deleteSelectItemIsEmpty();
 });
 
 </script>

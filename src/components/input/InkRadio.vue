@@ -109,12 +109,11 @@ const { value, errorMessage, handleChange } = useField<number | string | UnKnown
                 },
             ]">
               <input 
+              v-model="value"
               type="radio" 
               class="form-check-input tw-peer"
-              :checked="isChecked(option[checkedValueKey] as string | number)" 
               :value="option[checkedValueKey] as string | number" 
               :disabled="disabled || option.disabled"
-              @change="onChange(option[checkedValueKey] as string | number, $event)" 
               v-bind="clearInputBind"
               v-on="inputOn"
               />

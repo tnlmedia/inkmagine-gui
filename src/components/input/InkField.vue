@@ -98,6 +98,10 @@ const onPushItem = () => {
     // case 'html':
       push('');
       break;
+    case 'checkbox':
+    case 'radio':
+    case 'hashtag':
+      break;
     default:
       push(undefined);
       break;
