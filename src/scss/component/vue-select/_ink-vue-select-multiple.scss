@@ -27,9 +27,9 @@
         @apply tw-pb-0;
     }
     .vs__selected-options {
-        padding: 2px 9px;
+        padding: 4px 9px;
         // 自訂項目
-        @apply tw-items-center;
+        @apply tw-items-center tw-gap-1;
         min-height: 34px;
     }
     .vs__actions {
@@ -60,7 +60,12 @@
         // position: static !important;
         // opacity: 1 !important;
         // 自訂項目
-        @apply tw-bg-primary-50 tw-px-2 tw-py-1 tw-text-xs tw-mr-1 tw-ml-0 tw-my-0.5
+        @apply tw-bg-primary-50 tw-px-2 tw-py-0.5 tw-text-sm tw-m-0;
+        > button {
+            font-size: 10px;
+            padding-left: 2px;
+            padding-right: 2px;
+        }
 
     }
 }
