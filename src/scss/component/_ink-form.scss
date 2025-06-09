@@ -120,7 +120,7 @@ textarea{
 }
 .tw-switch {
   @apply tw-relative tw-inline-flex tw-h-4 tw-w-8 tw-items-center tw-rounded-full tw-border-none tw-px-0.5 ;
-  @apply focus:tw-outline-primary-100 focus:tw-outline-[3px] focus:tw-outline ;
+  @apply focus:tw-outline-secondary-200 focus:tw-outline-[3px] focus:tw-outline ;
   @apply disabled:tw-cursor-not-allowed disabled:tw-opacity-45 ;
   *{
     @apply tw-pointer-events-none;
