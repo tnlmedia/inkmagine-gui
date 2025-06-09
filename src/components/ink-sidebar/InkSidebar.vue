@@ -5,6 +5,8 @@
   import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
   import InkSidebarMenu from '@/components/ink-sidebar/InkSidebarMenu.vue'
   import { vInkTooltip } from '@/components/ink-tooltip/Ink-tooltip'
+  import { onMounted } from 'vue'
+
   interface SwitchItem {
     id: string | number, // TODO 套用時跟後端確認:value 123 改用字串，後端改給 "123"; 之後後端 id to uuid "a456" 時前端不需要再修改
     name: string,
@@ -59,6 +61,15 @@ interface MenuChildrenItemSchema {
       document.body.classList.remove('open-sidebar-folded');
     }
   };
+  // close sidebar when click outside on mobile/table
+  const closeSidebar = (e:MouseEvent) => {
+    if (!(e.target as HTMLElement).closest('#sidebar')) {
+      document.body.classList.remove('sidebar-open');
+    }
+  };
+  onMounted(() => {
+    document.addEventListener('click', closeSidebar);
+  });
 </script>
 <template>
   <nav id="sidebar" class="sidebar tw-z-[1020] tw-overflow-hidden">
