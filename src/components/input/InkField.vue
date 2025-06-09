@@ -102,6 +102,10 @@ const onPushItem = () => {
     case 'radio':
     case 'hashtag':
       break;
+    case 'daterng':
+    case 'datetimerng':
+      push([undefined, undefined]);
+      break;
     default:
       push(undefined);
       break;

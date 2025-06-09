@@ -124,8 +124,8 @@ const endRules = computed(() => ({
   datetimerngEndLimit: [startValueUnix.value, minLength.value, maxLength.value, mergeInputBind.value.timezone, mergeInputBind.value.format]
 }));
 
-const { value: startValue, errorMessage: startErrorMessage, handleChange: handleChangeStart } = useField<number | undefined>(`${mergeField.value.id}[0]`, startRules);
-const { value: endValue, errorMessage: endErrorMessage, handleChange: handleChangeEnd } = useField<number | undefined>(`${mergeField.value.id}[1]`, endRules);
+const { value: startValue, errorMessage: startErrorMessage, handleChange: handleChangeStart } = useField<number | undefined>(`${mergeField.value.id}[${props.valueIndex}][0]`, startRules);
+const { value: endValue, errorMessage: endErrorMessage, handleChange: handleChangeEnd } = useField<number | undefined>(`${mergeField.value.id}[${props.valueIndex}][1]`, endRules);
 
 // 同步 ref 值
 watch(startValue, () => {
