@@ -99,26 +99,26 @@ export default () => {
   defineRule('datetimerngStartLimit', (value: number, [endValue, minLength, maxLength, timezone, format]: [number, number, number, string, string]) => {
     if (typeof value === 'undefined') return true;
     if (minLength && value < minLength) {
-      return 'start tiem:' + t('isMoreThenDatetimeRestrict',{datetime: formatUnixTime(timezone, minLength, format)});
+      return t('startTimeMustEarlierThanEndTime');
     }
     if (maxLength && value > maxLength) {
-      return 'start tiem:' + t('isLessThenDatetimeRestrict',{datetime: formatUnixTime(timezone, maxLength, format)});
+      return t('startTimeMustEarlierThanEndTime');
     }
     if (endValue && value > endValue) {
-      return 'start tiem:' + t('isLessThenDatetimeRestrict',{datetime: formatUnixTime(timezone, endValue, format)});
+      return t('startTimeMustEarlierThanEndTime');
     }
     return true
   });
   defineRule('datetimerngEndLimit', (value: number, [startValue, minLength, maxLength, timezone, format]: [number, number, number, string, string]) => {
     if (typeof value === 'undefined') return true;
     if (minLength && value < minLength) {
-      return 'end tiem:' + t('isMoreThenDatetimeRestrict',{datetime: formatUnixTime(timezone, minLength, format)});
+      return t('startTimeMustEarlierThanEndTime');
     }
     if (maxLength && value > maxLength) {
-      return 'end tiem:' + t('isLessThenDatetimeRestrict',{datetime: formatUnixTime(timezone, maxLength, format)});
+      return t('startTimeMustEarlierThanEndTime');
     }
     if (startValue && value < startValue) {
-      return 'end tiem:' + t('isMoreThenDatetimeRestrict',{datetime: formatUnixTime(timezone, startValue, format)});
+      return t('startTimeMustEarlierThanEndTime');
     }
     return true
   });

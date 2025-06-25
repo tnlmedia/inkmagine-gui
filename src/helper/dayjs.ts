@@ -11,7 +11,7 @@ export default dayjs;
 export const formatUnixTime = (tz: string, time: number, format = 'YYYY-MM-DD HH:mm') => {
   return dayjs.unix(time).tz( tz ).format(format);
 }
-export const formatValueOfTime = (tz: string, time: number, format = 'YYYY-MM-DD HH:mm') => {
+export const formatValueOfTime = (tz: string, time: number | string | Date, format = 'YYYY-MM-DD HH:mm') => {
   return dayjs(time).tz( tz ).format(format);
 }
 // Timestamp

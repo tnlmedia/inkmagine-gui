@@ -1,4 +1,4 @@
-export const setFont = (userLanguage = 'en-us') => {
+export const InkSetFont = (userLanguage = 'en-us') => {
   document.documentElement.lang =  userLanguage;
   // add google font
   let fontStyleLink = document.createElement('link');

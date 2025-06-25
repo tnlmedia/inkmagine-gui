@@ -15,6 +15,7 @@
   "isLessThenMin": "只可以選擇 {length} 個項目",
   "isMoreThenDatetimeRestrict": "時間需大於 {datetime}",
   "isLessThenDatetimeRestrict": "時間需小於等於 {datetime}",
+  "startTimeMustEarlierThanEndTime":"「開始時間」需要比「結束時間」早",
   "isUrl": "請輸入有效的網址",
   "isEmail": "請輸入有效的電子郵件",
   "isJson": "請符合 JSON 格式",

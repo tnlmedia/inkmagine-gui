@@ -23,6 +23,9 @@
   .tw-btn{ // height 36px
     @extend .tw-btn-base;
     @apply  tw-min-w-[100px] tw-h-9 tw-px-4 tw-py-0 tw-text-sm tw-border-0 ;
+    i{
+      @apply tw-text-[16px];
+    }
   }
 
   // .tw-btn-icon-txt { // base height 36px
@@ -60,7 +63,7 @@
   }
   .tw-btn-link
   {
-    @apply tw-underline ;
+    @apply tw-underline tw-text-left ;
     @apply hover:tw-text-primary-500 hover:tw-bg-transparent ;
     @apply focus:tw-outline-gray-200 focus:tw-bg-transparent focus:tw-outline-offset-4 ;
     &.tw-disabled,

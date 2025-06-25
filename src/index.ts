@@ -30,10 +30,11 @@ import InkDate from '@/components/input/InkDatetime.vue'
 import InkDatetimerng from '@/components/input/InkDatetimerng.vue'
 import InkDaterng from '@/components/input/InkDatetimerng.vue'
 import { inkI18n } from '@/helper/i18n'
-import { setFont } from '@/helper/set-font'
+import { InkSetFont } from '@/helper/set-font'
 import useInkDefineRule from '@/helper/useDefineRule'
 
 export {
+  InkSetFont,
   InkButton,
   InkBadge,
   InkSpinner,
@@ -68,7 +69,7 @@ export {
 
 export default {
   install: (app: App, options: { lang?: 'zh-tw' | 'en-us' | 'ja-jp' }) => {
-    setFont(options.lang)
+    InkSetFont(options.lang)
     inkI18n.global.locale.value = options.lang || 'en-us'
     useInkDefineRule()
   }

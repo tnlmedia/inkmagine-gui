@@ -15,6 +15,7 @@
   "isUrl": "有効なURLを入力してください",
   "isMoreThenDatetimeRestrict": "時間は {datetime} より大きい必要があります",
   "isLessThenDatetimeRestrict": "時間は {datetime} 以下である必要があります",
+  "startTimeMustEarlierThanEndTime":"「開始時間」は「終了時間」よりも早くなければなりません",
   "isEmail": "正しいemailの形式で入力してください",
   "isJson": "JSON 形式に合わせてください",
   "words": "文字",

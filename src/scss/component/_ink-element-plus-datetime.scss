@@ -16,6 +16,7 @@
     --el-text-color-regular: theme("colors.gray.900");
     --el-color-primary: theme("colors.gray.900");
     --el-input-inner-height: 36px;
+    position: fixed !important;
     .el-picker-panel.has-time {
         @apply tw-mb-3;
     }

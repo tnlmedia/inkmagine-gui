@@ -14,6 +14,7 @@
   "isLessThenMin": "You can only select {length} item",
   "isMoreThenDatetimeRestrict": "Time must be greater than {datetime}",
   "isLessThenDatetimeRestrict": "Time must less than or equal to {datetime}",
+  "startTimeMustEarlierThanEndTime":"The \"Start Time\" must be earlier than the \"End Time\"",
   "isUrl": "Please enter a valid URL",
   "isEmail": "Please match the email format",
   "isJson": "Please match the JSON format",

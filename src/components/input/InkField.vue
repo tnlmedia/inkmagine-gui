@@ -3,7 +3,7 @@ import '@/scss/component/_ink-form.scss';
 import { InkVTooltip } from '@/components/ink-tooltip/Ink-tooltip';
 import InkButton from '@/components/InkButton.vue';
 import { t } from '@/helper/i18n';
-import { defineAsyncComponent, computed, watch, toRef } from 'vue';
+import { defineAsyncComponent, computed, watch, toRef, onMounted, nextTick } from 'vue';
 import type { FieldDataSharp, UnKnownOptions} from '@/components/input/field-data-interface';
 import { useFieldArray } from 'vee-validate';
 import InkFieldMessage from '@/components/input/InkFieldMessage.vue';
@@ -112,15 +112,19 @@ const onPushItem = () => {
   }
 }
 
-if (fields.value.length === 0) {
-  onPushItem()
-}
+onMounted(async () => {
+  await nextTick()
+  if (fields.value.length === 0) {
+    onPushItem()
+  }
+})
 
 </script>
 
 <template>
   <fieldset 
   class="js-dynamic-component tw-flex tw-flex-wrap tw-gap-2"
+  :data-field-type="mergeField.type"
   :class="{
     'tw-flex-row tw-items-center': mergeField.type === 'switch',
     'tw-flex-col': mergeField.type !== 'switch',

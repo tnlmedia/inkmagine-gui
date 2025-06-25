@@ -134,14 +134,14 @@ const elStyle = computed(() => {
         v-on="inputOn"
         >
           <!-- 選項內容 -->
-          <template #option="{ name, depth }">
+          <template #option="options">
             <div :class="['option']">
               <span 
               class="tw-mr-2.5 tw-rounded-sm tw-py-1"
-              :style="{ 'padding-left': `calc(${depth > 0 ? depth - 1 : 0}em + 0.5rem)` }"
+              :style="{ 'padding-left': `calc(${options.depth > 0 ? options.depth - 1 : 0}em + 0.5rem)` }"
               >
-                <i v-if="depth > 0" class="fal fa-angle-left -tw-rotate-45"></i>
-                {{ name }}
+                <i v-if="options.depth > 0" class="fal fa-angle-left -tw-rotate-45"></i>
+                {{ options[clearInputBind?.label || 'name'] }}
               </span>
             </div>
           </template>

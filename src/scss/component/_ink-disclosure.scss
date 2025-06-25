@@ -9,5 +9,5 @@
   @apply tw-text-gray-900;
 }
 .tw-disclosure-panel {
-  @apply tw-px-6 tw-py-4 lg:tw-px-4 [&>div+div]:tw-mt-4;
+  @apply tw-px-6 tw-py-4 lg:tw-px-4 tw-flex tw-flex-col tw-gap-4;
 }
