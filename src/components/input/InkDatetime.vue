@@ -52,10 +52,10 @@ const clearTime = () => {
 };
 const disabledDate = (date: Date) => {
   if(mergeInputBind.value.restrict.restrictType === RestrictTypeMode.PAST) {
-    return formatTimeToUnix(date) > dayjs().unix()
+    return dayjs.tz(date, mergeInputBind.value.timezone).unix() > dayjs.tz(dayjs(), mergeInputBind.value.timezone).endOf('day').unix()
   };
   if(mergeInputBind.value.restrict.restrictType === RestrictTypeMode.FUTURE) {
-    return formatTimeToUnix(date) < dayjs().startOf('day').unix()
+    return dayjs.tz(date, mergeInputBind.value.timezone).unix() < dayjs.tz(dayjs(), mergeInputBind.value.timezone).startOf('day').unix()
   };
   return false;
 }
@@ -68,6 +68,13 @@ const elStyle = computed(() => {
     'tw-disabled': props.disabled,
   };
 });
+
+const datetimeWrapperClick = (e: MouseEvent) => {
+  const target = e.target as HTMLElement;
+  if (target.classList.contains('is-text') || target.closest('.is-text')) {
+    displayValue.value = dayjs.tz(dayjs(), mergeInputBind.value.timezone).format(datetimeFormat.value)
+  }
+}
 
 onMounted(() => {
   const datePickerRefs = [startDatePickerRef.value];
@@ -85,7 +92,7 @@ onMounted(() => {
 
 const rules = computed(() => ({
   required: props.required,
-  datetimeRestrict: [mergeInputBind.value.restrict, mergeInputBind.value.timezone, mergeInputBind.value.format]
+  datetimeRestrict: [mergeInputBind.value.restrict, mergeInputBind.value.timezone, datetimeFormat.value]
 }));
 const { value: startValue, errorMessage: startErrorMessage, handleChange } = useField<number | undefined>(`${mergeField.value.id}[${props.valueIndex}]`, rules);
 
@@ -93,10 +100,13 @@ const displayValue = ref<string | undefined>();
 watch(startValue, () => {
   if(startValue.value) {
     displayValue.value = formatUnixTime(mergeInputBind.value.timezone, startValue.value, datetimeFormat.value);
+  }else{
+    displayValue.value = undefined;
   }
-},{once:true})
+})
 watch(displayValue, (newVal, oldVal) => {
-  if(newVal) {
+  if (newVal) {
+    if(newVal === oldVal) return;
     const targetTime = dayjs.tz(newVal, mergeInputBind.value.timezone).format();
     const utcTimestamp = formatTimeToUnix(targetTime);
     handleChange(utcTimestamp);
@@ -124,6 +134,7 @@ watch(displayValue, (newVal, oldVal) => {
           'data-time-picker',
           elStyle
         ]"
+        @click="datetimeWrapperClick"
       >
         <el-date-picker
           ref="startDatePicker"
@@ -139,7 +150,7 @@ watch(displayValue, (newVal, oldVal) => {
           :value-format="datetimeFormat"
         />
         <button
-          v-if="mergeInputBind.isClearable && !disabled"
+          v-if="mergeInputBind.isClearable && !disabled && startValue"
           type="button"
           class="tw-relative tw-px-1 before:tw-absolute before:-tw-inset-2.5 before:tw-content-['']"
           @click.prevent="clearTime"

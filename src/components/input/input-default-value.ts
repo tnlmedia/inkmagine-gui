@@ -252,6 +252,7 @@ export const useMergeDatetimerngInputBind = (inputBind: Ref<Record<string, unkno
       ...defaultDatetimerngInputBind(),
       ...inputBind.value,
       timezone: inputBind.value.timezone as DatetimePickerInputBind['timezone'],
+      popperClass: `${inputBind.value.popperClass} js-datetime-popper`,
     }
   })
   const clearInputBind = computed(() => {

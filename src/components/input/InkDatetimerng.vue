@@ -132,17 +132,24 @@ watch(startValue, () => {
   if(startValue.value) {
     displayStartValue.value = formatUnixTime(mergeInputBind.value.timezone, startValue.value, rngElFormat.value);
     startValueUnix.value = startValue.value;
+  } else {
+    displayStartValue.value = undefined;
+    startValueUnix.value = undefined;
   }
-}, {once:true});
+});
 watch(endValue, () => {
   if(endValue.value) {
     displayEndValue.value = formatUnixTime(mergeInputBind.value.timezone, endValue.value, rngElFormat.value);
     endValueUnix.value = endValue.value;
+  } else {
+    displayEndValue.value = undefined;
+    endValueUnix.value = undefined;
   }
-}, {once:true});
+});
 
 watch(displayStartValue, (newVal, oldVal) => {
-  if(newVal) {
+  if (newVal) {
+    if(newVal === oldVal) return;
     const targetTime = dayjs.tz(newVal, mergeInputBind.value.timezone).format();
     const utcTimestamp = formatTimeToUnix(targetTime);
     handleChangeStart(utcTimestamp);
@@ -163,6 +170,16 @@ watch(displayEndValue, (newVal, oldVal) => {
     endValueUnix.value = undefined;
   }
 })
+const datetimeWrapperClick = (e: MouseEvent) => {
+  const target = e.target as HTMLElement;
+  if ((target.classList.contains('is-text') || target.closest('.is-text'))) {
+    if (target.closest('.js-start-datetime-popper')) {
+      displayStartValue.value = dayjs.tz(dayjs(), mergeInputBind.value.timezone).format(rngElFormat.value)
+    } else if(target.closest('.js-end-datetime-popper')){
+      displayEndValue.value = dayjs.tz(dayjs(), mergeInputBind.value.timezone).format(rngElFormat.value)
+    }
+  }
+}
 </script>
 
 <template>
@@ -183,6 +200,7 @@ watch(displayEndValue, (newVal, oldVal) => {
           'data-time-picker',
           elStyle
         ]"
+        @click="datetimeWrapperClick"
       >
         <el-date-picker
           ref="startDatePicker"
@@ -196,6 +214,7 @@ watch(displayEndValue, (newVal, oldVal) => {
           :type="rngElType"
           :format="rngElFormat"
           :value-format="rngElFormat"
+          :popper-class="`${mergeInputBind.popperClass} js-start-datetime-popper`"
         />
         <i class="far fa-arrow-right tw-text-xs tw-text-gray-700"></i>
         <el-date-picker
@@ -210,6 +229,7 @@ watch(displayEndValue, (newVal, oldVal) => {
           :type="rngElType"
           :format="rngElFormat"
           :value-format="rngElFormat"
+          :popper-class="`${mergeInputBind.popperClass} js-end-datetime-popper`"
         />
         <button
           v-if="mergeInputBind.isClearable && !disabled"
