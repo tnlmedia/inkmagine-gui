@@ -13,7 +13,11 @@ const props = defineProps({
   field: {
     type: Object as PropType<TextSharp>,
     required: true,
-  }
+  },
+  inputBind: {
+    type: Object as PropType<Record<string, unknown>>,
+    default: () => ({}),
+  },
 });
 
 const {mergeField, minLength, maxLength, checkFieldMax} = useMergeFieldProps<TextSharp>('text', toRef(props, 'field'));
@@ -49,7 +53,9 @@ const emit = defineEmits(['removeInputItemFn']);
       :disabled="disabled"
       :required="required"
       :placeholder="mergeField.placeholder"
-       @keydown.enter.prevent
+      v-bind="inputBind"
+      v-on="inputOn"
+      @keydown.enter.prevent
       />
       </InputFrame>
       {{ mergeField.suffix }}

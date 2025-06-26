@@ -12,7 +12,11 @@ const props = defineProps({
   field: {
     type: Object as PropType<UrlSharp>,
     required: true,
-  }
+  },
+  inputBind: {
+    type: Object as PropType<Record<string, unknown>>,
+    default: () => ({}),
+  },
 });
 const emit = defineEmits(['removeInputItemFn']);
 
@@ -45,6 +49,8 @@ const { value, errorMessage } = useField<string>(`${mergeField.value.id}[${props
         :disabled="disabled"
         :required="required"
         :placeholder="mergeField.placeholder"
+        v-bind="inputBind"
+        v-on="inputOn"
         @keydown.enter.prevent
         />
       </InputFrame>
