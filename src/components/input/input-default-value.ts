@@ -68,6 +68,7 @@ export const useMergeFieldProps = <T extends Record<string, unknown>>(type: stri
 const defaultAllSelectInputBind = () => {
   return {
     activeStyle: false,
+    optionDivider: [],
     options: [],
     label: 'name',
     filterable: false,
@@ -98,7 +99,7 @@ export const useMergeSelectInputBind = (inputBind: Ref<Record<string, unknown>>)
   const clearInputBind = computed<SelectInputBind>(() => {
     const clearInputBind:Record<string, unknown> = {}
     Object.keys(mergeInputBind.value).forEach(key => {
-      if(key !== 'infiniteFn' && key !== 'openFn' && key !== 'closeFn' && key !== 'hasNextPage' && key !== 'activeStyle'){
+      if(key !== 'infiniteFn' && key !== 'openFn' && key !== 'closeFn' && key !== 'hasNextPage' && key !== 'activeStyle' && key !== 'optionDivider'){
         clearInputBind[key] = mergeInputBind.value[key as keyof SelectInputBind];
       }
     })

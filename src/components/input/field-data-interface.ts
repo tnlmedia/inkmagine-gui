@@ -118,6 +118,7 @@ export type SelectInputBind = {
   label?: string;
   hasNextPage?: boolean;
   activeStyle?: boolean;
+  optionDivider?: number[];
   openFn?: () => void;
   closeFn?: () => void;
   infiniteFn?: () => void;

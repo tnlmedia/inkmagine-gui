@@ -84,7 +84,7 @@ const endDatePickerRef = useTemplateRef('endDatePicker');
 const elStyle = computed(() => {
   return {
     'tw-border-danger-400': startErrorMessage.value || endErrorMessage.value,
-    'tw-border-secondary-700': mergeInputBind.value.activeStyle && startValue.value && endValue.value,
+    'tw-border-secondary-700': mergeInputBind.value.activeStyle && (startValue.value || endValue.value),
     'tw-disabled': props.disabled,
   };
 });
