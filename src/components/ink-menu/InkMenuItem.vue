@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { restAttrs } from '@/helper/attrs'
+import { useRestAttrs } from '@/helper/useAttrs'
 import { MenuItem } from '@headlessui/vue'
 interface MenuItemProps {
   as?: string,
@@ -7,6 +7,7 @@ interface MenuItemProps {
 const props = withDefaults(defineProps<MenuItemProps>(), {
   as: 'template',
 })
+const restAttrs = useRestAttrs()
 </script>
 <template>
     <MenuItem

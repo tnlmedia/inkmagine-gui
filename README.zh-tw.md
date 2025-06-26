@@ -9,6 +9,11 @@ Inkmagine 是一個統一的組件和樣式庫，提供了一系列可重用的 
 ```bash
 npm install @tnlmedia/inkmagine-gui
 ```
+- 如果遇到 peerDependencies 的套件版本過低可以使用忽略 peerDependencies 套件的安裝方式
+
+```bash
+npm install @tnlmedia/inkmagine-gui --legacy-peer-deps
+```
 
 ## 可用樣式使用說明
 ### tailwind config
@@ -17,10 +22,198 @@ import {inkTailwindConfig} from '@tnlmedia/inkmagine-gui/tailwind.config.js'
 export default {
   ...inkTailwindConfig,
   content: [
+    './node_modules/@tnlmedia/inkmagine-gui/**/*.{js,ts,vue}',
     'Set the file path to be scanned in the project'
   ],
 }
 ```
+## 全域設定說明
+
+### vue-i18n language
+
+在初始化應用程式時，可以透過 `inkmagineGui` 的選項來設定語言：
+
+```js
+import inkmagineGui from "@tnlmedia/inkmagine-gui"
+
+createApp(App)
+  .use(inkmagineGui, { lang: 'zh-tw' }) // 設定語言
+```
+
+#### 支援的語言
+- `zh-tw`: 繁體中文
+- `en-us`: 英文
+- `ja-jp`: 日文
+
+如果未指定語言，預設將使用 `en-us`。
+
+## 容器使用說明
+
+### InkNavbar 
+
+InkNavbar 是一個導航欄組件，提供網站頂部的導航功能，包含側邊欄切換、應用程式選單和用戶選單等功能。
+
+#### 基本用法
+```vue
+<InkNavbar 
+  :timezone="user?.timezone" 
+  :user="user" 
+  logoutUrl="/logout" 
+/>
+```
+
+#### 屬性說明
+
+| 屬性名稱 | 類型 | 必填 | 說明 |
+|---------|------|------|------|
+| `timezone` | string | 否 | 用戶的時區設定 |
+| `user` | object | 是 | 用戶資訊物件，包含以下屬性：<br>- `nickname`: 用戶暱稱<br>- `avatar`: 用戶頭像 URL<br>- `mail`: 用戶電子郵件 |
+| `logoutUrl` | string | 是 | 登出功能的 URL |
+
+#### 功能說明
+- 側邊欄切換按鈕
+- 時區顯示
+- 應用程式選單（包含 dashboard、member、team、cabinet 等應用）
+- 用戶選單（包含用戶資訊、個人資料和登出功能）
+
+#### 注意事項
+- 應用程式選單的 URL 會根據當前環境（sandbox、stage、production）自動調整
+- 用戶頭像若未設定，將顯示用戶電子郵件的第一個字母
+- 所有文字內容都支援多語言設定
+
+### InkSidebar
+
+InkSidebar 是一個側邊欄組件，提供網站的主要導航功能，包含品牌切換、選單導航等功能。
+
+#### 基本用法
+```vue
+<InkSidebar
+  :currentAppName="$t('sandwich')" 
+  :currentMainSwitchItem="currentConsole?.console" 
+  :mainSwitchItems="user.permission.map((item:Permission) => item.console)"
+  @mainItemCheckSwitch="checkSwitchEnv"
+  :menu="menu"
+  :currentMenuItemId="checkCurrentMenuItemId"
+/>
+```
+
+#### 進階用法（使用插槽）
+```vue
+<InkSidebar 
+  :currentAppName="trans('cabinet.name')" 
+  :currentMainSwitchItem="currentTeam" 
+  :mainSwitchItems="env.team"
+  @mainItemCheckSwitch="checkSwitchEnv"
+  @tabItemCheckSwitch="checkSwitchEnv"
+  :menu="menu"
+  :currentMenuItemId="checkCurrentMenuItemId"
+  :currentTabSwitchItemId="env.workspace.console"
+  :tabSwitchItems="consoleList"
+>
+  <!-- 自定義內容 -->
+  <InkButton
+    as="router-link"
+    variant="txt"
+    theme="primary"
+    :to="{ name: 'article-create' }"
+  >
+    <i class="far fa-edit tw-text-base"></i>
+    <InkSidebarSimpleHide>
+      {{ trans('buttons.compose') }}
+    </InkSidebarSimpleHide>
+  </InkButton>
+</InkSidebar>
+```
+
+#### 屬性說明
+
+| 屬性名稱 | 類型 | 必填 | 說明 |
+|---------|------|------|------|
+| `currentAppName` | string | 是 | 當前應用程式名稱 |
+| `currentMainSwitchItem` | object | 是 | 當前選中的主要切換項目，包含以下屬性：<br>- `id`: 項目 ID<br>- `name`: 項目名稱<br>- `logo`: 項目圖標 URL |
+| `mainSwitchItems` | array | 是 | 主要切換項目列表，每個項目包含與 `currentMainSwitchItem` 相同的屬性 |
+| `currentTabSwitchItemId` | string \| number | 否 | 當前選中的 tabSwitchItems 切換項目的 id |
+| `tabSwitchItems` | array | 否 | 標籤切換項目列表，每個項目包含與 `currentMainSwitchItem` 相同的屬性 |
+| `menu` | array | 是 | 選單項目列表，每個項目包含以下屬性：<br>- `id`: 項目 ID<br>- `name`: 項目名稱<br>- `icon`: 圖標類名<br>- `route`: 路由資訊（可選）<br>- `children`: 子選單項目（可選）<br>- `isAllow`: 是否允許訪問（可選） |
+| `currentMenuItemId` | string \| number | 是 | 當前選中的選單項目 ID |
+
+#### 事件說明
+
+| 事件名稱 | 參數 | 說明 |
+|---------|------|------|
+| `mainItemCheckSwitch` | `(item: SwitchItem, close: () => void)` | 當主要切換項目被點擊時觸發 |
+| `tabItemCheckSwitch` | `(item: SwitchItem)` | 當標籤切換項目被點擊時觸發 |
+
+#### 選單結構範例
+```js
+const menu = [
+  {
+    id: 'deliveryArticle',
+    icon: 'fa-file-waveform',
+    name: 'deliveryArticle',
+    children: [{
+      id: 'deliveryArticleOverview',
+      name: 'overview',
+      route: {
+        name: 'article-delivery-overview',
+        query: {
+          console_id: currentConsole?.console?.id
+        }
+      },
+      isAllow: true,
+    }],
+  },
+  {
+    id: 'setting',
+    icon: 'fa-gear',
+    name: 'setting',
+    children: [{
+      id: 'deliveryPosition',
+      name: 'deliveryPosition',
+      route: {
+        name: 'position',
+        query: {
+          console_id: currentConsole?.console?.id
+        }
+      },
+      isAllow: true,
+    }],
+  },
+];
+```
+
+#### 功能說明
+- 支援多層級選單結構
+- 支援路由導航
+- 支援權限控制
+- 支援自定義內容（通過插槽）
+
+#### 注意事項
+- 選單項目的 `isAllow` 屬性用於控制項目的顯示權限
+- 子選單項目的路由資訊必須包含 `name` 屬性
+- 側邊欄的折疊狀態會保存在 body 的 class 中
+- InkSidebarMenu 組件使用 [Vue Router](https://router.vuejs.org/) 作為路由管理工具，請確保您的專案中已安裝此套件
+- 當使用 `tabSwitchItems` 時，需要同時提供 `currentTabSwitchItemId` 屬性
+
+#### 相關組件說明
+
+| 組件名稱 | 說明 | 屬性 | 預設值 | 可選值 |
+|---------|------|------|--------|--------|
+| `InkSidebarSimpleHide` | 側邊欄折疊時隱藏內容的包裝器 | `as` | 'span' | string \| Component |
+
+#### 組件關係
+```
+InkSidebar
+├──slot
+│  └── InkSidebarSimpleHide (折疊時隱藏內容)
+└── InkSidebarMenu (選單列表，已包含在容器內)
+```
+
+#### 使用說明
+1. `InkSidebarSimpleHide` 用於包裝需要在側邊欄折疊時隱藏的內容
+2. 可以通過 `as` 屬性來自定義渲染的標籤或組件
+3. 預設使用 `span` 標籤渲染
+4. 支援插槽內容
 
 ## 組件使用說明
 
@@ -389,3 +582,94 @@ InkDisclosure (展開/收合容器)
 - 按鈕預設使用灰色主題 (`tw-disclosure-button-gray`)
 - 箭頭圖標會根據展開狀態自動旋轉
 - 支援 Tailwind CSS 的樣式類
+
+#### vInkTooltip 相關組件說明
+
+vInkTooltip 是基於 [floating-vue](https://floating-vue.starpad.dev/) 的指令封裝，提供簡易的提示訊息功能。
+
+##### 基本用法
+```vue
+<span v-inkTooltip.right="'test'">test</span>
+```
+
+##### 功能說明
+- 支援多種位置設定（如 .right、.left、.top、.bottom 等）
+- 可自訂提示內容（支援字串或 HTML）
+- 適用於任何需要提示說明的場景
+- 更多詳細屬性與用法，請參考 [floating-vue 官方 API 文件](https://floating-vue.starpad.dev/api/)，以獲得完整的組件參數說明。
+
+##### 注意事項
+- 需安裝 floating-vue 及其樣式（已於組件內自動引入）
+- 建議用於簡單的文字提示場景
+- 如需更複雜的提示功能，請使用 InkVTooltip 組件
+
+##### 組件關係
+```
+vInkTooltip (指令)
+└── Tooltip (floating-vue)
+```
+
+#### InkVTooltip 相關組件說明
+
+InkVTooltip 是基於 [floating-vue](https://floating-vue.starpad.dev/) 的 Tooltip 組件封裝，提供簡易的提示訊息功能，支援多種觸發方式（hover、focus、click）。
+
+##### 基本用法
+```vue
+<InkVTooltip>
+  <button type="button"><i class="fa-regular fa-circle-info"></i></button>
+  <template #popper>
+    {{ tipContent }}
+  </template>
+</InkVTooltip>
+```
+
+##### 禁用狀態
+```vue
+<InkVTooltip :disabled="Boolean(list.deletable)">
+  <InkButton
+    size="xs"
+    variant="icon"
+    theme="transparent"
+    :disabled="!Boolean(list.deletable) || currentConsoleUserPermission.view"
+    @click="handleDelete(list.id, list.article.title)"
+  >
+    <i class="far fa-trash"></i>
+  </InkButton>
+  <template #popper>
+    {{ $t('enabledCannotDeleted') }}
+  </template>
+</InkVTooltip>
+```
+
+##### 屬性說明
+
+| 屬性名稱   | 類型    | 預設值   | 說明                       |
+|------------|---------|----------|----------------------------|
+| `disabled` | Boolean | false    | 是否停用 Tooltip 顯示      |
+
+- 更多詳細屬性與用法，請參考 [floating-vue 官方 API 文件](https://floating-vue.starpad.dev/api/)，以獲得完整的組件參數說明。
+
+##### 插槽說明
+
+| 插槽名稱   | 說明                       |
+|------------|----------------------------|
+| default    | 觸發 Tooltip 的內容         |
+| popper     | Tooltip 彈出時顯示的內容   |
+
+##### 功能說明
+- 支援 hover、focus、click 觸發（預設同時啟用）
+- 可自訂提示內容（支援 slot）
+- 可透過 `disabled` 屬性停用提示
+- 彈出位置預設為下方（bottom）
+
+##### 組件關係
+```
+InkVTooltip
+└── Tooltip (floating-vue)
+    ├── slot (觸發內容)
+    └── slot name="popper" (提示內容)
+```
+
+##### 注意事項
+- 需安裝 floating-vue 及其樣式（已於組件內自動引入）
+- 適用於任何需要提示說明的場景

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { restAttrs } from '@/helper/attrs'
+import { useRestAttrs } from '@/helper/useAttrs'
+const restAttrs = useRestAttrs()
 </script>
 <template>
     <div

@@ -1,0 +1,12 @@
+  .v-popper__popper {
+    top: var(--tooltip-top, 0) !important;
+    left: var(--tooltip-left, 0) !important;
+  }
+
+  .v-popper__inner {
+    @apply tw-rounded-[3px] tw-border-transparent tw-bg-white tw-text-xs tw-text-gray-900 tw-shadow-md #{!important};
+  }
+
+  .v-popper__arrow-outer {
+    @apply tw-border-white #{!important};
+  }

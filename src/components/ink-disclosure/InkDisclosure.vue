@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Disclosure } from '@headlessui/vue'
-import { restAttrs } from '@/helper/attrs'
+import { useRestAttrs } from '@/helper/useAttrs'
+const restAttrs = useRestAttrs()
 </script>
 <template>
     <Disclosure

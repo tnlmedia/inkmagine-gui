@@ -1,0 +1,50 @@
+{
+  "logout": "Logout",
+  "requiredHint": "(Required)",
+  "add": "Add",
+  "loading":"Loading...",
+
+  "required":"Required",
+  "isSlug":"Can only be composed of lowercase English letters, numbers, connecting lines (-) and underscores (_) and dot(.)",
+  "isMoreThenTextLimit": "Exceeds the maximum number of characters, please shorten it to {length} characters or less",
+  "isLessThenTextLimit": "Text must be at least {length} characters",
+  "isMoreThenNumberLimit": "Number must be less than or equal to {length}",
+  "isLessThenNumberLimit": "Number must be greater than or equal to {length}",
+  "isMoreThenMax": "You can only select {length} item",
+  "isLessThenMin": "You can only select {length} item",
+  "isMoreThenDatetimeRestrict": "Time must be greater than {datetime}",
+  "isLessThenDatetimeRestrict": "Time must less than or equal to {datetime}",
+  "startTimeMustEarlierThanEndTime":"The \"Start Time\" must be earlier than the \"End Time\"",
+  "isUrl": "Please enter a valid URL",
+  "isEmail": "Please match the email format",
+  "isJson": "Please match the JSON format",
+  "words": "Words",
+
+  "select":"Select",
+  "noResultsFound":"No results found",
+  "startDate":"Start Date",
+  "endDate":"End Date",
+
+  "navbar": {
+    "apps": {
+        "service":"Service",
+        "dashboard":{
+            "description": "Overview Inkmagine Features and Services",
+            "label": "Service Index"
+        },
+        "cabinet": {
+            "description": "Edit articles, setting authors and categories",
+            "label": "Cabinet"
+        },
+        "member": {
+            "description": "Manage your account",
+            "label": "Member"
+        },
+        "team": {
+            "description": "Set up your team. You can define roles and invite team members.",
+            "label": "Team"
+        }
+    },
+    "profile": "Profile"
+  }
+}

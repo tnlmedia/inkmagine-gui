@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import '@/scss/component/_ink-spinner.scss'
 import { computed } from 'vue'
-import { restAttrs } from '@/helper/attrs'
+import { useRestAttrs } from '@/helper/useAttrs'
+
 interface InkSpinnerProps {
   size?: 'md'
   theme?: 'gray'
@@ -9,6 +10,7 @@ interface InkSpinnerProps {
 const props = withDefaults(defineProps<InkSpinnerProps>(), {
   theme: 'gray'
 })
+const restAttrs = useRestAttrs()
 const classList = computed(() => {
   const list = []
   if(props.size) list.push(`tw-spinner-${props.size}`)

@@ -1,7 +1,8 @@
 /* button content start */
-  a.tw-disabled,
+  
+  *.tw-disabled,
   button:disabled{
-    @apply tw-opacity-45 focus:tw-outline-transparent;
+    @apply tw-opacity-45 focus:tw-outline-transparent tw-cursor-not-allowed;
   }
 
   .tw-btn-base{
@@ -22,6 +23,9 @@
   .tw-btn{ // height 36px
     @extend .tw-btn-base;
     @apply  tw-min-w-[100px] tw-h-9 tw-px-4 tw-py-0 tw-text-sm tw-border-0 ;
+    i{
+      @apply tw-text-[16px];
+    }
   }
 
   // .tw-btn-icon-txt { // base height 36px
@@ -59,7 +63,7 @@
   }
   .tw-btn-link
   {
-    @apply tw-underline ;
+    @apply tw-underline tw-text-left ;
     @apply hover:tw-text-primary-500 hover:tw-bg-transparent ;
     @apply focus:tw-outline-gray-200 focus:tw-bg-transparent focus:tw-outline-offset-4 ;
     &.tw-disabled,
@@ -114,3 +118,8 @@
     @apply tw-bg-transparent;
   }
   /* button style end */
+
+  // exception button
+  .tw-btn-remove {
+    @apply tw-border-0 tw-border-solid tw-border-gray-400 tw-bg-gray-100 tw-p-2.5 tw-leading-none tw-text-gray-700;
+  }

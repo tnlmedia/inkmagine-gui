@@ -67,7 +67,7 @@
 // 3. multiple InkMenuItems and InkMenuButton props example
 <InkMenu>
 
-  <VTooltip>
+  <InkVTooltip>
     <InkMenuButton :disabled="isLock" variant="icon" theme="transparent" @click="toggleMoreList" ref="moreListBtn">
       <InkButton>
         <i class="far fa-ellipsis-v fa-fw tw-text-base"></i>
@@ -76,7 +76,7 @@
     <template #popper>
       more
     </template>
-  </VTooltip>
+  </InkVTooltip>
   <InkMenuItems :static="true" :unmount="false" class="tw-translate-y-4"
     v-show="!isRevisionList && isMoreList">
     <InkMenuItemsWrapper>

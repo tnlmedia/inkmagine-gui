@@ -1,0 +1,171 @@
+// element plus popper shared style
+.el-input.is-disabled .el-input__wrapper {
+    background-color: theme("colors.gray.100") !important;
+    border-color: theme("colors.gray.300") !important;
+    color: theme("colors.gray.400") !important;
+    box-shadow: none !important;
+}
+.el-input.is-error .el-input__wrapper {
+    border-color: theme("colors.danger.400") !important;
+}
+// popper (panel)
+.el-popper.el-picker__popper {
+    --el-popper-border-radius: theme("borderRadius.DEFAULT");
+    --el-border-radius-base: theme("borderRadius.DEFAULT");
+    --el-input-text-color: theme("colors.gray.900");
+    --el-text-color-regular: theme("colors.gray.900");
+    --el-color-primary: theme("colors.gray.900");
+    --el-input-inner-height: 36px;
+    position: fixed !important;
+    .el-picker-panel.has-time {
+        @apply tw-mb-3;
+    }
+    .el-time-panel {
+        left: auto;
+        right: 0;
+    }
+    .el-month-table,
+    .el-year-table {
+        @apply tw-text-sm;
+    }
+    .el-date-picker__time-header {
+        @apply tw-py-3 tw-px-1;
+    }
+    .el-picker-panel__icon-btn {
+        margin-top: 0;
+    }
+    .el-date-picker__header {
+        margin-bottom: 0;
+
+    }
+    .el-picker-panel__content {
+        margin-top: 0;
+    }
+    .el-picker-panel__footer {
+        @apply tw-pt-3;
+    }
+    .el-input__wrapper {
+        @apply tw-px-3 tw-py-1 tw-shadow-none hover:tw-shadow-none tw-rounded tw-text-gray-900 placeholder:tw-text-gray-400 focus:tw-text-gray-900;
+        @apply disabled:tw-cursor-not-allowed disabled:tw-bg-transparent disabled:tw-opacity-65;
+        @apply tw-border tw-border-solid tw-border-gray-400;
+        &.is-focus {
+            @apply tw-shadow-none;
+        }
+    }
+    .el-input--small.el-input {
+        font-size: theme("inputSize.md.fontSize");
+    }
+    .el-button--small.el-button {
+        font-size: theme("btnSize.sm.fontSize");
+        padding: theme("btnSize.sm.py");
+        border-color: theme("btnColor.quaternary.borderColor");
+        color: theme("btnColor.quaternary.fontColor");
+        height: auto;
+        &:hover {
+            border-color: theme("btnColor.quaternary.borderColor");
+            background-color: theme("btnColor.quaternary.hoverBgColor");
+        }
+    }
+
+    table.el-date-table {
+        font-size: theme("fontSize.sm[0]");
+        th {
+            text-align: center
+        }
+        td.current:not(.disabled) {
+            .el-date-table-cell__text {
+                @apply tw-rounded tw-bg-primary-50 tw-font-medium;
+                color: var(--el-color-primary);
+            }
+        }
+        td:has(.cell-disabled) {
+            @apply tw-cursor-not-allowed tw-opacity-25 tw-pointer-events-none tw-select-none;
+        }
+        .el-date-table-cell__text {
+            outline: unset !important;
+            outline-offset: unset !important;
+        }
+    }
+    .el-time-spinner__item {
+        font-size: theme("fontSize.sm[0]");
+    }
+    .el-time-panel__btn {
+        font-size: theme("fontSize.sm[0]");
+    }
+
+}
+
+
+// element plus datetime picker style
+
+.datetime-picker-input.el-input {
+    --el-date-editor-width: auto;
+    --el-input-height: 36px;
+    --el-input-text-color: theme("colors.gray.900");
+    --el-input-placeholder-color: theme("colors.gray.900");
+    flex-grow: 1;
+
+    .el-input__prefix {
+        display: none;
+    }
+    .el-input__wrapper {
+        @apply tw-px-3 tw-py-0 tw-shadow-none tw-rounded tw-text-gray-900 placeholder:tw-text-gray-400 ;
+        @apply focus:tw-text-gray-900 ;
+        @apply disabled:tw-cursor-not-allowed disabled:tw-bg-transparent disabled:tw-opacity-65;
+    }
+}
+
+// .el-plus-datetime-picker, .el-right-plus-datetime-picker {
+    .el-picker-panel__footer {
+        // display: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+// }
+
+.js-time-btn, .js-right-time-btn {
+    font-size: 0.875rem;
+    padding: 0.063rem 0.5rem;
+    border-color: #8F90A6;
+    color: #28293D;
+    height: auto;
+    position: absolute;
+    right: 4.4rem;
+    bottom: 1rem;
+    border-radius: calc(var(--el-border-radius-base) - 1px);
+    // display: none;
+    cursor: pointer;
+    &:hover {
+        border-color: #8F90A6;
+        background-color: #EBEBF0;
+    }
+}
+
+.js-right-time-btn {
+    display: block;
+}
+
+.pan-use .el-picker-panel__footer {
+    button:first-of-type {
+        display: block;
+        margin-left: 5rem;
+    }
+}
+
+.pan-use .js-time-btn {
+    display: block;
+}
+
+// datetime-picker-range-input
+.datetimerng-input.el-input {
+    --el-date-editor-width: 105px;
+    .el-input__wrapper {
+        // @apply tw-border-0;
+    }
+    .el-input__inner{
+        text-align: center;
+    }
+}
+
+

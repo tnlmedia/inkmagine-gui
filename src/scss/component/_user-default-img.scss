@@ -1,0 +1,50 @@
+.user-default-img {
+    $size: 42px;
+    width: $size;
+    height: $size;
+    background-color: theme("colors.secondary.700");
+    text-align: center;
+    border-radius: $size;
+    overflow: hidden;
+    flex: 0 0 auto;
+    p {
+        font-size: 1rem;
+        line-height: $size;
+        color: #fff;
+    }
+    &.x30 {
+        $size: 30px;
+        width: $size;
+        height: $size;
+        border-radius: $size;
+        p {
+            font-size: .875rem;
+            line-height: $size;
+        }
+    }
+    &.x80 {
+        $size: 80px;
+        width: $size;
+        height: $size;
+        border-radius: $size;
+        P {
+            font-size: 2.5rem;
+            line-height: $size;
+        }
+    }
+    &.x160 {
+        $size: 160px;
+        width: $size;
+        height: $size;
+        border-radius: $size;
+        P {
+            font-size: 3rem;
+            line-height: $size;
+        }
+    }
+    .cover {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

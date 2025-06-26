@@ -1,0 +1,50 @@
+{
+  "logout": "ログアウト",
+  "requiredHint": "(必須)",
+  "add":"追加",
+  "loading":"Loading...",
+
+  "required":"必須項目",
+  "isSlug":"小文字の英字、数字、ダッシュ(-)、アンダースコア(_)、ドット(.)で構成してください",
+  "isMoreThenTextLimit": "最大文字数を超えています。{length} 文字以下に短縮してください。",
+  "isLessThenTextLimit": "{length}文字以上にしてください",
+  "isMoreThenNumberLimit": "数字は{length}以下で入力してください",
+  "isLessThenNumberLimit": "数字は{length}以上で入力してください",
+  "isMoreThenMax": "{length}個までしか選択できません",
+  "isLessThenMin": "{length}個までしか選択できません",
+  "isUrl": "有効なURLを入力してください",
+  "isMoreThenDatetimeRestrict": "時間は {datetime} より大きい必要があります",
+  "isLessThenDatetimeRestrict": "時間は {datetime} 以下である必要があります",
+  "startTimeMustEarlierThanEndTime":"「開始時間」は「終了時間」よりも早くなければなりません",
+  "isEmail": "正しいemailの形式で入力してください",
+  "isJson": "JSON 形式に合わせてください",
+  "words": "文字",
+
+  "select":"選ぶ",
+  "noResultsFound":"該当する結果がありません",
+  "startDate":"開始日",
+  "endDate":"終了日",
+
+  "navbar": {
+    "apps": {
+        "service":"サービス",
+        "dashboard":{
+            "description": "Inkmagine の機能とサービスの概要",
+            "label": "サービスインデックス"
+        },
+        "cabinet": {
+            "description": "記事の編集、投稿者とカテゴリーの設定",
+            "label": "記事管理"
+        },
+        "member": {
+            "description": "個人アカウント情報の管理",
+            "label": "アカウント管理"
+        },
+        "team": {
+            "description": "ブランド作成、メンバー追加、使用者権限の設定",
+            "label": "ブランド管理"
+        }
+    },
+    "profile": "プロフィール"
+  }
+}

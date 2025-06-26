@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { DisclosurePanel } from '@headlessui/vue'
-import { restAttrs } from '@/helper/attrs'
+import { useRestAttrs } from '@/helper/useAttrs'
+const restAttrs = useRestAttrs()
 </script>
 <template>
     <DisclosurePanel

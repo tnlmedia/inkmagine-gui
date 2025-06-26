@@ -1,0 +1,6 @@
+.tw-badge{
+  @apply tw-text-left tw-rounded-sm tw-px-2 tw-py-0.5 tw-text-sm tw-text-gray-900;
+  &.tw-badge-info{
+    @apply tw-bg-primary-50;
+  }
+}

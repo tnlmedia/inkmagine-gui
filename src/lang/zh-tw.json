@@ -1,0 +1,51 @@
+{
+  "logout":"登出",
+  "requiredHint": "(必填)",
+  "add":"新增",
+  "loading":"Loading...",
+  
+
+  "required":"必填",
+  "isSlug":"只能以小寫英文字母、數字、連接線(-)及底線(_)及點(.)組成",
+  "isMoreThenTextLimit": "超過最大字數，請縮短到 {length} 字元以下",
+  "isLessThenTextLimit": "不能小於 {length} 個字元",
+  "isMoreThenNumberLimit": "數字必須小於或等於 {length}",
+  "isLessThenNumberLimit": "數字必須大於或等於 {length}",
+  "isMoreThenMax": "只可以選擇 {length} 個項目",
+  "isLessThenMin": "只可以選擇 {length} 個項目",
+  "isMoreThenDatetimeRestrict": "時間需大於 {datetime}",
+  "isLessThenDatetimeRestrict": "時間需小於等於 {datetime}",
+  "startTimeMustEarlierThanEndTime":"「開始時間」需要比「結束時間」早",
+  "isUrl": "請輸入有效的網址",
+  "isEmail": "請輸入有效的電子郵件",
+  "isJson": "請符合 JSON 格式",
+  "words": "字",
+
+  "select":"請選擇",
+  "noResultsFound":"沒有找到相符的項目",
+  "startDate":"開始日期",
+  "endDate":"結束日期",
+
+  "navbar": {
+    "apps": {
+        "service":"服務",
+        "dashboard":{
+            "description": "總覽 Inkmagine 特色與服務",
+            "label": "服務首頁"
+        },
+        "cabinet": {
+            "description": "編輯文章、設定作者與分類",
+            "label": "文章管理"
+        },
+        "member": {
+            "description": "管理個人帳戶資訊",
+            "label": "會員中心"
+        },
+        "team": {
+            "description": "你可以建立品牌，定義品牌內的角色並邀請成員",
+            "label": "品牌管理"
+        }
+    },
+    "profile": "個人資訊"
+  }
+}

@@ -2,7 +2,7 @@
 import '@/scss/component/_ink-menu.scss'
 import { type Component } from 'vue'
 import { Menu } from '@headlessui/vue'
-import { restAttrs } from '@/helper/attrs'
+import { useRestAttrs } from '@/helper/useAttrs'
 
 interface MenuProps { 
   as?: string | Component,
@@ -10,6 +10,7 @@ interface MenuProps {
 const props = withDefaults(defineProps<MenuProps>(), {
   as: 'div'
 })
+const restAttrs = useRestAttrs()
 </script>
 <template>
   <Menu 
