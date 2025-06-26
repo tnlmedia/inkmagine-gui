@@ -104,6 +104,9 @@ const elStyle = computed(() => {
   return {
     'active': mergeInputBind.value.activeStyle && value.value,
     'is-error': errorMessage.value,
+    'option-0-divider': mergeInputBind.value.optionDivider?.some((item: number) => item === 0),
+    'option-1-divider': mergeInputBind.value.optionDivider?.some((item: number) => item === 1),
+    'option-2-divider': mergeInputBind.value.optionDivider?.some((item: number) => item === 2),
   };
 });
 

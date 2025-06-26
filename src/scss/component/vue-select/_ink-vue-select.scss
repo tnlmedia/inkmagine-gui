@@ -15,6 +15,12 @@
             border-bottom-right-radius: 0 !important;
         }
     }
+    @for $i from 0 through 2 {
+        &.option-#{$i}-divider [id$='option-#{$i}'] {
+            padding-bottom: 0.25em !important;
+            border-bottom: 1px solid #c7c9d9;
+        }
+    }
     .vs__dropdown-toggle{
         // border-radius: 8px !important;
         --vs-border-radius: 8px;
