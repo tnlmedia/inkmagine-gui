@@ -16,12 +16,13 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['removeInputItemFn']);
+const emit = defineEmits(['removeInputItemFn', 'inkChanged']);
 
 const {mergeField, checkFieldMax} = useMergeFieldProps<SwitchSharp>('switch', toRef(props, 'field'));
 
 const onChange = () => {
   handleChange(!value.value);
+  emit('inkChanged', value.value);
 };
 const rules = computed(() => ({
   required: props.required,

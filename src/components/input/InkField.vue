@@ -24,6 +24,7 @@ interface FieldProps {
 const props = withDefaults(defineProps<FieldProps>(), {
 });
 
+const emit = defineEmits(['inkChanged']);
 
 const componentMap = {
   text: defineAsyncComponent(() => import('@/components/input/InkText.vue')),
@@ -112,6 +113,10 @@ const onPushItem = () => {
   }
 }
 
+const onInkChanged = (value: GetFieldValueType<typeof fieldType.value>) => {
+  emit('inkChanged', value);
+}
+
 onMounted(async () => {
   await nextTick()
   if (fields.value.length === 0) {
@@ -156,6 +161,7 @@ onMounted(async () => {
     @removeInputItemFn="onRemoveItemHandler"
     :inputBind="inputBind"
     :inputOn="inputOn"
+    @inkChanged="onInkChanged"
     >
     </component>
     </template>
@@ -169,6 +175,7 @@ onMounted(async () => {
     @removeInputItemFn="onRemoveItemHandler"
     :inputBind="inputBind"
     :inputOn="inputOn"
+    @inkChanged="onInkChanged"
     >
     </component>
     </template>
