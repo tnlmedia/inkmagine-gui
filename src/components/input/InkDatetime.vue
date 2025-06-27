@@ -24,7 +24,7 @@ const props = defineProps({
     default: () => ({}),
   },
 });
-const emit = defineEmits(['removeInputItemFn']);
+const emit = defineEmits(['removeInputItemFn', 'inkChanged']);
 const { mergeField, checkFieldMax } = useMergeFieldProps<DatetimeSharp>(props.field.type, toRef(props, 'field'));
 const { mergeInputBind, clearInputBind, panelInputModeNone, panelTimezone } = useMergeDatetimePickerInputBind(toRef(props, 'inputBind'));
 
@@ -103,6 +103,7 @@ watch(startValue, () => {
   }else{
     displayValue.value = undefined;
   }
+  emit('inkChanged', startValue.value);
 })
 watch(displayValue, (newVal, oldVal) => {
   if (newVal) {
