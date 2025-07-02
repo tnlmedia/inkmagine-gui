@@ -104,7 +104,7 @@ watch(startValue, () => {
     displayValue.value = undefined;
   }
   emit('inkChanged', startValue.value);
-})
+}, { immediate: true })
 watch(displayValue, (newVal, oldVal) => {
   if (newVal) {
     if(newVal === oldVal) return;
@@ -128,11 +128,12 @@ watch(displayValue, (newVal, oldVal) => {
       :max="checkFieldMax" 
       :disabled="disabled" 
       :inputTotal="inputTotal"
+      :inputType="mergeField.type"
       @removeComponent="emit('removeInputItemFn', valueIndex)"
       >
       <div
         :class="[
-          'data-time-picker',
+          'date-time-picker tw-max-w-[300px]',
           elStyle
         ]"
         @click="datetimeWrapperClick"

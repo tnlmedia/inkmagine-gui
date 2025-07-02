@@ -59,7 +59,7 @@ watch(value, () => {
     <InputWrapper>
     <InputInner>
       <InputFrame
-      :inputType="field.type"
+      :inputType="mergeField.type"
       :max="checkFieldMax" 
       :disabled="disabled"
       :inputTotal="inputTotal"

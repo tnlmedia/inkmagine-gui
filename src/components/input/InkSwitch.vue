@@ -40,6 +40,7 @@ const { value, errorMessage, handleChange } = useField<boolean>(`${mergeField.va
     :max="checkFieldMax" 
     :disabled="disabled" 
     :inputTotal="inputTotal"
+    :inputType="mergeField.type"
     @removeComponent="emit('removeInputItemFn', valueIndex)"
     >
       <button

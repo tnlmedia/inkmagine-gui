@@ -42,6 +42,7 @@ const emit = defineEmits(['removeInputItemFn']);
       :max="checkFieldMax" 
       :disabled="disabled" 
       :inputTotal="inputTotal"
+      :inputType="mergeField.type"
       @removeComponent="emit('removeInputItemFn', valueIndex)"
       >
       <input

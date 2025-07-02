@@ -137,7 +137,7 @@ watch(startValue, () => {
     startValueUnix.value = undefined;
   }
   emit('inkChanged', [startValue.value, endValue.value]);
-});
+}, { immediate: true });
 watch(endValue, () => {
   if(endValue.value) {
     displayEndValue.value = formatUnixTime(mergeInputBind.value.timezone, endValue.value, rngElFormat.value);
@@ -147,7 +147,7 @@ watch(endValue, () => {
     endValueUnix.value = undefined;
   }
   emit('inkChanged', [startValue.value, endValue.value]);
-});
+}, { immediate: true });
 
 watch(displayStartValue, (newVal, oldVal) => {
   if (newVal) {
@@ -195,11 +195,12 @@ const datetimeWrapperClick = (e: MouseEvent) => {
       :max="checkFieldMax" 
       :disabled="disabled" 
       :inputTotal="inputTotal"
+      :inputType="mergeField.type"
       @removeComponent="emit('removeInputItemFn', valueIndex)"
       >
       <div
         :class="[
-          'data-time-picker',
+          'date-time-picker date-time-rng-picker tw-max-w-[360px]',
           elStyle
         ]"
         @click="datetimeWrapperClick"
