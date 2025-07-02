@@ -2,7 +2,7 @@
 import '@/scss/component/_ink-element-plus-datetime.scss';
 import { ElDatePicker } from 'element-plus';
 import 'element-plus/es/components/date-picker/style/css';
-import { computed, onMounted, PropType, useTemplateRef, toRef, watch, ref } from "vue";
+import { computed, onMounted, onUnmounted, PropType, useTemplateRef, toRef, watch, ref } from "vue";
 import { useField } from "vee-validate";
 import InputWrapper from '@/components/input/InputWrapper.vue';
 import InputInner from '@/components/input/InputInner.vue';
@@ -88,6 +88,24 @@ onMounted(() => {
   })
   panelInputModeNone();
   panelTimezone(mergeInputBind.value.timezone);
+
+
+  // now click
+  const popperIdEl = document.querySelector(`.js-datetime-${mergeField.value.id}-popper`) as HTMLElement;
+  if (popperIdEl) { 
+    popperIdEl.addEventListener('click', (e: MouseEvent) => { 
+      datetimeWrapperClick(e);
+    })
+  }
+})
+
+onUnmounted(() => { 
+  const popperIdEl = document.querySelector(`.js-datetime-${mergeField.value.id}-popper`) as HTMLElement;
+  if (popperIdEl) { 
+    popperIdEl.removeEventListener('click', (e: MouseEvent) => { 
+      datetimeWrapperClick(e);
+    })
+  }
 })
 
 const rules = computed(() => ({
@@ -104,7 +122,7 @@ watch(startValue, () => {
     displayValue.value = undefined;
   }
   emit('inkChanged', startValue.value);
-})
+}, { immediate: true })
 watch(displayValue, (newVal, oldVal) => {
   if (newVal) {
     if(newVal === oldVal) return;
@@ -128,14 +146,14 @@ watch(displayValue, (newVal, oldVal) => {
       :max="checkFieldMax" 
       :disabled="disabled" 
       :inputTotal="inputTotal"
+      :inputType="mergeField.type"
       @removeComponent="emit('removeInputItemFn', valueIndex)"
       >
       <div
         :class="[
-          'data-time-picker',
+          'date-time-picker tw-max-w-[300px]',
           elStyle
         ]"
-        @click="datetimeWrapperClick"
       >
         <el-date-picker
           ref="startDatePicker"
@@ -149,6 +167,7 @@ watch(displayValue, (newVal, oldVal) => {
           :type="datetimeType"
           :format="datetimeFormat"
           :value-format="datetimeFormat"
+          :popper-class="`${mergeInputBind.popperClass} js-datetime-${mergeField.id}-popper`"
         />
         <button
           v-if="mergeInputBind.isClearable && !disabled && startValue"

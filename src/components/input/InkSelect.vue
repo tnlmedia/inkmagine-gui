@@ -86,16 +86,10 @@ const rules = computed(() => ({
 
 const { value, errorMessage, setValue } = useField<SelectReduceReturn | UnKnownOptions>(`${mergeField.value.id}[${props.valueIndex}]`, rules);
 
-watch(()=>value.value, (newVal) => {
-  if(newVal && typeof newVal === 'object' && newVal !== null){
-    if(mergeInputBind.value.reduce){
-      const reduceValue = mergeInputBind.value.reduce(newVal);
-      if(!reduceValue){
-        setValue(mergeInputBind.value.reduce(newVal));
-      }
-    }else{
-      console.warn('InkSelect - inputBind.reduce is not defined. Please check it.');
-    }
+watch(()=>value.value, (newVal, oldVal) => {
+  if(newVal !== oldVal && typeof newVal === 'object' && newVal !== null){
+      const reduceValue = mergeInputBind.value.reduce?.(newVal);
+      setValue(reduceValue);
   }
 }, { immediate: true });
 
@@ -115,7 +109,7 @@ const elStyle = computed(() => {
     <InputWrapper>
     <InputInner>
       <InputFrame
-      :inputType="field.type"
+      :inputType="mergeField.type"
       :max="checkFieldMax" 
       :disabled="disabled"
       :inputTotal="inputTotal"
@@ -130,7 +124,7 @@ const elStyle = computed(() => {
         :placeholder="mergeField.placeholder || t('select')"
         @open="onOpen"
         @close="onClose"
-        class="tw-w-full"
+        class="tw-w-full tw-max-w-[300px]"
         :class="elStyle"
         :inputId="`${mergeField.id}[${props.valueIndex}]`"
         v-bind="clearInputBind"

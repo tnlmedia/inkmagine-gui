@@ -2,7 +2,7 @@
 import '@/scss/component/_ink-element-plus-datetime.scss';
 import { ElDatePicker } from 'element-plus';
 import 'element-plus/es/components/date-picker/style/css';
-import { computed, onMounted, PropType, useTemplateRef, toRef, ref, watch } from "vue";
+import { computed, onMounted, onUnmounted, PropType, useTemplateRef, toRef, ref, watch } from "vue";
 import { useField } from "vee-validate";
 import InputWrapper from '@/components/input/InputWrapper.vue';
 import InputInner from '@/components/input/InputInner.vue';
@@ -101,6 +101,35 @@ onMounted(() => {
   })
   panelInputModeNone();
   panelTimezone(mergeInputBind.value.timezone);
+
+  // now click
+  const startPopperIdEl = document.querySelector(`.js-${mergeField.value.id}-start-datetime-popper`) as HTMLElement;
+  const endPopperIdEl = document.querySelector(`.js-${mergeField.value.id}-end-datetime-popper`) as HTMLElement;
+  if (startPopperIdEl) { 
+    startPopperIdEl.addEventListener('click', (e: MouseEvent) => { 
+      datetimeWrapperClick(e);
+    })
+  }
+  if (endPopperIdEl) { 
+    endPopperIdEl.addEventListener('click', (e: MouseEvent) => { 
+      datetimeWrapperClick(e);
+    })
+  }
+})
+
+onUnmounted(() => { 
+  const startPopperIdEl = document.querySelector(`.js-${mergeField.value.id}-start-datetime-popper`) as HTMLElement;
+  const endPopperIdEl = document.querySelector(`.js-${mergeField.value.id}-end-datetime-popper`) as HTMLElement;
+  if (startPopperIdEl) { 
+    startPopperIdEl.removeEventListener('click', (e: MouseEvent) => { 
+      datetimeWrapperClick(e);
+    })
+  }
+  if (endPopperIdEl) { 
+    endPopperIdEl.removeEventListener('click', (e: MouseEvent) => { 
+      datetimeWrapperClick(e);
+    })
+  }
 })
 
 // type ValidationRules = {
@@ -137,7 +166,7 @@ watch(startValue, () => {
     startValueUnix.value = undefined;
   }
   emit('inkChanged', [startValue.value, endValue.value]);
-});
+}, { immediate: true });
 watch(endValue, () => {
   if(endValue.value) {
     displayEndValue.value = formatUnixTime(mergeInputBind.value.timezone, endValue.value, rngElFormat.value);
@@ -147,7 +176,7 @@ watch(endValue, () => {
     endValueUnix.value = undefined;
   }
   emit('inkChanged', [startValue.value, endValue.value]);
-});
+}, { immediate: true });
 
 watch(displayStartValue, (newVal, oldVal) => {
   if (newVal) {
@@ -175,9 +204,9 @@ watch(displayEndValue, (newVal, oldVal) => {
 const datetimeWrapperClick = (e: MouseEvent) => {
   const target = e.target as HTMLElement;
   if ((target.classList.contains('is-text') || target.closest('.is-text'))) {
-    if (target.closest('.js-start-datetime-popper')) {
+    if (target.closest(`.js-${mergeField.value.id}-start-datetime-popper`)) {
       displayStartValue.value = dayjs.tz(dayjs(), mergeInputBind.value.timezone).format(rngElFormat.value)
-    } else if(target.closest('.js-end-datetime-popper')){
+    } else if(target.closest(`.js-${mergeField.value.id}-end-datetime-popper`)){
       displayEndValue.value = dayjs.tz(dayjs(), mergeInputBind.value.timezone).format(rngElFormat.value)
     }
   }
@@ -195,14 +224,14 @@ const datetimeWrapperClick = (e: MouseEvent) => {
       :max="checkFieldMax" 
       :disabled="disabled" 
       :inputTotal="inputTotal"
+      :inputType="mergeField.type"
       @removeComponent="emit('removeInputItemFn', valueIndex)"
       >
       <div
         :class="[
-          'data-time-picker',
+          'date-time-picker date-time-rng-picker tw-max-w-[360px]',
           elStyle
         ]"
-        @click="datetimeWrapperClick"
       >
         <el-date-picker
           ref="startDatePicker"
@@ -216,7 +245,7 @@ const datetimeWrapperClick = (e: MouseEvent) => {
           :type="rngElType"
           :format="rngElFormat"
           :value-format="rngElFormat"
-          :popper-class="`${mergeInputBind.popperClass} js-start-datetime-popper`"
+          :popper-class="`${mergeInputBind.popperClass} js-${mergeField.id}-start-datetime-popper`"
         />
         <i class="far fa-arrow-right tw-text-xs tw-text-gray-700"></i>
         <el-date-picker
@@ -231,7 +260,7 @@ const datetimeWrapperClick = (e: MouseEvent) => {
           :type="rngElType"
           :format="rngElFormat"
           :value-format="rngElFormat"
-          :popper-class="`${mergeInputBind.popperClass} js-end-datetime-popper`"
+          :popper-class="`${mergeInputBind.popperClass} js-${mergeField.id}-end-datetime-popper`"
         />
         <button
           v-if="mergeInputBind.isClearable && !disabled"

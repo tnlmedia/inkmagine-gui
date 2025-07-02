@@ -57,7 +57,6 @@ const emit = defineEmits(['removeInputItemFn']);
       :placeholder="mergeField.placeholder"
       v-bind="inputBind"
       v-on="inputOn"
-       @keydown.enter.prevent
       />
       </div>
       </InputFrame>

@@ -40,6 +40,7 @@ const { value, errorMessage } = useField<string>(`${mergeField.value.id}[${props
       :max="checkFieldMax" 
       :disabled="disabled" 
       :inputTotal="inputTotal"
+      :inputType="mergeField.type"
       @removeComponent="emit('removeInputItemFn', valueIndex)"
       >
         <input
