@@ -169,7 +169,7 @@ const defaultAllDatetimeInputBind = () => {
   return {
     isClearable: true,
     clearable: false,
-    teleported: false, // for click now (is-text)
+    teleported: true,
   }
 }
 const defaultAllDatetimeMethod = () => {
