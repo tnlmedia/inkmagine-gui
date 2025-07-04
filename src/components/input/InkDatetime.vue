@@ -173,10 +173,10 @@ watch(displayValue, (newVal, oldVal) => {
         <button
           v-if="mergeInputBind.isClearable && !disabled && startValue"
           type="button"
-          class="tw-relative tw-px-1 before:tw-absolute before:-tw-inset-2.5 before:tw-content-['']"
+          class="tw-remove-time-btn tw-btn-icon tw-btn-hover-transparent tw-btn-icon-xs"
           @click.prevent="clearTime"
         >
-          <i class="far fa-times-circle tw-text-xs tw-text-gray-700"></i>
+          <i class="far fa-times tw-text-gray-700"></i>
         </button>
       </div>
       </InputFrame>

@@ -1,0 +1,20 @@
+
+  [lang="zh-tw"]{
+    font-family: "Noto Sans TC", "Pingfang TC", "Microsoft JhengHei", "Heiti TC", "Microsoft YaHei", ui-sans-serif, system-ui, -apple-system, "sans-serif";
+  }
+  [lang="ja-jp"]{
+    font-family: "Noto Sans JP", "Microsoft JhengHei", ui-sans-serif, system-ui, -apple-system, "sans-serif";
+  }
+  [lang="en-us"]{
+    font-family: "Helvetica Neue", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  .tw-text-xlmix{
+    @apply tw-text-xl md:tw-text-lg ;
+  }
+  .tw-text-2xlmix{
+    @apply tw-text-2xl md:tw-text-xl ;
+  }
+  .tw-text-3xlmix{
+    @apply tw-text-3xl md:tw-text-2xl ;
+  }

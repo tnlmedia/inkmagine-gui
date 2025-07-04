@@ -143,8 +143,15 @@ textarea{
   }
 }
 .date-time-picker{
-  @apply tw-w-full md:tw-min-w-auto tw-flex tw-items-center tw-overflow-hidden tw-pr-3;
+  @apply tw-w-full md:tw-min-w-auto tw-flex tw-items-center tw-overflow-hidden;
+  @apply tw-relative;
   // @apply tw-rounded tw-border tw-border-gray-400 tw-border-solid;
+  .tw-remove-time-btn{
+    @apply tw-absolute tw-right-2;
+  }
+}
+.date-time-rng-picker{
+  @apply tw-pr-8;
 }
 // ink don't use input-group start
 // .form-group{

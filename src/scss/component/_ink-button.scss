@@ -126,3 +126,6 @@
   .tw-btn-remove {
     @apply tw-border-0 tw-border-solid tw-border-gray-400 tw-bg-gray-100 tw-p-2.5 tw-leading-none tw-text-gray-700;
   }
+  .tw-btn-hover-transparent {
+    @apply hover:tw-bg-transparent;
+  }

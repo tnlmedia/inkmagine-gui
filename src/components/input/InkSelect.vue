@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import '@/scss/component/vue-select/_ink-vue-select.scss';
-import { computed, useTemplateRef, defineEmits, nextTick, type PropType, watch, toRef, ref } from 'vue';
+import { computed, useTemplateRef, defineEmits, nextTick, type PropType, watch, toRef, ref, h } from 'vue';
 import vSelect from 'vue-select'
 import { useField } from 'vee-validate';
 import InputWrapper from '@/components/input/InputWrapper.vue';
@@ -11,6 +11,17 @@ import { defaultInputProps, useMergeFieldProps, useMergeSelectInputBind } from '
 import { SelectSharp } from '@/components/input/field-data-interface';
 import { t } from '@/helper/i18n';
 import type { SelectInputBind, UnKnownOptions, SelectReduceReturn } from '@/components/input/field-data-interface';
+
+vSelect.props.components.default = () => ({
+  // custom icon
+  OpenIndicator: {
+    render: () => h('i', {class: 'far fa-chevron-down tw-text-base tw-leading-none'}),
+  },
+  Deselect: {
+    render: () => h('i', {class: 'fal fa-times tw-text-gray-900 tw-leading-none'}),
+  },
+});
+
 const props = defineProps({
   ...defaultInputProps,
   field: {
