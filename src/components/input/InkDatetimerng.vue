@@ -10,7 +10,7 @@ import InkErrorMessage from '@/components/input/InkErrorMessage.vue';
 import InputFrame from '@/components/input/InputFrame.vue';
 import { defaultInputProps, useMergeFieldProps, useMergeDatetimerngInputBind } from '@/components/input/input-default-value';
 import type { DatetimerngSharp, DatetimerngInputBind } from '@/components/input/field-data-interface';
-import dayjs, { formatTimeToUnix, convertUnixToStartOf, formatUnixTime } from '@/helper/dayjs';
+import dayjs, { formatTimeToUnix, convertUnixToStartOf, formatUnixTime, convertUnixToEndOf } from '@/helper/dayjs';
 import { t } from '@/helper/i18n';
 
 const props = defineProps({
@@ -157,20 +157,31 @@ const { value: startValue, errorMessage: startErrorMessage, handleChange: handle
 const { value: endValue, errorMessage: endErrorMessage, handleChange: handleChangeEnd } = useField<number | undefined>(`${mergeField.value.id}[${props.valueIndex}][1]`, endRules);
 
 // 同步 ref 值
-watch(startValue, () => {
-  if(startValue.value) {
-    displayStartValue.value = formatUnixTime(mergeInputBind.value.timezone, startValue.value, rngElFormat.value);
-    startValueUnix.value = startValue.value;
+watch(startValue, (newVal, oldVal) => {
+  if (newVal === oldVal) return;
+  if(newVal) {
+    displayStartValue.value = formatUnixTime(mergeInputBind.value.timezone, newVal, rngElFormat.value);
+    startValueUnix.value = newVal;
   } else {
     displayStartValue.value = undefined;
     startValueUnix.value = undefined;
   }
   emit('inkChanged', [startValue.value, endValue.value]);
 }, { immediate: true });
-watch(endValue, () => {
-  if(endValue.value) {
-    displayEndValue.value = formatUnixTime(mergeInputBind.value.timezone, endValue.value, rngElFormat.value);
-    endValueUnix.value = endValue.value;
+watch(endValue, (newVal, oldVal) => {
+  if (newVal === oldVal) return;
+  if (newVal) {
+    switch (mergeField.value.type) {
+      case 'daterng':
+        const toEndOfEndValue = convertUnixToEndOf(newVal);
+        displayEndValue.value = formatUnixTime(mergeInputBind.value.timezone, toEndOfEndValue, rngElFormat.value);
+        endValueUnix.value = toEndOfEndValue;
+        break;
+      default:
+        displayEndValue.value = formatUnixTime(mergeInputBind.value.timezone, newVal, rngElFormat.value);
+        endValueUnix.value = newVal;
+        break;
+    }
   } else {
     displayEndValue.value = undefined;
     endValueUnix.value = undefined;
@@ -179,8 +190,8 @@ watch(endValue, () => {
 }, { immediate: true });
 
 watch(displayStartValue, (newVal, oldVal) => {
+  if(newVal === oldVal) return;
   if (newVal) {
-    if(newVal === oldVal) return;
     const targetTime = dayjs.tz(newVal, mergeInputBind.value.timezone).format();
     const utcTimestamp = formatTimeToUnix(targetTime);
     handleChangeStart(utcTimestamp);
@@ -191,11 +202,21 @@ watch(displayStartValue, (newVal, oldVal) => {
   }
 })
 watch(displayEndValue, (newVal, oldVal) => {
-  if(newVal) {
+  if (newVal === oldVal) return;
+  if (newVal) {
     const targetTime = dayjs.tz(newVal, mergeInputBind.value.timezone).format();
     const utcTimestamp = formatTimeToUnix(targetTime);
-    handleChangeEnd(utcTimestamp);
-    endValueUnix.value = utcTimestamp;
+    switch (mergeField.value.type) {
+      case 'daterng':
+        const toEndOfEndValue = convertUnixToEndOf(utcTimestamp);
+        handleChangeEnd(toEndOfEndValue);
+        endValueUnix.value = toEndOfEndValue;
+        break;
+      default:
+        handleChangeEnd(utcTimestamp);
+        endValueUnix.value = utcTimestamp;
+        break;
+    }
   }else{
     handleChangeEnd(undefined);
     endValueUnix.value = undefined;

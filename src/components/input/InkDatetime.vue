@@ -115,17 +115,18 @@ const rules = computed(() => ({
 const { value: startValue, errorMessage: startErrorMessage, handleChange } = useField<number | undefined>(`${mergeField.value.id}[${props.valueIndex}]`, rules);
 
 const displayValue = ref<string | undefined>();
-watch(startValue, () => {
-  if(startValue.value) {
-    displayValue.value = formatUnixTime(mergeInputBind.value.timezone, startValue.value, datetimeFormat.value);
+watch(startValue, (newVal, oldVal) => {
+  if (newVal === oldVal) return;
+  if(newVal) {
+    displayValue.value = formatUnixTime(mergeInputBind.value.timezone, newVal, datetimeFormat.value);
   }else{
     displayValue.value = undefined;
   }
   emit('inkChanged', startValue.value);
 }, { immediate: true })
 watch(displayValue, (newVal, oldVal) => {
+  if (newVal === oldVal) return;
   if (newVal) {
-    if(newVal === oldVal) return;
     const targetTime = dayjs.tz(newVal, mergeInputBind.value.timezone).format();
     const utcTimestamp = formatTimeToUnix(targetTime);
     handleChange(utcTimestamp);

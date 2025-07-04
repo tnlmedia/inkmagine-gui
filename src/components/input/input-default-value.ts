@@ -114,6 +114,7 @@ const defaultHashtagInputBind = () => {
   return {
     ...defaultAllSelectInputBind(),
     searchable: true,
+    label: 'name',
   }
 }
 export const useMergeHashtagInputBind = (inputBind: Ref<Record<string, unknown>>) => {

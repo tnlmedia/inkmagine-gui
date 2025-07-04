@@ -53,6 +53,18 @@ const vSelectRef = useTemplateRef<InstanceType<typeof vSelect>>('vSelectRef');
 watch(value, () => {
   vSelectRef.value?.searchEl.focus();
 })
+const createOption = (newOption: UnKnownOptions) => {
+  // console.log('createOption',newOption, value.value);
+  if (typeof newOption === 'string') {
+    const existsTag = (clearInputBind.value.options as HashtagInputBind['options'] || []).find((item: UnKnownOptions) => { 
+      return item[clearInputBind.value.label as string] === newOption;
+    })
+    if (existsTag) return existsTag;
+
+    return {[clearInputBind.value.label as string]: newOption}
+  }
+  return newOption;
+}
 
 </script>
 <template>
@@ -81,20 +93,21 @@ watch(value, () => {
         :taggable="!mergeField.limit"
         :filterable="mergeField.limit"
         multiple
+        :createOption="createOption"
         >
           <!-- 選項內容 -->
-          <template #option="{ name }">
+          <template #option="options">
             <div :class="['option']">
               <span 
               class="tw-mr-2.5 tw-rounded-sm tw-py-1"
               >
-                {{ name }}
+                {{ options[clearInputBind?.label as string] }}
               </span>
             </div>
           </template>
           <!-- 鎖定時不顯示刪除按鈕 -->
           <template v-if="disabled" #selected-option-container="{ option }">
-            <div class="vs__selected">{{ option.name }}</div>
+            <div class="vs__selected">{{ option[clearInputBind?.label as string] }}</div>
           </template>
 
           <!-- 無選項內容 -->

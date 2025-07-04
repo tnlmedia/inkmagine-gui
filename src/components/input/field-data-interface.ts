@@ -134,6 +134,7 @@ export type HashtagInputBind = {
   noDrop: boolean;
   loading: boolean;
   options?: HashtagOptions[];
+  label?: string;
   activeStyle?: boolean;
 } 
 type HashtagOptions = UnKnownOptions
