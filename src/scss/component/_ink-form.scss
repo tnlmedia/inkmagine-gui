@@ -7,10 +7,12 @@ input{
   @apply placeholder:tw-text-gray-400;
   @apply tw-rounded tw-text-sm ;
   flex-grow: 1;
-  width: 0;
   @apply focus:tw-outline-none;
   @apply readonly:tw-bg-gray-100;
   @apply disabled:tw-cursor-not-allowed disabled:tw-bg-gray-100 disabled:tw-text-gray-400;
+  &:not([type="number"]){
+      width: 0;
+  }
 }
 /* Chrome, Safari, Edge, Opera */
 input.tw-hide-spin::-webkit-outer-spin-button,
