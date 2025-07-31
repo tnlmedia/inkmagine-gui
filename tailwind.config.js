@@ -99,19 +99,30 @@ export const inkTailwindConfig = {
         awesome: ['"Font Awesome 6 Pro"'],
       },
       fontSize: {
-        xxs: ['0.7rem', { lineHeight: '1.25', letterSpacing: '0.02em', fontWeight: '400' }], // 11.2px
+        xxs: ['0.625rem', { lineHeight: '1.25', letterSpacing: '0.02em', fontWeight: '400' }], // 10px
+        'size-xxs': '0.625rem', // 10px
         xs: ['0.75rem', { lineHeight: '1.4', letterSpacing: '0.02em', fontWeight: '400' }], // 12px
+        'size-xs': '0.75rem', // 12px
         sm: ['0.875rem', { lineHeight: '1.4', letterSpacing: '0.02em', fontWeight: '400' }], // 14px
+        'size-sm': '0.875rem', // 14px
         base: ['1rem', { lineHeight: '1.375', letterSpacing: '0.02em', fontWeight: '400' }], // 16px
+        'size-base': '1rem', // 16px
         // below used for xxmix(xlmix, 2xlmix, 3xlmix)
         lg: ['1.125rem', { lineHeight: '1.25', letterSpacing: '0.02em', fontWeight: '600' }], // 18px
+        'size-lg': '1.125rem', // 18px
         xl: ['1.25rem', { lineHeight: '1.25', letterSpacing: '0.02em', fontWeight: '600' }], // 20px
+        'size-xl': '1.25rem', // 20px
         '2xl': ['1.5rem', { lineHeight: '1.25', letterSpacing: '0.02em', fontWeight: '600' }], // 24px
+        'size-2xl': '1.5rem', // 24px
         '3xl': ['1.875rem', { lineHeight: '1.3', letterSpacing: '0.02em', fontWeight: '600' }], // 30px
+        'size-3xl': '1.875rem', // 30px
         // below unused 
         '4xl': ['2.25rem', { lineHeight: '1.25', letterSpacing: '0.02em', fontWeight: '600' }], // 36px
+        'size-4xl': '2.25rem', // 36px
         '5xl': ['3rem', { lineHeight: '1.25', letterSpacing: '0.02em', fontWeight: '600' }], // 48px
+        'size-5xl': '3rem', // 48px
         '6xl': ['4rem', { lineHeight: '1.25', letterSpacing: '0.02em', fontWeight: '600' }], // 64px
+        'size-6xl': '4rem', // 64px
       },
       lineHeight: {
         7.5: '1.875rem',

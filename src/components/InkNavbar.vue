@@ -50,7 +50,7 @@
           <InkMenu>
             <InkMenuButton>
               <InkButton variant="txt" theme="gray">
-                <i class="far fa-grip-horizontal tw-text-base tw-text-gray-700"></i>{{ t('navbar.apps.service') }}
+                <i class="far fa-grip-horizontal tw-text-base"></i>{{ t('navbar.apps.service') }}
               </InkButton>
             </InkMenuButton>
             <InkMenuItems>

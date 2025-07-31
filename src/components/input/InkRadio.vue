@@ -95,12 +95,13 @@ const { value, errorMessage, handleChange } = useField<number | string | UnKnown
       :inputTotal="inputTotal"
       @removeComponent="emit('removeInputItemFn', valueIndex)"
       >
+      <div class="form-radios">
         <div 
-        class="form-radio tw-mt-0 tw-flex tw-flex-col tw-gap-2"
+          v-for="option in mergeInputBind.options" 
+          :key="useId()" 
+          class="form-radio"
         >
           <label
-            v-for="option in mergeInputBind.options" 
-            :key="useId()" 
             :class="[
                 'form-radio-label',
                 {
@@ -117,10 +118,11 @@ const { value, errorMessage, handleChange } = useField<number | string | UnKnown
               v-bind="clearInputBind"
               v-on="inputOn"
               />
-            {{ option[mergeInputBind.label || 'name'] }}
+            <span class="form-label-text">{{ option[mergeInputBind.label || 'name'] }}</span>
             <i :class="['tw-radio', { 'tw-border-danger-400': errorMessage }]"></i>
           </label>
         </div>
+      </div>
       </InputFrame>
     </InputInner>
     <InkErrorMessage v-if="errorMessage" :errorText="errorMessage"/>

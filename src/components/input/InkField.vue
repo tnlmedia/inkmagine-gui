@@ -128,7 +128,7 @@ onMounted(async () => {
 
 <template>
   <fieldset 
-  class="js-dynamic-component tw-flex tw-flex-wrap tw-gap-2"
+  class="js-dynamic-component dynamic-component tw-flex tw-flex-wrap tw-gap-2"
   :data-field-type="mergeField.type"
   :class="{
     'tw-flex-row tw-items-center': mergeField.type === 'switch',
@@ -138,7 +138,7 @@ onMounted(async () => {
     <div v-if="mergeField.name" :class="['tw-text-base tw-font-semibold tw-flex tw-items-center tw-gap-1']">
       {{ mergeField.name }}
       <InkVTooltip v-if="mergeField.tip">
-        <button type="button" class="tw-btn-transparent tw-btn-icon-xs"><i class="fa-regular fa-circle-info"></i></button>
+        <button type="button" class="tw-btn-transparent tw-btn-icon-xxs"><i class="fa-regular fa-circle-info"></i></button>
         <template #popper>
           {{ mergeField.tip }}
         </template>

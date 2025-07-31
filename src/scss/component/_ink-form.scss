@@ -45,6 +45,30 @@ textarea{
   @apply tw-mb-2 ;
 }
 // checkbox & radio
+.dynamic-component:has(.form-check):not(:has(.form-check-depth)),
+.dynamic-component:has(.form-radio):not(:has(.form-radio-depth)){
+  container-type: inline-size;
+}
+.form-checks,
+.form-radios{
+  --checkRadioWidth:auto;
+  --checkRadioFlexDirection:row;
+  @apply tw-flex tw-flex-col tw-gap-x-5 tw-gap-y-3 tw-flex-wrap;
+  &:not(:has(.form-radio-depth, .form-check-depth)){
+    flex-direction: var(--checkRadioFlexDirection);
+    .form-check,
+    .form-radio{
+      width: var(--checkRadioWidth);
+    }
+    @container (width < 600px) {
+      @apply tw-flex-col;
+      .form-check,
+      .form-radio{
+        width: 100%;
+      }
+    }
+  }
+}
 .form-check-label,
 .form-radio-label{
   @apply tw-text-sm tw-mb-0 tw-relative tw-cursor-pointer;
@@ -52,7 +76,6 @@ textarea{
 // checkbox & radio
 .form-radio-label,
 .form-check-label {
-  @apply tw-pl-7;
   input{
     // cursor: pointer;
     left: 0;
@@ -62,6 +85,10 @@ textarea{
     position: absolute;
     top: 0;
     z-index: 1;
+  }
+  .form-label-text{
+    @apply tw-pl-6;
+    display: inline-flex;
   }
 }
 // checkbox
@@ -102,7 +129,7 @@ textarea{
       @apply tw-pr-10;
     }
   }
-  &:has(.form-check){
+  &:has(.form-check, .form-radio){
     @apply tw-flex-col;
   }
 }

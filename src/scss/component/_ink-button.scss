@@ -27,7 +27,7 @@
     @extend .tw-btn-base;
     @apply  tw-min-w-[100px] tw-h-9 tw-px-4 tw-py-0 tw-text-sm tw-border-0 ;
     i{
-      @apply tw-text-[16px];
+      @apply tw-text-size-base;
     }
   }
 
@@ -51,6 +51,10 @@
     @extend .tw-btn-base;
     @apply tw-h-6 tw-text-base tw-min-w-auto ;
   }
+  .tw-btn-xxs { // height 18px
+    @extend .tw-btn-base;
+    @apply tw-h-4.5 tw-text-xxs tw-min-w-auto ;
+  }
   // btn only icon
   .tw-btn-icon {  
     @extend .tw-btn;
@@ -63,6 +67,10 @@
   .tw-btn-icon-xs { 
     @extend .tw-btn-xs;
     @apply tw-w-6 tw-p-0 tw-text-base ;
+  }
+  .tw-btn-icon-xxs {
+    @extend .tw-btn-xxs;
+    @apply tw-w-4.5 tw-p-0 tw-text-xxs ;
   }
   .tw-btn-link
   {

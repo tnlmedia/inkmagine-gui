@@ -7,7 +7,7 @@ import { useRestAttrs } from '@/helper/useAttrs'
 interface ButtonProps { 
   as?: 'a' | 'button' | 'router-link',
   type?: 'button' | 'submit' | 'reset',
-  size?: 'md'| 'xs',
+  size?: 'md'| 'xs'| 'xxs',
   variant?: 'base' | 'txt' | 'icon',
   theme?: 'primary' | 'info' | 'gray' | 'outline-gray' | 'link' | 'transparent',
   disabled?: boolean,

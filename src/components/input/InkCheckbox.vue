@@ -107,10 +107,11 @@ const { value, errorMessage, handleChange } = useField<number[] | string[] | UnK
       :inputTotal="inputTotal"
       @removeComponent="emit('removeInputItemFn', valueIndex)"
       >
+      <div class="form-checks">
         <div 
         v-for="option in mergeInputBind.options" 
         :key="useId()" 
-        class="form-check tw-mt-0 [&+div]:tw-mt-3"
+        :class="['form-check', { 'form-check-depth': option.depth}]"
         :style="{ 'margin-left': option.depth + 'em' }"
         >
           <label
@@ -137,10 +138,11 @@ const { value, errorMessage, handleChange } = useField<number[] | string[] | UnK
               v-bind="clearInputBind"
               v-on="inputOn"
               />
-            {{ option[mergeInputBind.label || 'name'] }}
+            <span class="form-label-text">{{ option[mergeInputBind.label || 'name'] }}</span>
             <i :class="['tw-check', { 'tw-border-danger-400': errorMessage }]"></i>
           </label>
         </div>
+      </div>
       </InputFrame>
     </InputInner>
     <InkErrorMessage v-if="errorMessage" :errorText="errorMessage"/>

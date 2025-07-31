@@ -12,9 +12,18 @@
   .tw-text-xlmix{
     @apply tw-text-xl md:tw-text-lg ;
   }
+  .tw-text-size-xlmix{
+    @apply tw-text-size-xl md:tw-text-size-lg ;
+  }
   .tw-text-2xlmix{
     @apply tw-text-2xl md:tw-text-xl ;
   }
+  .tw-text-size-2xlmix{
+    @apply tw-text-size-2xl md:tw-text-size-xl ;
+  }
   .tw-text-3xlmix{
     @apply tw-text-3xl md:tw-text-2xl ;
+  }
+  .tw-text-size-3xlmix{
+    @apply tw-text-size-3xl md:tw-text-size-2xl ;
   }

@@ -62,9 +62,11 @@
         // 自訂項目
         @apply tw-bg-primary-50 tw-px-2 tw-py-0.5 tw-text-sm tw-m-0;
         > button {
-            font-size: 10px;
             padding-left: 2px;
             padding-right: 2px;
+            i{
+                @apply tw-text-size-xxs;
+            }
         }
 
     }
