@@ -43,6 +43,14 @@
         "team": {
             "description": "ブランド作成、メンバー追加、使用者権限の設定",
             "label": "ブランド管理"
+        },
+        "sandwich": {
+            "description": "サイト内の記事配信設定と広告の表示を管理",
+            "label": "広告システム"
+        },
+        "console": {
+            "description": "グループデータとメンバー権限の設定",
+            "label": "グループ経営"
         }
     },
     "profile": "プロフィール"

@@ -30,6 +30,8 @@ import InkDatetime from '@/components/input/InkDatetime.vue'
 import InkDate from '@/components/input/InkDatetime.vue'
 import InkDatetimerng from '@/components/input/InkDatetimerng.vue'
 import InkDaterng from '@/components/input/InkDatetimerng.vue'
+import InkErrorMessage from '@/components/input/InkErrorMessage.vue'
+import InkFieldMessage from '@/components/input/InkFieldMessage.vue'
 import { inkI18n } from '@/helper/i18n'
 import { InkSetFont } from '@/helper/set-font'
 import useInkDefineRule from '@/helper/useDefineRule'
@@ -65,7 +67,9 @@ export {
   InkDatetime,
   InkDate,
   InkDatetimerng,
-  InkDaterng
+  InkDaterng,
+  InkErrorMessage,
+  InkFieldMessage
 }
 
 export default {

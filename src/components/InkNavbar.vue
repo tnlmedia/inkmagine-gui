@@ -21,7 +21,7 @@
   }
   const props = defineProps <NavbarProps>();
 
-  const apps = ['member', 'team', 'cabinet']
+  const apps = ['member', 'team', 'cabinet','sandwich','console']
   const getHostname = (app: string) => {
     const hostname = window.location.hostname;
     let prefix = '';

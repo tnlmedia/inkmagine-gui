@@ -44,6 +44,14 @@
         "team": {
             "description": "你可以建立品牌，定義品牌內的角色並邀請成員",
             "label": "品牌管理"
+        },
+        "sandwich": {
+            "description": "設定站內文章投放與顯示廣告",
+            "label": "廣告系統"
+        },
+        "console": {
+            "description": "設定集團資料與成員權限",
+            "label": "集團管理"
         }
     },
     "profile": "個人資訊"

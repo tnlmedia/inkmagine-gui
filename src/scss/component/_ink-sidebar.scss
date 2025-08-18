@@ -509,9 +509,9 @@
                 width: 15px;
                 overflow: hidden;
                 transition: all 0.5s;
-                &:hover {
+                &.open-bloc_nav {
                     padding: 25px 14px 20px 16px;
-                    width: 95px;
+                    width: 75px;
                 }
                 .nav-item {
                     padding-left: 2px;

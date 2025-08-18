@@ -99,8 +99,6 @@ export const inkTailwindConfig = {
         awesome: ['"Font Awesome 6 Pro"'],
       },
       fontSize: {
-        xxs: ['0.625rem', { lineHeight: '1.25', letterSpacing: '0.02em', fontWeight: '400' }], // 10px
-        'size-xxs': '0.625rem', // 10px
         xs: ['0.75rem', { lineHeight: '1.4', letterSpacing: '0.02em', fontWeight: '400' }], // 12px
         'size-xs': '0.75rem', // 12px
         sm: ['0.875rem', { lineHeight: '1.4', letterSpacing: '0.02em', fontWeight: '400' }], // 14px

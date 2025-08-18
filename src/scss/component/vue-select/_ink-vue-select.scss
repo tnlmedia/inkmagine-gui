@@ -94,6 +94,9 @@
         }
     }
 }
+.input-error-style{
+    @apply tw-border-danger-400;
+}
 
 @import "./ink-vue-select-single";
 @import "./ink-vue-select-multiple";

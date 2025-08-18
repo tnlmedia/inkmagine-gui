@@ -43,6 +43,14 @@
         "team": {
             "description": "Set up your team. You can define roles and invite team members.",
             "label": "Team"
+        },
+        "sandwich": {
+            "description": "Set up internal article delivery and display advertisements",
+            "label": "Sandwich"
+        },
+        "console": {
+            "description": "Setting console data and member permissions",
+            "label": "Console"
         }
     },
     "profile": "Profile"

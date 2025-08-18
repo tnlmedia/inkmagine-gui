@@ -53,7 +53,7 @@
   }
   .tw-btn-xxs { // height 18px
     @extend .tw-btn-base;
-    @apply tw-h-4.5 tw-text-xxs tw-min-w-auto ;
+    @apply tw-h-4.5 tw-text-xs tw-min-w-auto ;
   }
   // btn only icon
   .tw-btn-icon {  
@@ -70,7 +70,7 @@
   }
   .tw-btn-icon-xxs {
     @extend .tw-btn-xxs;
-    @apply tw-w-4.5 tw-p-0 tw-text-xxs ;
+    @apply tw-w-4.5 tw-p-0 tw-text-xs ;
   }
   .tw-btn-link
   {

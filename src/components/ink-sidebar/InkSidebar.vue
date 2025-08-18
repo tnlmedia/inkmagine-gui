@@ -5,7 +5,7 @@
   import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
   import InkSidebarMenu from '@/components/ink-sidebar/InkSidebarMenu.vue'
   import { vInkTooltip } from '@/components/ink-tooltip/Ink-tooltip'
-  import { onMounted } from 'vue'
+  import { onMounted, useTemplateRef } from 'vue'
 
   interface SwitchItem {
     id: string | number, // TODO 套用時跟後端確認:value 123 改用字串，後端改給 "123"; 之後後端 id to uuid "a456" 時前端不需要再修改
@@ -48,6 +48,7 @@ interface MenuChildrenItemSchema {
   const onMainItemCheckSwitch = (item:SwitchItem, close:()=>void) => {
     emit('mainItemCheckSwitch', item, close)
   }
+  const tabBarRef = useTemplateRef<HTMLElement>('tabBarRef');
   const onTabItemCheckSwitch = (item:SwitchItem) => {
     emit('tabItemCheckSwitch', item)
   }
@@ -61,6 +62,16 @@ interface MenuChildrenItemSchema {
       document.body.classList.remove('open-sidebar-folded');
     }
   };
+  const openTabBar = () => { 
+    if (tabBarRef.value) {
+      tabBarRef.value.classList.add('open-bloc_nav');
+    }
+  }
+  const closeTabBar = () => { 
+    if (tabBarRef.value) {
+      tabBarRef.value.classList.remove('open-bloc_nav');
+    }
+  }
   // close sidebar when click outside on mobile/table
   const closeSidebar = (e:MouseEvent) => {
     if (!(e.target as HTMLElement).closest('#sidebar')) {
@@ -84,7 +95,14 @@ interface MenuChildrenItemSchema {
     </div>
     <div class="sidebar-body" @mouseenter="toggleSidebar" @mouseleave="toggleSidebar">
       <!-- 集團列表 -->
-      <ul v-if="tabSwitchItems" id="console-list" class="nav bloc_nav tw-flex-shrink-0 hover:!tw-w-[75px]">
+      <ul 
+        v-if="tabSwitchItems"
+        id="console-list" 
+        class="nav bloc_nav tw-flex-shrink-0"
+        ref="tabBarRef"
+        @mouseenter="openTabBar"
+        @mouseleave="closeTabBar"
+        >
         <li
           v-for="item in tabSwitchItems"
           :key="item.id"
