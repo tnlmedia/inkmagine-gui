@@ -505,42 +505,46 @@
             // 集團類別 列表
             .nav.bloc_nav {
                 border-right: 1px solid $sidebar-dark-border-color;
-                padding: 25px 0px 0px 16px;
+                padding: 25px 0px 0px 0px;
                 width: 15px;
                 overflow: hidden;
                 transition: all 0.5s;
                 &.open-bloc_nav {
-                    padding: 25px 14px 20px 16px;
+                    // padding: 25px 14px 20px 16px;
                     width: 75px;
                 }
                 .nav-item {
-                    padding-left: 2px;
+                    // padding-left: 2px;
                     padding-bottom: 10px;
                     opacity: 0.6;
-                    &:after {
+                    display: flex;
+                    justify-content: flex-start;
+                    &:before {
                         content: "";
                         display: block;
-                        width: 8px;
+                        width: 4px;
+                        flex-shrink: 0;
                         height: 42px;
-                        position: absolute;
-                        top: 0;
-                        left: -20px;
-                        border-radius: 10px;
+                        // position: absolute;
+                        // top: 0;
+                        // left: -20px;
+                        border-radius: 0 10px 10px 0;
                         background-color: #d5dffe;
                     }
                     &.active,
                     &:hover {
                         margin-left: 0;
                         opacity: 1;
-                        &:after {
+                        &:before {
                             content: "";
                             background-color: #4c3fff;
                         }
                     }
                     .nav-link {
                         min-height: 42px;
-                        width: 42px;
+                        // width: 42px;
                         padding: 0;
+                        padding-left: 12px;
                         white-space: inherit;
                         display: flex;
                         align-items: center;
