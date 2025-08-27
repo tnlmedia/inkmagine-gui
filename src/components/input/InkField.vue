@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import '@/scss/component/_ink-form.scss';
-import { InkVTooltip } from '@/components/ink-tooltip/Ink-tooltip';
+import { vInkTooltip } from '@/components/ink-tooltip/Ink-tooltip';
 import InkButton from '@/components/InkButton.vue';
 import { t } from '@/helper/i18n';
 import { defineAsyncComponent, computed, watch, toRef, onMounted, nextTick } from 'vue';
@@ -9,6 +9,7 @@ import { useFieldArray } from 'vee-validate';
 import InkFieldMessage from '@/components/input/InkFieldMessage.vue';
 import { fieldDefaultValue, useMergeFieldProps } from '@/components/input/input-default-value';
 import { singleFieldTypes } from '@/components/input/input-default-value';
+
 interface DraggableItemOrder {
     inputId: string;
     value: string | number | boolean | object;
@@ -137,12 +138,14 @@ onMounted(async () => {
   >
     <div v-if="mergeField.name" :class="['tw-text-base tw-font-semibold tw-flex tw-items-center tw-gap-1']">
       {{ mergeField.name }}
-      <InkVTooltip v-if="mergeField.tip">
-        <button type="button" class="tw-btn-transparent tw-btn-icon-xxs"><i class="fa-regular fa-circle-info"></i></button>
-        <template #popper>
-          {{ mergeField.tip }}
-        </template>
-      </InkVTooltip>
+      <button 
+        type="button" 
+        class="tw-btn-transparent tw-btn-icon-xxs"
+        v-inkTooltip="mergeField.tip"
+        v-if="mergeField.tip"
+      >
+        <i class="fa-regular fa-circle-info"></i>
+      </button>
       <span v-if="required && mergeField.type !== 'switch'" class="tw-text-primary-500">
          {{ t('requiredHint') }}
       </span>

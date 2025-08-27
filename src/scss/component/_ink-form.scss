@@ -96,16 +96,15 @@ textarea{
   @apply tw-relative ;
 }
 .tw-check {
-  @apply tw-flex tw-items-center tw-justify-center tw-absolute tw-top-0 tw-left-0 tw-h-[18px] tw-w-[18px] tw-rounded-[3px] tw-border tw-border-solid tw-border-gray-400 peer-checked:tw-border-none peer-checked:tw-bg-secondary-800;
-  @apply peer-checked:before:tw-font-awesome peer-checked:before:tw-text-xs peer-checked:before:tw-flex peer-checked:before:tw-items-center peer-checked:before:tw-justify-center  peer-checked:before:tw-relative peer-checked:before:tw-left-[-1px] peer-checked:before:tw-rounded-full peer-checked:before:tw-text-white peer-checked:before:tw-content-['\f00c'];
+  @apply tw-text-xs tw-flex tw-items-center tw-justify-center tw-absolute tw-top-0 tw-bottom-0 tw-left-0 tw-m-auto tw-h-[18px] tw-w-[18px] tw-rounded-[3px] tw-border tw-border-solid tw-border-gray-400 peer-checked:tw-border-none peer-checked:tw-bg-secondary-800;
+  @apply peer-checked:before:tw-font-awesome peer-checked:before:tw-relative peer-checked:before:tw-leading-none peer-checked:before:tw-left-[-1px] peer-checked:before:tw-rounded-full peer-checked:before:tw-text-white peer-checked:before:tw-content-['\f00c'];
   @apply peer-checked:before:tw-font-medium;
 }
 // radio
 .form-radio{
 }
 .tw-radio {
-  top: 0;
-  @apply tw-absolute tw-left-0 tw-flex tw-h-5 tw-w-5 tw-items-center tw-justify-center tw-rounded-full tw-border tw-border-solid tw-border-gray-400 peer-checked:before:tw-h-2.5 peer-checked:before:tw-w-2.5 peer-checked:before:tw-rounded-full peer-checked:before:tw-bg-secondary-800 peer-checked:before:tw-content-[''];
+  @apply tw-absolute tw-left-0 tw-top-0 tw-bottom-0 tw-m-auto tw-flex tw-h-5 tw-w-5 tw-items-center tw-justify-center tw-rounded-full tw-border tw-border-solid tw-border-gray-400 peer-checked:before:tw-h-2.5 peer-checked:before:tw-w-2.5 peer-checked:before:tw-rounded-full peer-checked:before:tw-bg-secondary-800 peer-checked:before:tw-content-[''];
 }
 .form-check-label-disabled {
   @apply tw-text-gray-400;
@@ -119,7 +118,7 @@ textarea{
 .tw-input-txt {
   @apply tw-pl-3 tw-h-9 tw-pr-3 tw-border tw-border-gray-400;
   @apply focus:tw-outline focus:tw-outline-[3px] focus:tw-outline-gray-200;
-  @apply disabled:tw-border-gray-300;
+  @apply disabled:tw-border-gray-300 disabled:tw-opacity-100;
 }
 .tw-element-wrapper,  /* for Sandwich */
 .input-frame{
