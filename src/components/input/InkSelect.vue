@@ -138,6 +138,7 @@ const elStyle = computed(() => {
         class="tw-w-full tw-max-w-[300px]"
         :class="elStyle"
         :inputId="`${mergeField.id}[${props.valueIndex}]`"
+        :clearable="required ? false : !disabled"
         v-bind="clearInputBind"
         v-on="inputOn"
         >

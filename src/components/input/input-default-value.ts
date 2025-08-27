@@ -72,7 +72,6 @@ const defaultAllSelectInputBind = () => {
     options: [],
     label: 'name',
     filterable: false,
-    clearable: true,
     autoscroll: false,
   }
 }
@@ -113,6 +112,7 @@ export const useMergeSelectInputBind = (inputBind: Ref<Record<string, unknown>>)
 const defaultHashtagInputBind = () => {
   return {
     ...defaultAllSelectInputBind(),
+    clearable: true,
     searchable: true,
     label: 'name',
   }
