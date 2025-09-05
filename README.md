@@ -43,10 +43,29 @@ export default {
 
 | 元件名稱 | 範例 |
 |---------|---------|
-| inkmagineGui| [範例程式碼](./ink-example/inkmagineGui.md)|
-| InkNavbar |[範例程式碼](./ink-example/InkNavbar.md)|
 | InkButton | [範例程式碼](./ink-example/InkButton.md) | 
 | InkMenu | [範例程式碼](./ink-example/InkMenu.md) | 
 | InkDisclosure | [範例程式碼](./ink-example/InkDisclosure.md) |
+| v-inkTooltip | [範例程式碼](./ink-example/vInkTooltip.md) |
 | InkVTooltip | [範例程式碼](./ink-example/InkVTooltip.md) |
+| InkBadge | [範例程式碼](./ink-example/InkBadge.md) |
+| InkSpinner | [範例程式碼](./ink-example/InkSpinner.md) |
 
+
+| input 類元件名稱 |
+|---------|
+| InkField |
+| InkText |
+| InkUrl |
+| InkTextarea |
+| InkSelect |
+| InkCheckbox |
+| InkRadio |
+| InkSwitch |
+| InkElConfigProvider |
+| InkDatetime, InkDate |
+| InkDatetimerng, InkDaterng |
+| InkHashtag |
+| InkFieldMessage |
+| InkErrorMessage |
+- 範例請見 cabinet 專案

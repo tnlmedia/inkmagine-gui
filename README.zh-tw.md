@@ -47,6 +47,11 @@ createApp(App)
 
 如果未指定語言，預設將使用 `en-us`。
 
+## How to import component
+```vue
+import { InkVTooltip, InkMenu, InkMenuButton, InkMenuItems, InkMenuItem, InkMenuItemsWrapper, InkButton } from '@tnlmedia/inkmagine-gui';
+```
+
 ## 容器使用說明
 
 ### InkNavbar 
@@ -217,7 +222,7 @@ InkSidebar
 
 ## 組件使用說明
 
-### InkButton 按鈕組件
+### InkButton
 
 InkButton 提供了多種樣式和尺寸的按鈕。
 
@@ -350,13 +355,13 @@ InkButton 提供了多種樣式和尺寸的按鈕。
 |---------|------|--------|--------|------|
 | `as` | string | 'button' | 'a' \| 'button' \| 'router-link' | 指定按鈕渲染的標籤類型。當需要連結功能時，可設為 'a' 或 'router-link' |
 | `type` | string | 'button' | 'button' \| 'submit' \| 'reset' | 當 `as="button"` 時，指定按鈕的類型 |
-| `size` | string | - | 'md' \| 'xs' | 按鈕尺寸。'md' 為中等尺寸(32px)，'xs' 為小尺寸(24px)，不指定則為預設尺寸(36px) |
+| `size` | string | - | 'md' \| 'xs' \| 'xxs' | 按鈕尺寸。'md' 為中等尺寸(32px)，'xs' 為小尺寸(24px)，不指定則為預設尺寸(36px) |
 | `variant` | string | 'base' | 'base' \| 'txt' \| 'icon' | 按鈕變體。'base' 為基礎按鈕，'txt' 為文字按鈕，'icon' 為圖標按鈕 |
 | `theme` | string | 'transparent' | 'primary' \| 'info' \| 'gray' \| 'outline-gray' \| 'link' \| 'transparent' | 按鈕主題樣式 |
 | `disabled` | boolean | false | true \| false | 是否禁用按鈕。當為 true 時，按鈕無法點擊且會套用禁用樣式 |
 | `loading` | boolean | false | true \| false | 是否顯示載入狀態。當為 true 時，會顯示載入動畫並隱藏按鈕內容 |
 
-### InkMenu 選單組件
+### InkMenu
 
 InkMenu 是基於 @headlessui/vue 的 Menu 組件封裝，提供了一個完整的下拉選單解決方案。
 
@@ -519,7 +524,7 @@ InkMenu
 - 可以通過 `class` 屬性來自定義樣式
 - 支援 Tailwind CSS 的樣式類
 
-### InkDisclosure 展開/收合組件
+### InkDisclosure
 
 InkDisclosure 是基於 @headlessui/vue 的 Disclosure 組件封裝，提供了一個可展開/收合的內容區塊解決方案。
 
@@ -583,37 +588,37 @@ InkDisclosure (展開/收合容器)
 - 箭頭圖標會根據展開狀態自動旋轉
 - 支援 Tailwind CSS 的樣式類
 
-#### vInkTooltip 相關組件說明
+### vInkTooltip
 
 vInkTooltip 是基於 [floating-vue](https://floating-vue.starpad.dev/) 的指令封裝，提供簡易的提示訊息功能。
 
-##### 基本用法
+#### 基本用法
 ```vue
 <span v-inkTooltip.right="'test'">test</span>
 ```
 
-##### 功能說明
+#### 功能說明
 - 支援多種位置設定（如 .right、.left、.top、.bottom 等）
 - 可自訂提示內容（支援字串或 HTML）
 - 適用於任何需要提示說明的場景
 - 更多詳細屬性與用法，請參考 [floating-vue 官方 API 文件](https://floating-vue.starpad.dev/api/)，以獲得完整的組件參數說明。
 
-##### 注意事項
+#### 注意事項
 - 需安裝 floating-vue 及其樣式（已於組件內自動引入）
 - 建議用於簡單的文字提示場景
 - 如需更複雜的提示功能，請使用 InkVTooltip 組件
 
-##### 組件關係
+#### 組件關係
 ```
 vInkTooltip (指令)
 └── Tooltip (floating-vue)
 ```
 
-#### InkVTooltip 相關組件說明
+### InkVTooltip
 
 InkVTooltip 是基於 [floating-vue](https://floating-vue.starpad.dev/) 的 Tooltip 組件封裝，提供簡易的提示訊息功能，支援多種觸發方式（hover、focus、click）。
 
-##### 基本用法
+#### 基本用法
 ```vue
 <InkVTooltip>
   <button type="button"><i class="fa-regular fa-circle-info"></i></button>
@@ -623,7 +628,7 @@ InkVTooltip 是基於 [floating-vue](https://floating-vue.starpad.dev/) 的 Tool
 </InkVTooltip>
 ```
 
-##### 禁用狀態
+#### 禁用狀態
 ```vue
 <InkVTooltip :disabled="Boolean(list.deletable)">
   <InkButton
@@ -641,7 +646,7 @@ InkVTooltip 是基於 [floating-vue](https://floating-vue.starpad.dev/) 的 Tool
 </InkVTooltip>
 ```
 
-##### 屬性說明
+#### 屬性說明
 
 | 屬性名稱   | 類型    | 預設值   | 說明                       |
 |------------|---------|----------|----------------------------|
@@ -649,7 +654,7 @@ InkVTooltip 是基於 [floating-vue](https://floating-vue.starpad.dev/) 的 Tool
 
 - 更多詳細屬性與用法，請參考 [floating-vue 官方 API 文件](https://floating-vue.starpad.dev/api/)，以獲得完整的組件參數說明。
 
-##### 插槽說明
+#### 插槽說明
 
 | 插槽名稱   | 說明                       |
 |------------|----------------------------|
@@ -662,7 +667,7 @@ InkVTooltip 是基於 [floating-vue](https://floating-vue.starpad.dev/) 的 Tool
 - 可透過 `disabled` 屬性停用提示
 - 彈出位置預設為下方（bottom）
 
-##### 組件關係
+#### 組件關係
 ```
 InkVTooltip
 └── Tooltip (floating-vue)
@@ -670,6 +675,1077 @@ InkVTooltip
     └── slot name="popper" (提示內容)
 ```
 
-##### 注意事項
+#### 注意事項
 - 需安裝 floating-vue 及其樣式（已於組件內自動引入）
 - 適用於任何需要提示說明的場景
+
+### InkBadge
+
+InkBadge 是一個輕量級的標籤組件，用於顯示狀態、分類或其他簡短資訊。
+
+#### 基本用法
+```vue
+<InkBadge>string</InkBadge>
+<InkBadge as="button">string</InkBadge>
+```
+
+#### 屬性說明
+
+| 屬性名稱 | 類型 | 預設值 | 可選值 | 說明 |
+|---------|------|--------|--------|------|
+| `as` | string | 'span' | 'span' \| 'button' | 指定標籤渲染的標籤類型 |
+| `type` | string | - | 'button' | 當 `as="button"` 時，指定按鈕的類型 |
+| `theme` | string | 'info' | 'info' | 標籤主題樣式 |
+| `disabled` | boolean | false | true \| false | 是否禁用標籤。當為 true 時，標籤會套用禁用樣式 |
+
+#### 功能說明
+- 支援作為 span 或 button 元素渲染
+- 提供 info 主題樣式
+- 支援禁用狀態
+- 可透過插槽自定義內容
+
+#### 樣式
+- 預設使用 info 主題 (`tw-badge tw-badge-info`)
+- 禁用狀態會套用 `tw-disabled` 樣式類
+- 支援 Tailwind CSS 的樣式類
+
+### InkSpinner
+
+InkSpinner 是一個載入動畫組件，用於表示正在載入或處理中的狀態。
+
+#### 基本用法
+```vue
+<InkSpinner/>
+```
+
+#### 屬性說明
+
+| 屬性名稱 | 類型 | 預設值 | 可選值 | 說明 |
+|---------|------|--------|--------|------|
+| `size` | string | - | 'md' | 載入動畫的尺寸 |
+| `theme` | string | 'gray' | 'gray' | 載入動畫的主題顏色 |
+
+#### 功能說明
+- 提供中等尺寸的載入動畫
+- 支援灰色主題
+- 適用於按鈕、頁面或組件的載入狀態
+
+#### 樣式
+- 預設使用 `tw-spinner-grow` 作為基礎樣式
+- 支援 `tw-spinner-md` 尺寸樣式
+- 支援 `tw-spinner-grow-gray` 主題樣式
+- 支援 Tailwind CSS 的樣式類
+
+#### 使用場景
+- 按鈕載入狀態
+- 頁面內容載入
+- 表單提交處理
+- 資料請求等待
+
+## input 類元件使用說明
+
+### 表單驗證方法
+
+Inkmagine GUI 使用 [vee-validate](https://vee-validate.logaretm.com/v4/) 作為表單驗證框架，並透過 `useDefineRule` 提供自定義驗證規則。
+
+#### Assign value to input
+- 詳情請見 vee-validate 的 [useForm](https://vee-validate.logaretm.com/v4/api/use-form/)
+
+```vue
+const { handleSubmit, setValues, setFieldValue } = useForm();
+// 取得 data 後 (多 input)
+setValues( { key:value })
+// 或是 (單 input)
+setFieldValue('key', 'value')
+```
+
+#### 支援的驗證規則
+
+| 規則名稱 | 說明 | 參數 |
+|---------|------|------|
+| `required` | 必填驗證 | 無 |
+| `wordLimit` | 文字長度限制 | `[min, max]` |
+| `itemLimit` | 項目數量限制 | `[min, max]` |
+| `url` | URL 格式驗證 | 無 |
+| `datetimeRestrict` | 日期時間限制 | `[restrict, timezone, format]` |
+| `datetimerngStartLimit` | 日期範圍開始時間限制 | `[endValue, minLength, maxLength, timezone, format]` |
+| `datetimerngEndLimit` | 日期範圍結束時間限制 | `[startValue, minLength, maxLength, timezone, format]` |
+
+
+### InkField 動態欄位元件
+
+InkField 是一個動態欄位元件，根據欄位類型自動渲染對應的輸入元件，並提供多項目輸入管理功能。
+
+#### 基本用法
+```vue
+<InkField
+  :field="{
+    id: 'title',
+    type: 'text',
+    name: '標題',
+    placeholder: '請輸入標題',
+    limit: [10, 100],
+    max: 3,
+    description: '請輸入文章標題',
+    tip: '標題將顯示在文章列表'
+  }"
+  :required="true"
+  :disabled="false"
+  :inputBind="{
+    // 根據欄位類型提供對應的 inputBind
+  }"
+  :inputOn="{
+    // 事件處理函數
+  }"
+  @inkChanged="handleChange"
+/>
+```
+
+#### 屬性說明
+
+| 屬性名稱 | 類型 | 必填 | 預設值 | 說明 |
+|---------|------|------|--------|------|
+| `field` | FieldDataSharp | 是 | - | 欄位設定物件，包含所有欄位相關設定 |
+| `required` | boolean | 否 | undefined | 是否必填 |
+| `disabled` | boolean | 否 | undefined | 是否禁用 |
+| `inputBind` | Record<string, any> | 否 | undefined | 輸入元件綁定屬性 |
+| `inputOn` | Record<string, any> | 否 | undefined | 事件處理函數 |
+
+#### field 物件結構
+```js
+{
+  id: 'fieldId',           // 欄位 ID（必填）
+  type: 'text',            // 欄位類型（必填）
+  name: '欄位名稱',        // 顯示名稱（可選）
+  require: true,           // 是否必填（可選）
+  slug: 'field-slug',      // 欄位 slug（可選）
+  description: '說明文字',  // 欄位說明（可選）
+  position: 'left',        // 位置：'left' | 'center' | 'right'（可選）
+  tip: '提示文字',         // 提示說明（可選）
+  placeholder: '佔位符',   // 輸入提示（可選）
+  min: 1,                  // 最小數量（可選，0 為無限制）
+  max: 5,                  // 最大數量（可選，0 為無限制）
+  limit: [10, 100],        // 限制條件（可選）
+  default: ['預設值'],     // 預設值（可選）
+  ai: ['AI 提示'],         // AI 相關設定（可選）
+  // 根據 type 不同，會有額外的特定屬性
+}
+```
+
+- 物件詳細資訊參考 
+https://github.com/tnlmedia/cabinet/blob/prod/resources/docs/internal/fields/type.md
+https://github.com/tnlmedia/cabinet/blob/prod/resources/docs/internal/articles/structure.md
+
+#### 支援的欄位類型
+
+| 類型 | 對應元件 | 說明 |
+|------|----------|------|
+| `text` | InkText | 文字輸入 |
+| `url` | InkUrl | URL 輸入 |
+| `textarea` | InkTextarea | 多行文字輸入 |
+| `select` | InkSelect | 下拉選單 |
+| `checkbox` | InkCheckbox | 複選框 |
+| `radio` | InkRadio | 單選框 |
+| `switch` | InkSwitch | 開關 |
+| `datetime` | InkDatetime | 日期時間選擇器 |
+| `date` | InkDatetime | 日期選擇器 |
+| `datetimerng` | InkDatetimerng | 日期時間範圍選擇器 |
+| `daterng` | InkDatetimerng | 日期範圍選擇器 |
+| `hashtag` | InkHashtag | 標籤輸入 |
+
+#### 單一欄位類型
+以下欄位類型預設為單一輸入，不支援多項目：
+- `select`
+- `checkbox`
+- `radio`
+- `switch`
+- `datetime`
+- `date`
+- `datetimerng`
+- `daterng`
+- `hashtag`
+
+#### 多項目欄位類型
+以下欄位類型支援多項目輸入：
+- `text`
+- `url`
+- `textarea`
+
+#### 功能特色
+- **動態元件渲染**：根據 `field.type` 自動選擇對應的輸入元件
+- **多項目管理**：支援動態新增/刪除輸入項目
+- **統一驗證**：整合 vee-validate 提供統一的表單驗證
+- **靈活配置**：支援豐富的欄位配置選項
+- **事件處理**：提供 `inkChanged` 事件處理值變更
+- **響應式設計**：根據欄位類型自動調整佈局
+
+#### 事件說明
+
+| 事件名稱 | 參數 | 說明 |
+|---------|------|------|
+| `inkChanged` | `(value: any)` | 當欄位值發生變更時觸發 |
+
+#### 使用範例
+
+##### 多項目文字輸入
+```vue
+<InkField
+  :field="{
+    id: 'keywords',
+    type: 'text',
+    name: '關鍵字',
+    placeholder: '請輸入關鍵字',
+    max: 5,
+    limit: [1, 20]
+  }"
+  :required="true"
+/>
+```
+
+##### 單一選擇器
+```vue
+<InkField
+  :field="{
+    id: 'category',
+    type: 'select',
+    name: '分類',
+    placeholder: '請選擇分類'
+  }"
+  :inputBind="{
+    options: [
+      { key: 1, name: '分類一' },
+      { key: 2, name: '分類二' }
+    ]
+  }"
+  :required="true"
+/>
+```
+
+##### 日期時間選擇
+```vue
+<InkField
+  :field="{
+    id: 'publishTime',
+    type: 'datetime',
+    name: '發布時間',
+    placeholder: '請選擇發布時間'
+  }"
+  :inputBind="{
+    timezone: 'Asia/Taipei',
+    format: 'YYYY/MM/DD HH:mm',
+    restrict: {
+      restrictType: 'FUTURE',
+      shiftSecond: 0
+    }
+  }"
+  :required="true"
+/>
+```
+
+### InkField 與單獨使用元件的差異
+
+Inkmagine GUI 提供了兩種使用 input 元件的方式：透過 InkField 動態欄位元件或直接使用個別元件。以下是兩種方式的詳細差異說明：
+
+#### 使用 InkField 的優勢
+
+**1. 統一的欄位管理**
+```vue
+<!-- 使用 InkField - 推薦方式 -->
+<InkField
+  :field="{
+    id: 'title',
+    type: 'text',
+    name: '標題',
+    placeholder: '請輸入標題',
+    limit: [10, 100],
+    max: 3,
+    description: '請輸入文章標題'
+  }"
+  :required="true"
+  :disabled="false"
+  @inkChanged="handleChange"
+/>
+```
+
+**2. 自動多項目管理**
+- 自動處理多項目輸入的新增/刪除
+- 自動管理 `valueIndex` 和 `inputTotal`
+- 自動處理表單驗證陣列
+- 自動顯示新增按鈕和刪除按鈕
+
+**3. 內建的 InkFieldMessage 支援**
+
+**4. 簡化的配置**
+- 只需要設定 `field` 物件，自動選擇對應元件
+- 統一的屬性介面，減少重複配置
+- 自動處理元件間的依賴關係
+
+**5. 更好的維護性**
+- 欄位配置集中管理
+- 統一的驗證規則
+- 一致的錯誤處理
+
+#### 直接使用個別元件的場景
+
+**1. 需要高度自定義**
+```vue
+<!-- 直接使用 InkText -->
+<InkText
+  :field="{
+    id: 'customTitle',
+    type: 'text',
+    placeholder: '自定義標題'
+  }"
+  :valueIndex="0"
+  :inputTotal="1"
+  :required="true"
+  :disabled="false"
+  @removeInputItemFn="handleRemove"
+/>
+```
+
+**2. 複雜的互動邏輯**
+- 需要自定義事件處理
+- 需要特殊的驗證邏輯
+- 需要與其他元件深度整合
+
+**3. 效能考量**
+- 只需要單一輸入元件
+- 避免不必要的動態載入開銷
+
+#### 動態新增/刪除輸入項目的差異
+
+**使用 InkField（自動處理）：**
+```vue
+<InkField
+  :field="{
+    id: 'keywords',
+    type: 'text',
+    name: '關鍵字',
+    max: 5  // 最多 5 個項目
+  }"
+/>
+<!-- 自動顯示新增按鈕，當項目數量 < max 時 -->
+<!-- 自動顯示刪除按鈕，當項目數量 > 1 時 -->
+<!-- 自動管理 valueIndex 和 inputTotal -->
+```
+
+### InkFieldMessage
+
+- InkFieldMessage 是 InkField 內建的欄位說明元件，用於顯示欄位的詳細說明文字。
+- 可單獨使用
+
+**基本用法：**
+```vue
+<InkFieldMessage :descriptionText="'請輸入有效的電子郵件地址'" />
+```
+
+**屬性說明：**
+| 屬性名稱 | 類型 | 預設值 | 說明 |
+|---------|------|--------|------|
+| `descriptionText` | string | '' | 欄位說明文字，支援 HTML 格式 |
+
+**功能特色：**
+- 支援 HTML 格式的說明文字
+- 自動換行和斷字處理
+- 統一的樣式設計
+- 與 InkField 完美整合
+
+**使用場景：**
+- 欄位使用說明
+- 格式要求說明
+- 注意事項提醒
+- 範例文字展示
+
+#### 選擇建議
+
+| 使用場景 | 推薦方式 | 原因 |
+|---------|----------|------|
+| 表單欄位管理 | InkField | 統一的欄位管理，簡化配置 |
+| 多項目輸入 | InkField | 自動處理多項目邏輯 |
+| 動態表單 | InkField | 根據配置自動渲染元件 |
+| 需要欄位說明 | InkField | 內建 InkFieldMessage 支援 |
+| 單一輸入元件 | 直接使用對應的 input 元件 | 減少不必要的複雜度 |
+
+### InkErrorMessage
+
+InkErrorMessage 是用於顯示表單驗證錯誤訊息的元件，通常與其他 input 元件配合使用。
+
+#### 基本用法
+```vue
+<InkErrorMessage v-if="errorMessage" :errorText="errorMessage" />
+```
+
+#### 屬性說明
+
+| 屬性名稱 | 類型 | 必填 | 預設值 | 說明 |
+|---------|------|------|--------|------|
+| `errorText` | string | 否 | '' | 錯誤訊息文字 |
+
+#### 功能特色
+- 統一的錯誤訊息樣式
+- 自動換行和斷字處理
+- 支援條件渲染（通常與 `v-if` 配合使用）
+- 與 vee-validate 完美整合
+
+#### 使用場景
+- 表單驗證錯誤顯示
+- 必填欄位提示
+- 格式錯誤提示
+- 自定義錯誤訊息
+
+#### 樣式說明
+- 使用 `tw-error-message` 類別
+- 預設為紅色錯誤文字樣式
+- 支援自動換行（`tw-break-all`）
+- 區塊級元素（`tw-block`）
+
+
+### InkText
+
+InkText 提供基本的文字輸入功能，支援驗證和字數限制。通常透過 InkField 元件使用。
+
+#### 基本用法
+```vue
+<InkText
+  :field="{
+    id: 'title',
+    type: 'text',
+    placeholder: '請輸入標題',
+    limit: [10, 100],
+    prefix: '標題：',
+    suffix: '字'
+  }"
+  :required="true"
+  :disabled="false"
+  @removeInputItemFn="handleRemove"
+/>
+```
+
+#### 屬性說明
+
+| 屬性名稱 | 類型 | 必填 | 預設值 | 說明 |
+|---------|------|------|--------|------|
+| `field` | TextSharp | 是 | - | 欄位設定物件 |
+| `required` | boolean | 否 | false | 是否必填 |
+| `disabled` | boolean | 否 | false | 是否禁用 |
+| `valueIndex` | number | 否 | 0 | 值索引（多項目時使用） |
+| `inputTotal` | number | 否 | 0 | 輸入項目總數 |
+| `inputBind` | object | 否 | {} | 額外的輸入綁定屬性 |
+
+#### field 物件結構（TextSharp）
+- 請見 InkField 的 field 物件結構
+
+#### 功能特色
+- 支援單行文字輸入
+- 支援字數限制驗證
+- 支援前綴和後綴文字
+- 支援多項目輸入（透過 InkField）
+- 整合 vee-validate 驗證
+
+#### 驗證規則
+- `required`: 必填驗證
+- `wordLimit`: 字數限制驗證（使用 `field.limit` 設定）
+
+### InkUrl
+
+InkUrl 提供 URL 格式的輸入功能，自動驗證 URL 格式。通常透過 InkField 元件使用。
+
+#### 基本用法
+```vue
+<InkUrl
+  :field="{
+    id: 'website',
+    type: 'url',
+    name: '網站網址',
+    placeholder: '請輸入網站網址',
+    prefix: 'https://'
+  }"
+  :required="true"
+  :disabled="false"
+  @removeInputItemFn="handleRemove"
+/>
+```
+
+#### 屬性說明
+- 請見 InkText 的 屬性說明
+- 與 InkText 相同，但 `field.type` 必須為 `'url'`
+
+#### field 物件結構（UrlSharp）
+- 請見 InkField 的 field 物件結構
+
+#### 功能特色
+- 支援 URL 格式輸入
+- 自動驗證 URL 格式
+- 支援多項目輸入（透過 InkField）
+- 整合 vee-validate 驗證
+
+#### 驗證規則
+- `required`: 必填驗證
+- `url`: URL 格式驗證（必須以 http:// 或 https:// 開頭）
+
+### InkTextarea
+
+InkTextarea 提供多行文字輸入功能，支援字數統計和驗證。通常透過 InkField 元件使用。
+
+#### 基本用法
+```vue
+<InkTextarea
+  :field="{
+    id: 'content',
+    type: 'textarea',
+    name: '內容',
+    placeholder: '請輸入內容',
+    limit: [10, 1000],
+    description: '請詳細描述內容'
+  }"
+  :required="true"
+  :disabled="false"
+  @removeInputItemFn="handleRemove"
+/>
+```
+
+#### 屬性說明
+- 請見 InkText 的 屬性說明
+- 與 InkText 相同，但 `field.type` 必須為 `'textarea'`
+
+#### field 物件結構（TextareaSharp）
+- 請見 InkField 的 field 物件結構
+
+#### 功能特色
+- 支援多行文字輸入
+- 自動顯示字數統計
+- 支援字數限制驗證
+- 預設 5 行高度
+- 支援多項目輸入（透過 InkField）
+- 整合 vee-validate 驗證
+
+#### 驗證規則
+- `required`: 必填驗證
+- `wordLimit`: 字數限制驗證（使用 `field.limit` 設定）
+
+### InkSelect
+- InkSelect 是基於 [Vue Select](https://vue-select.org/) 的組件封裝。
+- InkSelect 提供下拉選單功能，支援搜尋、無限滾動和階層選項。通常透過 InkField 元件使用。
+
+#### 基本用法
+```vue
+<InkSelect
+  :field="{
+    id: 'category',
+    type: 'select',
+    name: '分類',
+    placeholder: '請選擇分類',
+    options: [
+      { key: 1, name: '分類一' },
+      { key: 2, name: '分類二' }
+    ],
+    total: 2,
+    choosable: [1],
+    hierarchy: true
+  }"
+  :inputBind="{
+    options: [
+      { key: 1, name: '分類一', depth: 0 },
+      { key: 2, name: '分類二', depth: 1 }
+    ],
+    label: 'name',
+    valueKey: 'key',
+    hasNextPage: false,
+    infiniteFn: () => {},
+    activeStyle: true
+  }"
+  :required="true"
+  :disabled="false"
+  :valueIndex="0"
+  :inputTotal="1"
+  @removeInputItemFn="handleRemove"
+/>
+```
+
+#### 屬性說明
+- 請見 InkText 的 屬性說明
+- 與 InkText 相同，但 `field.type` 必須為 `'select'`
+
+#### field 物件結構（SelectSharp）
+- 請見 InkField 的 field 物件結構
+
+#### inputBind 物件結構（SelectInputBind）
+```js
+{
+  options: [],              // 選項陣列
+  label: 'name',            // 顯示標籤欄位(選項字串用的 key)
+  hasNextPage: false,       // 是否有下一頁（可選）
+  activeStyle: false,       // 是否啟用活躍樣式（可選），通常在 filter 功能時啟用
+  optionDivider: [],        // 選項分隔線（可選），最多可填入[0,1,2]
+  openFn: () => {},         // 開啟事件函數（可選），在 Vue Select 的 onOpen 觸發
+  closeFn: () => {},        // 關閉事件函數（可選），在 Vue Select 的 onClose
+  infiniteFn: () => {},     // 無限滾動函數（可選）
+  reduce: (item) => item,   // 值轉換函數（可選），return selected 項目的資料範圍，Vue Select 的 props
+  filterable: false,        // 是否可搜尋（可選），Vue Select 的 props
+  autoscroll: false,        // 是否自動滾動（可選），Vue Select 的 props
+  searchable: false,        // 是否可搜尋（可選），Vue Select 的 props
+  selectable: (option) => !option.disabled  // 選擇條件函數（可選），讀取 option.disabled 的 值，Vue Select 的 props
+}
+```
+
+#### options 物件結構（SelectOptions）
+```js
+{
+  key: 'value',             // 選項值（必填），用於識別選項的唯一值
+  name: '顯示名稱',         // 顯示名稱（必填），在選單中顯示的文字
+  disabled: false,          // 是否禁用（可選），預設為 false
+  depth: 0,                // 階層深度（可選），用於顯示階層結構，0 為最上層，每增加 1 代表下一層
+  own: false,               // 是否為自有選項（可選），用於特殊標記
+  status: true,             // 選項狀態（可選），預設為 true
+  children: [],             // 子選項陣列（可選），用於階層結構
+  total: 0,                 // 子選項總數（可選），用於顯示子項目數量
+  [key: string]: unknown    // 其他自定義屬性（可選），可根據需求添加任意屬性
+}
+```
+- `key` key 的使用需注意 inputBind.reduce
+- `name` Key 與 inputBind.label 相同即可
+
+**階層結構範例：**
+```js
+options: [
+  {
+    key: 1,
+    name: '分類一',
+    depth: 0,
+    children: [
+      {
+        key: 11,
+        name: '子分類一',
+        depth: 1
+      }
+    ]
+  },
+  {
+    key: 2,
+    name: '分類二',
+    depth: 0,
+    disabled: true
+  }
+]
+```
+
+#### 功能特色
+- 支援搜尋功能
+- 支援無限滾動載入
+- 支援階層選項（透過 depth 屬性）
+- 支援自定義圖標
+- 支援選項分隔線
+- 支援選項禁用狀態
+- 支援值轉換函數
+- 整合 vee-validate 驗證
+
+#### 驗證規則
+- `required`: 必填驗證
+
+### InkCheckbox
+
+InkCheckbox 提供複選框功能，支援多選和無限滾動。通常透過 InkField 元件使用。
+
+#### 基本用法
+```vue
+<InkCheckbox
+  :field="{
+    id: 'tags',
+    type: 'checkbox',
+    name: '標籤',
+    options: [
+      { key: 1, name: '標籤一' },
+      { key: 2, name: '標籤二' }
+    ],
+    total: 2,
+    choosable: [1, 2],
+    hierarchy: true
+  }"
+  :inputBind="{
+    options: [
+      { key: 1, name: '標籤一', depth: 0 },
+      { key: 2, name: '標籤二', depth: 1, disabled: false }
+    ],
+    label: 'name',
+    valueKey: 'key',
+    hasNextPage: false,
+    infiniteFn: () => {}
+  }"
+  :required="true"
+  :disabled="false"
+  :valueIndex="0"
+  :inputTotal="1"
+  @removeInputItemFn="handleRemove"
+/>
+```
+
+#### 屬性說明
+- 請見 InkText 的 屬性說明
+- 與 InkText 相同，但 `field.type` 必須為 `'checkbox'`
+
+#### field 物件結構（CheckBoxSharp）
+- 請見 InkField 的 field 物件結構
+
+#### inputBind 物件結構（CheckBoxInputBind）
+```js
+{
+  options: [],              // 選項陣列
+  label: 'name',            // 顯示標籤欄位，選項字串使用的 key
+  valueKey: 'key',          // 值欄位，選項 value 使用的 key
+  hasNextPage: false,       // 是否有下一頁（可選）
+  infiniteFn: () => {}      // 無限滾動函數（可選）
+}
+```
+
+#### options 物件結構（CheckBoxOptions）
+- 請見 InkSelect 的 options 物件結構
+- `key` key 與 inputBind.valueKey 相同即可
+- `name` Key 與 inputBind.label 相同即可
+
+#### 功能特色
+- 支援多選功能
+- 支援無限滾動載入
+- 支援階層選項（透過 depth 屬性）
+- 支援禁用個別選項
+- 支援自定義標籤和值欄位
+- 整合 vee-validate 驗證
+
+#### 驗證規則
+- `required`: 必填驗證
+
+### InkRadio
+
+InkRadio 提供單選框功能，支援無限滾動。通常透過 InkField 元件使用。
+
+#### 基本用法
+```vue
+<InkRadio
+  :field="{
+    id: 'gender',
+    type: 'radio',
+    name: '性別',
+    options: [
+      { key: 'male', name: '男性' },
+      { key: 'female', name: '女性' }
+    ],
+    total: 2
+  }"
+  :inputBind="{
+    options: [
+      { key: 'male', name: '男性' },
+      { key: 'female', name: '女性', disabled: false }
+    ],
+    label: 'name',
+    valueKey: 'key',
+    hasNextPage: false,
+    infiniteFn: () => {}
+  }"
+  :required="true"
+  :disabled="false"
+  :valueIndex="0"
+  :inputTotal="1"
+  @removeInputItemFn="handleRemove"
+/>
+```
+
+#### 屬性說明
+
+- 請見 InkText 的 屬性說明
+- 與 InkText 相同，但 `field.type` 必須為 `'radio'`
+
+#### field 物件結構（RadioSharp）
+
+- 請見 InkField 的 field 物件結構
+
+#### inputBind 物件結構（RadioInputBind）
+
+- 請見 InkCheckbox 的 inputBind 物件結構（CheckBoxInputBind）
+
+#### options 物件結構（RadioOptions）
+
+- 請見 InkCheckbox 的 options 物件結構
+**注意：** Radio 選項不支援 `depth`、`children` 和 `total` 屬性，因為單選框不支援階層結構。
+
+#### 功能特色
+- 支援單選功能
+- 支援無限滾動載入
+- 支援禁用個別選項
+- 支援自定義標籤和值欄位
+- 整合 vee-validate 驗證
+
+#### 驗證規則
+- `required`: 必填驗證
+
+### InkSwitch
+
+InkSwitch 提供開關切換功能。通常透過 InkField 元件使用。
+
+#### 基本用法
+```vue
+<InkSwitch
+  :field="{
+    id: 'notification',
+    type: 'switch',
+    name: '通知設定',
+    description: '是否啟用通知功能'
+  }"
+  :required="true"
+  :disabled="false"
+  @removeInputItemFn="handleRemove"
+  @inkChanged="handleChange"
+/>
+```
+
+#### 屬性說明
+- 請見 InkText 的 屬性說明
+- 與 InkText 相同，但 `field.type` 必須為 `'switch'`
+
+#### field 物件結構（SwitchSharp）
+- 請見 InkField 的 field 物件結構
+
+#### 功能特色
+- 提供開關切換功能
+- 支援 `inkChanged` 事件，當觸發 click 會觸發該事件
+- 自動處理布林值轉換
+- 整合 vee-validate 驗證
+
+#### 驗證規則
+- `required`: 必填驗證
+
+### InkElConfigProvider
+
+InkElConfigProvider 為 [Element Plus](https://element-plus.org/en-US/) 提供的配置。
+
+#### 基本用法
+```vue
+<InkElConfigProvider>
+  <InkDatetime />
+  <InkDatetimerng />
+</InkElConfigProvider>
+```
+
+#### 功能說明
+- 自動根據 Inkmagine GUI 的語言設定配置 Element Plus
+- 支援 zh-tw、en-us、ja-jp 三種語言
+- 用於 InkDatetime 和 InkDatetimerng 組件
+
+### InkDatetime
+
+InkDatetime 提供日期和時間選擇功能，基於 Element Plus 的 DatePicker。通常透過 InkField 元件使用。
+
+#### 基本用法
+```vue
+<InkDatetime
+  :field="{
+    id: 'publishTime',
+    type: 'datetime',
+    name: '發布時間',
+    placeholder: '請選擇發布時間',
+    description: '選擇文章發布的時間'
+  }"
+  :inputBind="{
+    type: 'datetime',
+    format: 'YYYY/MM/DD HH:mm',
+    timezone: 'Asia/Taipei',
+    restrict: {
+      restrictType: 'FUTURE',
+      shiftSecond: 0
+    },
+    isClearable: true,
+    popperClass: 'custom-popper'
+  }"
+  :required="true"
+  :disabled="false"
+  @removeInputItemFn="handleRemove"
+  @inkChanged="handleChange"
+/>
+```
+
+#### 屬性說明
+- 請見 InkText 的 屬性說明
+- 與 InkText 相同，但 `field.type` 必須為 `'datetime'` | `'date'`
+
+#### field 物件結構（DatetimeSharp）
+- 請見 InkField 的 field 物件結構
+
+#### inputBind 物件結構（DatetimePickerInputBind）
+```js
+{
+  timezone: 'Asia/Taipei',  // 時區（必填）
+  type: 'datetime',         // 類型：'year' | 'month' | 'date' | 'datetime' | 'week'（可選）與 field.type 同步
+  format: 'YYYY/MM/DD HH:mm', // 顯示格式（可選）
+  isClearable: true,       // 是否可清除（可選）
+  restrict: {              // 時間限制（可選）
+    restrictType: 'unlimited', // 'past' | 'future' | 'unlimited'，default is 'unlimited'
+    shiftSecond: 0          // 時間偏移（秒）
+  },
+  clearable: false,         // 清除按鈕（可選）
+  teleported: true         // 是否傳送到 body（可選）
+}
+```
+
+#### 功能特色
+- 支援 `inkChanged` 事件，當 useField value change 時觸發
+- 支援日期和日期時間選擇
+- 支援時區設定
+- 支援時間限制（過去、未來、無限制）
+- 支援清除功能
+- 支援自定義格式
+- 支援 "現在" 按鈕快速設定
+- 整合 vee-validate 驗證
+
+#### 驗證規則
+- `required`: 必填驗證
+- `datetimeRestrict`: 日期時間限制驗證
+
+### InkDatetimerng
+
+InkDatetimerng 提供日期時間範圍選擇功能。通常透過 InkField 元件使用。
+
+#### 基本用法
+```vue
+<InkDatetimerng
+  :field="{
+    id: 'publishRange',
+    type: 'datetimerng',
+    name: '發布時間範圍',
+    limit: [1640995200, 1672531200],  // 最小和最大時間戳
+    description: '選擇文章發布的時間範圍'
+  }"
+  :inputBind="{
+    type: 'datetime',
+    format: 'YYYY/MM/DD HH:mm',
+    timezone: 'Asia/Taipei',
+    isClearable: true,
+    activeStyle: true,
+    popperClass: 'custom-popper'
+  }"
+  :required="true"
+  :disabled="false"
+  @removeInputItemFn="handleRemove"
+  @inkChanged="handleChange"
+/>
+```
+
+#### 屬性說明
+
+- 請見 InkText 的 屬性說明
+- 與 InkText 相同，但 `field.type` 必須為 `'datetimerng'` | `'daterng'`
+
+#### field 物件結構（DatetimerngSharp）
+- 請見 InkField 的 field 物件結構
+
+#### inputBind 物件結構（DatetimerngInputBind）
+```js
+{
+  timezone: 'Asia/Taipei',  // 時區（必填）
+  type: 'datetime',         // 類型：'year' | 'month' | 'date' | 'datetime' | 'week'（可選），對應 field.type 預設是 'datetime'
+  format: 'YYYY/MM/DD HH:mm', // 顯示格式（可選）
+  isClearable: true,       // 是否可清除（可選）
+  activeStyle: false,       // 是否啟用活躍樣式（可選）
+  clearable: false,         // 清除按鈕（可選）
+  teleported: true         // 是否傳送到 body（可選）
+}
+```
+
+#### 功能特色
+- 支援 `inkChanged` 事件，當 useField value change 時觸發
+- 如果 `field.type` 為 `'daterng'`，結束時間會設定為當日的 23:59:59
+- 支援日期範圍和日期時間範圍選擇
+- 支援時區設定
+- 支援時間範圍限制
+- 支援清除功能
+- 支援自定義格式
+- 支援 "現在" 按鈕快速設定
+- 自動處理開始時間和結束時間的關聯驗證
+- 整合 vee-validate 驗證
+
+#### 驗證規則
+- `required`: 必填驗證
+- `datetimerngStartLimit`: 開始時間限制驗證
+- `datetimerngEndLimit`: 結束時間限制驗證
+
+### InkHashtag
+
+- InkHashtag 是基於 [Vue Select](https://vue-select.org/) 的組件封裝。
+- InkHashtag 提供標籤輸入功能，支援創建新標籤和選擇現有標籤。通常透過 InkField 元件使用。
+
+#### 基本用法
+```vue
+<InkHashtag
+  :field="{
+    id: 'tags',
+    type: 'hashtag',
+    name: '標籤',
+    placeholder: '請輸入標籤',
+    limit: [1, 10],
+    description: '請選擇或創建相關標籤'
+  }"
+  :inputBind="{
+    options: [
+      { key: 1, name: '標籤一' },
+      { key: 2, name: '標籤二' }
+    ],
+    label: 'name',
+    valueKey: 'key',
+    activeStyle: true,
+    noDrop: false,
+    loading: false
+  }"
+  :required="true"
+  :disabled="false"
+  @removeInputItemFn="handleRemove"
+/>
+```
+
+#### 屬性說明
+- 請見 InkText 的 屬性說明
+- 與 InkText 相同，但 `field.type` 必須為 `'hashtag'`
+
+#### field 物件結構（HashtagSharp）
+- 請見 InkField 的 field 物件結構
+
+#### inputBind 物件結構（HashtagInputBind）
+```js
+{
+  options: [],              // 現有標籤選項
+  label: 'name',           // 顯示標籤欄位
+  activeStyle: false,      // 是否啟用活躍樣式（可選）
+  noDrop: false,          // 是否禁用拖拽（可選），Vue Select 的 props
+  loading: false,         // 是否顯示載入狀態（可選），Vue Select 的 props
+  clearable: true,         // 是否可清除（可選），Vue Select 的 props
+  searchable: true,        // 是否可搜尋（可選），Vue Select 的 props
+  filterable: false,       // 是否可篩選（可選），Vue Select 的 props
+  autoscroll: false       // 是否自動滾動（可選），Vue Select 的 props
+}
+```
+
+#### options 物件結構（HashtagOptions）
+```js
+- 請見 InkSelect 的 options 物件結構
+**注意：** Hashtag 選項不支援 `disabled`、`depth`、`children` 和 `total` 屬性，因為標籤功能主要用於選擇和創建，不需要階層結構或禁用狀態。
+
+#### 功能特色
+- 支援創建新標籤
+- 支援選擇現有標籤
+- 支援多選功能
+- 支援標籤數量限制
+- 支援禁用狀態
+- 支援自定義標籤格式
+- 支援搜尋功能
+- 支援載入狀態
+- 整合 vee-validate 驗證
+
+#### 驗證規則
+- `required`: 必填驗證
+- `itemLimit`: 標籤數量限制驗證（使用 `field.limit` 設定）
+
+#### 使用場景
+- 文章標籤
+- 產品分類
+- 用戶興趣標籤
+- 搜尋關鍵字
+
+
+
