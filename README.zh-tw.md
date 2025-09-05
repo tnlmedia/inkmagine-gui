@@ -742,6 +742,280 @@ InkSpinner 是一個載入動畫組件，用於表示正在載入或處理中的
 - 表單提交處理
 - 資料請求等待
 
+
+## Font 
+
+Inkmagine GUI 提供了完整的字體系統，支援多語言字體設定和響應式字體大小。
+
+### 字體家族設定
+
+Inkmagine GUI 根據語言自動設定對應的字體家族：
+
+#### 繁體中文 (zh-tw)
+```scss
+[lang="zh-tw"] {
+  font-family: "Noto Sans TC", "Pingfang TC", "Microsoft JhengHei", "Heiti TC", "Microsoft YaHei", ui-sans-serif, system-ui, -apple-system, "sans-serif";
+}
+```
+
+#### 日文 (ja-jp)
+```scss
+[lang="ja-jp"] {
+  font-family: "Noto Sans JP", "Microsoft JhengHei", ui-sans-serif, system-ui, -apple-system, "sans-serif";
+}
+```
+
+#### 英文 (en-us)
+```scss
+[lang="en-us"] {
+  font-family: "Helvetica Neue", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+```
+
+### 字體大小系統
+
+Inkmagine GUI 使用 Tailwind CSS 的字體大小系統，並提供響應式字體大小：
+
+#### 字體大小對應的 CSS 變數
+```css
+.tw-text-size-xs     /* 12px */
+.tw-text-size-sm     /* 14px */
+.tw-text-size-base   /* 16px */
+.tw-text-size-lg     /* 18px */
+.tw-text-size-xl     /* 20px */
+.tw-text-size-2xl    /* 24px */
+.tw-text-size-3xl    /* 30px */
+.tw-text-size-4xl    /* 36px */
+.tw-text-size-5xl    /* 48px */
+.tw-text-size-6xl    /* 64px */
+```
+
+#### 響應式字體大小對應的 CSS 變數
+```css
+.tw-text-size-xlmix     /* xl 在桌面，lg 在手機 */
+.tw-text-size-2xlmix    /* 2xl 在桌面，xl 在手機 */
+.tw-text-size-3xlmix    /* 3xl 在桌面，2xl 在手機 */
+```
+
+#### 基本字體大小(帶有lineHeight, letterSpacing, fontWeight)
+```css
+.tw-text-xs     /* 12px - 小字 */
+.tw-text-sm     /* 14px - 較小字 */
+.tw-text-base   /* 16px - 基礎字體 */
+.tw-text-lg     /* 18px - 較大字 */
+.tw-text-xl     /* 20px - 大字 */
+.tw-text-2xl    /* 24px - 更大字 */
+.tw-text-3xl    /* 30px - 標題字 */
+.tw-text-4xl    /* 36px - 大標題 */
+.tw-text-5xl    /* 48px - 超大標題 */
+.tw-text-6xl    /* 64px - 最大標題 */
+```
+
+#### 響應式字體大小 (Mix)(帶有lineHeight, letterSpacing, fontWeight)
+```css
+.tw-text-xlmix     /* xl 在桌面，lg 在手機 */
+.tw-text-2xlmix    /* 2xl 在桌面，xl 在手機 */
+.tw-text-3xlmix    /* 3xl 在桌面，2xl 在手機 */
+```
+
+### 字體權重和行高
+
+#### 字體權重
+- `xs`, `sm`, `base`: `font-weight: 400` (正常)
+- `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, `6xl`: `font-weight: 600` (半粗體)
+
+#### 行高設定
+- `xs`, `sm`: `line-height: 1.4`
+- `base`: `line-height: 1.375`
+- `lg`, `xl`, `2xl`, `4xl`, `5xl`, `6xl`: `line-height: 1.25`
+- `3xl`: `line-height: 1.3`
+
+#### 字間距
+所有字體大小都設定 `letter-spacing: 0.02em`
+
+### 特殊字體
+
+#### Font Awesome 圖標字體
+```css
+.tw-font-awesome  /* Font Awesome 6 Pro 字體 */
+```
+
+### 使用範例
+
+#### 基本使用
+```vue
+<template>
+  <!-- 基本字體大小 -->
+  <h1 class="tw-text-3xl">主標題</h1>
+  <h2 class="tw-text-2xl">副標題</h2>
+  <p class="tw-text-base">正文內容</p>
+  <small class="tw-text-sm">小字說明</small>
+  
+  <!-- 響應式字體大小 -->
+  <h1 class="tw-text-3xlmix">響應式主標題</h1>
+  <h2 class="tw-text-2xlmix">響應式副標題</h2>
+  
+  <!-- 使用 CSS 變數 -->
+  <div class="tw-text-size-lg">使用 CSS 變數的字體大小</div>
+</template>
+```
+
+#### 在 SCSS 中使用
+```scss
+.my-component {
+  // 使用 Tailwind 類別
+  @apply tw-text-lg tw-font-semibold;
+  
+  // 或使用 CSS 變數
+  font-size: theme('fontSize.size-lg');
+  font-weight: theme('fontWeight.600');
+  line-height: theme('lineHeight.1.25');
+  letter-spacing: theme('letterSpacing.0.02em');
+}
+```
+
+### 響應式斷點
+
+字體響應式系統使用以下斷點：
+- `md`: 最大寬度 576px (手機)
+- `tl`: 最大寬度 992px (平板)
+- `lg`: 最大寬度 1024px (小桌面)
+- `xl`: 最大寬度 1200px (大桌面)
+
+### 最佳實踐
+
+1. **優先使用響應式字體大小**：使用 `xlmix`、`2xlmix`、`3xlmix` 來確保在不同裝置上的可讀性
+2. **保持字體層次**：使用不同的字體大小來建立清楚的視覺層次
+3. **考慮行高**：較大的字體使用較小的行高，較小的字體使用較大的行高
+4. **語言適配**：確保在不同語言環境下字體都能正確顯示
+
+## Colors 
+
+Inkmagine GUI 提供了完整的顏色系統，包含主色調、輔助色調和語意化顏色，支援多種色階變化。
+
+### 主色調 (Primary)
+
+主色調採用藍紫色系，提供 9 個色階：
+
+```css
+.tw-text-primary-50    /* #E6ECFE - 最淺藍紫 */
+.tw-text-primary-100   /* #D5DFFE - 淺藍紫 */
+.tw-text-primary-200   /* #B9CCFE - 較淺藍紫 */
+.tw-text-primary-300   /* #8FAFFF - 中淺藍紫 */
+.tw-text-primary-400   /* #527DFF - 中藍紫 */
+.tw-text-primary-500   /* #4C3FFF - 主藍紫 */
+.tw-text-primary-600   /* #3A3AF8 - 深藍紫 */
+.tw-text-primary-700   /* #0E33EF - 較深藍紫 */
+.tw-text-primary-800   /* #0F00E2 - 深藍紫 */
+.tw-text-primary-900   /* #001ECC - 最深藍紫 */
+```
+
+**使用範例：**
+```vue
+<template>
+  <button class="tw-bg-primary-500 tw-text-white">主要按鈕</button>
+  <div class="tw-bg-primary-50 tw-text-primary-900">淺色背景</div>
+</template>
+```
+
+### 輔助色調 (Secondary)
+
+輔助色調採用黃色系，提供 9 個色階：
+
+```css
+.tw-text-secondary-50    /* #FFFDE5 - 最淺黃 */
+.tw-text-secondary-100   /* #FFF8BF - 淺黃 */
+.tw-text-secondary-200   /* #FFF394 - 較淺黃 */
+.tw-text-secondary-300   /* #FFEF67 - 中淺黃 */
+.tw-text-secondary-400   /* #FEEA3F - 中黃 */
+.tw-text-secondary-500   /* #FCE400 - 主黃 */
+.tw-text-secondary-600   /* #FFD600 - 深黃 */
+.tw-text-secondary-700   /* #FEBC00 - 較深黃 */
+.tw-text-secondary-800   /* #FEA200 - 深黃 */
+.tw-text-secondary-900   /* #FC7600 - 最深黃 */
+```
+
+**使用範例：**
+```vue
+<template>
+  <div class="tw-bg-secondary-500 tw-text-white">警告提示</div>
+  <span class="tw-text-secondary-700">高亮文字</span>
+</template>
+```
+
+### 灰色系 (Gray)
+
+灰色系提供 9 個色階，用於文字、背景和邊框：
+
+```css
+.tw-text-gray-50     /* #FAFAFC - 最淺灰 */
+.tw-text-gray-100    /* #F3F3F6 - 淺灰 */
+.tw-text-gray-200    /* #EBEBF0 - 較淺灰 */
+.tw-text-gray-300    /* #DDDFE8 - 中淺灰 */
+.tw-text-gray-400    /* #8F90A6 - 中灰 */
+.tw-text-gray-500    /* #7C7D97 - 主灰 */
+.tw-text-gray-600    /* #676A88 - 深灰 */
+.tw-text-gray-700    /* #555770 - 較深灰 */
+.tw-text-gray-800    /* #353650 - 深灰 */
+.tw-text-gray-900    /* #28293D - 最深灰 */
+```
+
+**使用範例：**
+```vue
+<template>
+  <p class="tw-text-gray-900">主要文字</p>
+  <p class="tw-text-gray-600">次要文字</p>
+  <div class="tw-bg-gray-100 tw-border-gray-300">淺色卡片</div>
+</template>
+```
+#### 灰色系以命名的顏色
+`tw-text-gray` /* #555770 - 較深灰 */
+
+### 語意化顏色
+
+#### 成功色 (Success)
+```css
+.tw-text-success-50     /* #E7F7EE - 淺綠背景 */
+.tw-text-success-400    /* #54E4B7 - 成功圖標 */
+.tw-text-success-500    /* #00A65E - 成功文字 */
+```
+
+#### 危險色 (Danger)
+```css
+.tw-text-danger-50      /* #FFECF1 - 淺紅背景 */
+.tw-text-danger-400     /* #F7193E - 危險圖標 */
+.tw-text-danger-500     /* #D8002F - 危險文字 */
+```
+
+#### 警告色 (Warning)
+```css
+.tw-text-warning-50    /* #FFFDE5 - 淺黃背景 */
+.tw-text-warning-400    /* #FFD600 - 警告圖標 */
+.tw-text-warning-500    /* #E7B800 - 警告文字 */
+```
+
+#### 資訊色 (Info)
+```css
+.tw-text-info-50       /* #E6ECFE - 淺藍背景 */
+.tw-text-info-400      /* #527DFF - 資訊圖標 */
+.tw-text-info-500      /* #4C3FFF - 資訊文字 */
+```
+
+#### 紙張色 (Paper)
+```css
+.tw-text-paper-500     /* #F9F4ED - 紙張背景色 */
+```
+
+### 無障礙設計
+
+#### 顏色對比度
+- 確保文字和背景的對比度符合 WCAG 2.1 AA 標準
+- 最小對比度比例：4.5:1 (正常文字)，3:1 (大字體)
+
+#### 色盲友善
+- 不要僅依賴顏色來傳達資訊
+- 結合圖標、文字或形狀來增強可讀性
+
 ## input 類元件使用說明
 
 ### 表單驗證方法
