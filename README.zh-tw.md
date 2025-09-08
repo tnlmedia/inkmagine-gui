@@ -1243,6 +1243,7 @@ Inkmagine GUI 提供了兩種使用 input 元件的方式：透過 InkField 動�
 ```
 
 **2. 自動多項目管理**
+- 顯示欄位標題
 - 自動處理多項目輸入的新增/刪除
 - 自動管理 `valueIndex` 和 `inputTotal`
 - 自動處理表單驗證陣列
