@@ -1028,10 +1028,11 @@ Inkmagine GUI 使用 [vee-validate](https://vee-validate.logaretm.com/v4/) 作�
 ```vue
 const { handleSubmit, setValues, setFieldValue } = useForm();
 // 取得 data 後 (多 input)
-setValues( { key:value })
+setValues( { key:value[] })
 // 或是 (單 input)
-setFieldValue('key', 'value')
+setFieldValue('key', ['value'])
 ```
+- **valu 統一使用 array，讓單欄位可以儲存多筆資料，**
 
 #### 支援的驗證規則
 
