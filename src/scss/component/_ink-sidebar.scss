@@ -188,7 +188,9 @@
                         -webkit-transition: all 0.3s ease;
                         transition: all 0.3s ease;
                     }
-
+                    .link-title{
+                        @apply tw-ml-3;
+                    }
                     &[aria-expanded="true"] {
                         font-weight: bold;
 

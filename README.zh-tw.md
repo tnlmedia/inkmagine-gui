@@ -1026,6 +1026,14 @@ Inkmagine GUI 使用 [vee-validate](https://vee-validate.logaretm.com/v4/) 作�
 - 詳情請見 vee-validate 的 [useForm](https://vee-validate.logaretm.com/v4/api/use-form/)
 
 ```vue
+const { handleSubmit, handleReset, resetForm } = useForm({
+  initialValues:{
+    key:value[]
+  }
+});
+```
+
+```vue
 const { handleSubmit, setValues, setFieldValue } = useForm();
 // 取得 data 後 (多 input)
 setValues( { key:value[] })

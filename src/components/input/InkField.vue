@@ -125,6 +125,13 @@ onMounted(async () => {
   }
 })
 
+// 監聽 fields 變化，當 fields 被重置為空時重新添加初始項目
+watch(() => fields.value.length, (newLength) => {
+  if (newLength === 0) {
+    onPushItem()
+  }
+})
+
 </script>
 
 <template>

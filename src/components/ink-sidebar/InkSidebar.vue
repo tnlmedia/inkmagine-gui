@@ -84,7 +84,7 @@ interface MenuChildrenItemSchema {
 </script>
 <template>
   <nav id="sidebar" class="sidebar tw-z-[1020] tw-overflow-hidden">
-    <div class="sidebar-header justify-content-start">
+    <div class="sidebar-header tw-justify-start">
       <button class="sidebar-toggler tw-flex-shrink-0" @click.prevent.stop="toggleSidebar">
         <i class="fas fa-bars"></i>
       </button>
