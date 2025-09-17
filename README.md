@@ -52,20 +52,21 @@ export default {
 | InkSpinner | [範例程式碼](./ink-example/InkSpinner.md) |
 
 
-| input 類元件名稱 |
+| input 類元件名稱 | 依賴的第三方套件 |
 |---------|
-| InkField |
-| InkText |
-| InkUrl |
-| InkTextarea |
-| InkSelect |
-| InkCheckbox |
-| InkRadio |
-| InkSwitch |
-| InkElConfigProvider |
-| InkDatetime, InkDate |
-| InkDatetimerng, InkDaterng |
-| InkHashtag |
-| InkFieldMessage |
-| InkErrorMessage |
+| InkField | floating-vue |
+| InkText ||
+| InkUrl ||
+| InkTextarea ||
+| InkSelect | vue-select |
+| InkCheckbox ||
+| InkRadio ||
+| InkSwitch ||
+| InkElConfigProvider | element-plus |
+| InkDatetime, InkDate | element-plus |
+| InkDatetimerng, InkDaterng | element-plus |
+| InkHashtag | vue-select |
+| InkFieldMessage ||
+| InkErrorMessage ||
+- input 元件都有依賴 vee-validate
 - 範例請見 cabinet 專案

@@ -89,6 +89,7 @@ textarea{
   .form-label-text{
     @apply tw-pl-6;
     display: inline-flex;
+    flex-direction: column;
   }
 }
 // checkbox

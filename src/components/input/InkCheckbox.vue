@@ -138,7 +138,10 @@ const { value, errorMessage, handleChange } = useField<number[] | string[] | UnK
               v-bind="clearInputBind"
               v-on="inputOn"
               />
-            <span class="form-label-text">{{ option[mergeInputBind.label || 'name'] }}</span>
+            <span class="form-label-text">
+              <span>{{ option[mergeInputBind.label || 'name'] }}</span>
+              <span class="tw-text-xs tw-text-gray" v-if="option.description" v-html="option.description"></span>
+            </span>
             <i :class="['tw-check', { 'tw-border-danger-400': errorMessage }]"></i>
           </label>
         </div>

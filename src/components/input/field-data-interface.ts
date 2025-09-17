@@ -151,6 +151,7 @@ export type CheckBoxInputBind = {
 export type CheckBoxOptions = {
   disabled?: boolean;
   depth?: number;
+  description?: string;
 } & UnKnownOptions;
 
 // radio

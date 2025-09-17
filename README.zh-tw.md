@@ -1686,7 +1686,17 @@ InkCheckbox 提供複選框功能，支援多選和無限滾動。通常透過 I
 - 請見 InkSelect 的 options 物件結構
 - `key` key 與 inputBind.valueKey 相同即可
 - `name` Key 與 inputBind.label 相同即可
+- `description` 可放 description 相關文字，使用 v-html 方式渲染
 
+#### 自定義項目排列樣式
+有提供以下兩個 css variable 做樣式客製化排列
+```css
+.form-checks,
+.form-radios{
+  --checkRadioWidth:auto;
+  --checkRadioFlexDirection:row;
+}
+```
 #### 功能特色
 - 支援多選功能
 - 支援無限滾動載入
