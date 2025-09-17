@@ -59,14 +59,14 @@ export default {
 | InkUrl ||
 | InkTextarea ||
 | InkSelect | vue-select |
-| InkCheckbox ||
-| InkRadio ||
+| InkCheckbox | @vueuse/core |
+| InkRadio | @vueuse/core |
 | InkSwitch ||
 | InkElConfigProvider | element-plus |
-| InkDatetime, InkDate | element-plus |
-| InkDatetimerng, InkDaterng | element-plus |
+| InkDatetime, InkDate | element-plus, dayjs |
+| InkDatetimerng, InkDaterng | element-plus, dayjs |
 | InkHashtag | vue-select |
 | InkFieldMessage ||
 | InkErrorMessage ||
-- input 元件都有依賴 vee-validate
+- input 元件都有依賴 vee-validate, vue-i18n, dayjs
 - 範例請見 cabinet 專案
