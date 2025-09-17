@@ -53,7 +53,7 @@ export default {
 
 
 | input 類元件名稱 | 依賴的第三方套件 |
-|---------|
+|---------|---------|
 | InkField | floating-vue |
 | InkText ||
 | InkUrl ||
