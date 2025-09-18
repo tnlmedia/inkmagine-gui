@@ -196,7 +196,8 @@ const menu = [
 #### 注意事項
 - 選單項目的 `isAllow` 屬性用於控制項目的顯示權限
 - 子選單項目的路由資訊必須包含 `name` 屬性
-- 側邊欄的折疊狀態會保存在 body 的 class 中
+- 側邊欄的折疊狀態會保存在 `<body>` 的 class 中
+- 需在 `<body>` 的 class 加上 `sidebar-dark Double-column`
 - InkSidebarMenu 組件使用 [Vue Router](https://router.vuejs.org/) 作為路由管理工具，請確保您的專案中已安裝此套件
 - 當使用 `tabSwitchItems` 時，需要同時提供 `currentTabSwitchItemId` 屬性
 
