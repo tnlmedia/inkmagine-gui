@@ -21,7 +21,7 @@
   //     @apply tw-block;
   // }
   .menu-item-link{
-    @apply tw-flex tw-flex-row tw-items-center tw-rounded-sm tw-px-2.5 tw-py-1 tw-text-left tw-text-sm tw-text-gray-900 tw-font-normal;
+    @apply tw-flex tw-flex-row tw-items-center tw-rounded-md tw-px-2.5 tw-py-1 tw-text-left tw-text-sm tw-text-gray-900 tw-font-normal;
     @apply hover:tw-bg-primary-50;
     > .icon{
       @apply tw-mr-1;

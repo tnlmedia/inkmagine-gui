@@ -96,7 +96,7 @@ export const inkTailwindConfig = {
         none: 'none',
       },
       fontFamily: {
-        awesome: ['"Font Awesome 6 Pro"'],
+        awesome: ['"Font Awesome 6 Pro","Font Awesome 7 Pro"'],
       },
       fontSize: {
         xs: ['0.75rem', { lineHeight: '1.4', letterSpacing: '0.02em', fontWeight: '400' }], // 12px

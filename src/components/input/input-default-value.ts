@@ -130,7 +130,7 @@ export const useMergeHashtagInputBind = (inputBind: Ref<Record<string, unknown>>
     const clearInputBind: Record<string, unknown> = {}
     Object.keys(mergeInputBind.value).forEach(key => {
       if(key !== 'activeStyle'){
-        clearInputBind[key] = mergeInputBind.value[key as keyof HashtagInputBind];
+        clearInputBind[key] = (mergeInputBind.value as any)[key];
       }
     })
     return clearInputBind;

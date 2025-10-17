@@ -1,0 +1,29 @@
+[class*="icon-space-"]{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-space-s{
+  width:18px;
+  height:18px;
+  font-size:12px;
+  border-radius: 1px;
+}
+.icon-space-m{
+  width:24px;
+  height:24px;
+  font-size:16px;
+  border-radius: 2px;
+}
+.icon-space-l{
+  width:40px;
+  height:40px;
+  font-size:20px;
+  border-radius: 3px;
+}
+.icon-space-xl{
+  width:90px;
+  height:90px;
+  font-size:60px;
+  border-radius: 8.5px;
+}

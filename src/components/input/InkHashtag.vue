@@ -99,7 +99,7 @@ const createOption = (newOption: UnKnownOptions) => {
           <template #option="options">
             <div :class="['option']">
               <span 
-              class="tw-mr-2.5 tw-rounded-sm tw-py-1"
+              class="tw-mr-2.5 tw-py-1"
               >
                 {{ options[clearInputBind?.label as string] }}
               </span>

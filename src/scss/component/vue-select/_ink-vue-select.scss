@@ -88,7 +88,7 @@
         @apply tw-relative tw-px-3 -tw-mx-2.5 tw-pb-2.5 tw-mb-2.5 tw-text-base tw-font-medium tw-text-gray-900 after:tw-absolute after:tw-inset-x-0 after:tw-bottom-0 after:tw-h-[1px] after:tw-bg-gray-300 after:tw-content-[''];
     }
     .option{
-        @apply tw-rounded-sm tw-py-1;
+        @apply tw-rounded-md tw-py-1;
         white-space: normal;
         > * {
             @apply tw-flex tw-px-2;

@@ -43,7 +43,7 @@ export interface MenuChildrenItemSchema {
             <DisclosureButton
             :class="['nav-link tw-w-full before:tw-hidden']"
             >
-              <i :class="['icon far fa-fw', item.icon]"></i>
+              <i :class="['icon far', item.icon, 'icon-space-m']"></i>
               <span class="link-title tw-pt-0">{{ item.name }}</span>
               <i class="link-arrow fal fa-chevron-down !tw-text-inherit"></i>
             </DisclosureButton>
@@ -75,7 +75,7 @@ export interface MenuChildrenItemSchema {
         <!-- 無子選單 -->
         <template v-else>
           <router-link :to="{ ...item.route }" :class="['nav-link before:tw-hidden', { 'router-link-active': currentMenuItemId === item.id }]">
-            <i :class="['icon', 'far', 'fa-fw', item.icon]"></i>
+            <i :class="['icon', 'far', item.icon, 'icon-space-m']"></i>
             <span class="link-title tw-pt-0">{{ item.name }}</span>
           </router-link>
         </template>

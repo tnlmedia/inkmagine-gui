@@ -1,6 +1,7 @@
 import { App } from 'vue'
 import '@/scss/component/_ink-typography.scss'
 import '@/scss/component/_ink-text-color.scss'
+import '@/scss/component/_ink-icon.scss'
 import InkButton from '@/components/InkButton.vue'
 import InkBadge from '@/components/InkBadge.vue'
 import InkSpinner from '@/components/InkSpinner.vue'

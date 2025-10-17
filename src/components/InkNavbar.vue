@@ -89,7 +89,7 @@
                   <img v-if="user.avatar" :src="user.avatar" />
                   <p v-else>{{ user . mail . slice(0, 1) . toLocaleUpperCase() }}</p>
                 </div>
-                <div class="info text-center">
+                <div class="info tw-text-center">
                   <p class="name tw-font-semibold mb-0">{{ user . nickname }}</p>
                   <p class="email tw-text-mute tw-break-all tw-text-xs">{{ user . mail }}</p>
                 </div>
@@ -97,7 +97,7 @@
               <InkMenuItemsWrapper class="tw-pt-3">
                 <InkMenuItem>
                 <a :href="`${getHostname('member')}/profile`">
-                  <i class="fal fa-user fa-fw mr-1"></i>
+                  <i class="fal fa-user fa-fw tw-mr-1"></i>
                   {{ t('navbar.profile') }}
                 </a>
                 </InkMenuItem>

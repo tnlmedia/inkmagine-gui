@@ -189,7 +189,7 @@
                         transition: all 0.3s ease;
                     }
                     .link-title{
-                        @apply tw-ml-3;
+                        @apply tw-ml-2;
                     }
                     &[aria-expanded="true"] {
                         font-weight: bold;

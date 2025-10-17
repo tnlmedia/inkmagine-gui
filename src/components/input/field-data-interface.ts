@@ -123,7 +123,7 @@ export type SelectInputBind = {
   closeFn?: () => void;
   infiniteFn?: () => void;
   reduce?: (option: UnKnownOptions) => SelectReduceReturn;
-};
+} & UnKnownOptions;
 export type SelectOptions = {
   disabled?: boolean;
   depth?: number;
@@ -136,7 +136,7 @@ export type HashtagInputBind = {
   options?: HashtagOptions[];
   label?: string;
   activeStyle?: boolean;
-} 
+} & UnKnownOptions
 type HashtagOptions = UnKnownOptions
 
 // checkbox 
@@ -146,7 +146,7 @@ export type CheckBoxInputBind = {
   valueKey?: string;
   hasNextPage?: boolean;
   infiniteFn?: () => void;
-}
+} & UnKnownOptions
 
 export type CheckBoxOptions = {
   disabled?: boolean;
@@ -161,7 +161,7 @@ export type RadioInputBind = {
   valueKey?: string;
   hasNextPage?: boolean;
   infiniteFn?: () => void;
-}
+} & UnKnownOptions
 
 export type RadioOptions = {
   disabled?: boolean;

@@ -146,7 +146,7 @@ InkSidebar 是一個側邊欄組件，提供網站的主要導航功能，包含
 
 | 事件名稱 | 參數 | 說明 |
 |---------|------|------|
-| `mainItemCheckSwitch` | `(item: SwitchItem, close: () => void)` | 當主要切換項目被點擊時觸發 |
+| `mainItemCheckSwitch` | `(item: SwitchItem, close: () => void)` | 當主要切換項目被點擊時觸發，parameter close 可以將收風琴關閉 |
 | `tabItemCheckSwitch` | `(item: SwitchItem)` | 當標籤切換項目被點擊時觸發 |
 
 #### 選單結構範例
@@ -838,7 +838,7 @@ Inkmagine GUI 使用 Tailwind CSS 的字體大小系統，並提供響應式字�
 
 #### Font Awesome 圖標字體
 ```css
-.tw-font-awesome  /* Font Awesome 6 Pro 字體 */
+.tw-font-awesome  /* Font Awesome 6 Pro, Font Awesome 7 Pro 字體 */
 ```
 
 ### 使用範例
@@ -1036,12 +1036,13 @@ const { handleSubmit, handleReset, resetForm } = useForm({
 
 ```vue
 const { handleSubmit, setValues, setFieldValue } = useForm();
-// 取得 data 後 (多 input)
+// 取得 data 後 (一次 set 多 field)
 setValues( { key:value[] })
-// 或是 (單 input)
+// 或是 (一次 set 單 field)
 setFieldValue('key', ['value'])
 ```
-- **valu 統一使用 array，讓單欄位可以儲存多筆資料，**
+- **key 使用 field.id (field 物件結構)，確保每個欄位都有唯一識別符，便於表單資料的對應和管理**
+- **value 統一使用 array，讓單欄位(field)可以儲存多筆資料**
 
 #### 支援的驗證規則
 
@@ -1616,6 +1617,7 @@ options: [
 ```
 
 #### 功能特色
+- vue-select Props 提供的 `clearable`，若欄位 `required`、`disabled` 為 `true`，`clearable` 預設會是 `false`
 - 支援搜尋功能
 - 支援無限滾動載入
 - 支援階層選項（透過 depth 屬性）

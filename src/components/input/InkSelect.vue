@@ -146,13 +146,17 @@ const elStyle = computed(() => {
           <template #option="options">
             <div :class="['option']">
               <span 
-              class="tw-mr-2.5 tw-rounded-sm tw-py-1"
+              class="tw-mr-2.5 tw-py-1"
               :style="{ 'padding-left': `calc(${options.depth > 0 ? options.depth - 1 : 0}em + 0.5rem)` }"
               >
                 <i v-if="options.depth > 0" class="fal fa-angle-left -tw-rotate-45"></i>
                 {{ options[clearInputBind?.label || 'name'] }}
               </span>
             </div>
+          </template>
+          <!-- 無選項內容 -->
+          <template #no-options>
+            {{ t('noResultsFound') }}
           </template>
           <template v-if="disabled" #open-indicator="{ attributes }">
             <!-- 自定義圖示或完全空白 -->
