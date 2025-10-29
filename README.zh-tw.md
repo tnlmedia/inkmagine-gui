@@ -135,11 +135,11 @@ InkSidebar 是一個側邊欄組件，提供網站的主要導航功能，包含
 | 屬性名稱 | 類型 | 必填 | 說明 |
 |---------|------|------|------|
 | `currentAppName` | string | 是 | 當前應用程式名稱 |
-| `currentMainSwitchItem` | object | 是 | 當前選中的主要切換項目，包含以下屬性：<br>- `id`: 項目 ID<br>- `name`: 項目名稱<br>- `logo`: 項目圖標 URL |
-| `mainSwitchItems` | array | 是 | 主要切換項目列表，每個項目包含與 `currentMainSwitchItem` 相同的屬性 |
+| `currentMainSwitchItem` | object | 否 | 當前選中的主要切換項目，包含以下屬性：<br>- `id`: 項目 ID<br>- `name`: 項目名稱<br>- `logo`: 項目圖標 URL |
+| `mainSwitchItems` | array | 否 | 主要切換項目列表，每個項目包含與 `currentMainSwitchItem` 相同的屬性 |
 | `currentTabSwitchItemId` | string \| number | 否 | 當前選中的 tabSwitchItems 切換項目的 id |
 | `tabSwitchItems` | array | 否 | 標籤切換項目列表，每個項目包含與 `currentMainSwitchItem` 相同的屬性 |
-| `menu` | array | 是 | 選單項目列表，每個項目包含以下屬性：<br>- `id`: 項目 ID<br>- `name`: 項目名稱<br>- `icon`: 圖標類名<br>- `route`: 路由資訊（可選）<br>- `children`: 子選單項目（可選）<br>- `isAllow`: 是否允許訪問（可選） |
+| `menu` | array | 是 | 選單項目列表，每個項目包含以下屬性：<br>- `id`: 項目 ID<br>- `name`: 項目名稱<br>- `icon`: 圖標類名<br>- `route`: 路由資訊（可選）<br>- `children`: 子選單項目（可選）<br>- `isAllow`: 是否允許訪問（可選），false 不顯示該項目 |
 | `currentMenuItemId` | string \| number | 是 | 當前選中的選單項目 ID |
 
 #### 事件說明
@@ -1557,25 +1557,53 @@ InkTextarea 提供多行文字輸入功能，支援字數統計和驗證。通�
 - 請見 InkField 的 field 物件結構
 
 #### inputBind 物件結構（SelectInputBind）
+- 以下皆為非必填項目
+
+##### InkSelect 與 InkHashtag 通用項目
+
+| 屬性名稱 | 類型 | 屬性來自套件 | 預設值 | 說明 |
+| ------- | -- | ----------- | ----- | --- |
+| label | `string` | 是 | `'name'` | 顯示標籤欄位（選項字串用的 key）|
+| activeStyle | `boolean` | 否 | `false` | 是否啟用活躍樣式，通常在 filter 功能時啟用 |
+| autoscroll | `boolean` | 是 | `false` | 請見第三方套件 props 說明 |
+
+
+##### InkSelect 項目
+| 屬性名稱 | 類型 | 屬性來自套件 | 預設值 | 說明 |
+| ------- | -- | ----------- | ----- | --- |
+| options | `SelectOptions[]` `string[]` `number[]` | 是 | `[]` | 選項陣列 |
+| hasNextPage | `boolean` | 否 | `false` | 是否有下一頁（用於無限滾動功能） |
+| optionDivider | `number[]` | 否 | `[]` | 選項分隔線，最多可填入 [0,1,2] |
+| openFn | `() => void` | 否 | `undefined` | 開啟事件函數，在 Vue Select 的 onOpen 觸發 |
+| closeFn | `() => void` | 否 | `undefined` | 關閉事件函數，在 Vue Select 的 onClose 觸發 |
+| infiniteFn | `() => void` | 否 | `undefined` | 無限滾動函數 |
+| reduce | `(option: UnKnownOptions) => SelectReduceReturn` | 是 | `(option) => option.key` | 請見第三方套件 props 說明 |
+| searchable | `boolean` | 是 | `false` | 請見第三方套件 props 說明 |
+| selectable | `(option: UnKnownOptions) => boolean` | 是 | `(option) => !option.disabled` | 選擇條件函數，讀取 option.disabled 的值。請見第三方套件 props 說明 |
+| clearable | `boolean` | 是 | `required ? false : !disabled`| 當該欄位為避填項目，不可清除欄位值。欄位的 `disabled` 為 `true` 時也不可清除欄位值 |
+| filterable | `boolean` | 是 | `false` | 請見第三方套件 props 說明 |
+| inputId |  string | 是 | 使用`field.id` 與 欄位 value 的 index 組合而成，例如：fieldId[0],fieldId[1] | 請見第三方套件 props 說明 |
+
 ```js
 {
-  options: [],              // 選項陣列
-  label: 'name',            // 顯示標籤欄位(選項字串用的 key)
-  hasNextPage: false,       // 是否有下一頁（可選）
-  activeStyle: false,       // 是否啟用活躍樣式（可選），通常在 filter 功能時啟用
-  optionDivider: [],        // 選項分隔線（可選），最多可填入[0,1,2]
-  openFn: () => {},         // 開啟事件函數（可選），在 Vue Select 的 onOpen 觸發
-  closeFn: () => {},        // 關閉事件函數（可選），在 Vue Select 的 onClose
-  infiniteFn: () => {},     // 無限滾動函數（可選）
-  reduce: (item) => item,   // 值轉換函數（可選），return selected 項目的資料範圍，Vue Select 的 props
-  filterable: false,        // 是否可搜尋（可選），Vue Select 的 props
-  autoscroll: false,        // 是否自動滾動（可選），Vue Select 的 props
-  searchable: false,        // 是否可搜尋（可選），Vue Select 的 props
-  selectable: (option) => !option.disabled  // 選擇條件函數（可選），讀取 option.disabled 的 值，Vue Select 的 props
+  options: [],              
+  label: 'name',            
+  hasNextPage: false,       
+  activeStyle: false,       
+  optionDivider: [],        
+  openFn: () => {},         
+  closeFn: () => {},        
+  infiniteFn: () => {},     
+  reduce: (item) => item.key,  
+  filterable: false,        
+  autoscroll: false,        
+  searchable: false,        
+  selectable: (option) => !option.disabled
 }
 ```
 
 #### options 物件結構（SelectOptions）
+##### 物件結構（SelectOptions）
 ```js
 {
   key: 'value',             // 選項值（必填），用於識別選項的唯一值
@@ -1589,8 +1617,11 @@ InkTextarea 提供多行文字輸入功能，支援字數統計和驗證。通�
   [key: string]: unknown    // 其他自定義屬性（可選），可根據需求添加任意屬性
 }
 ```
-- `key` key 的使用需注意 inputBind.reduce
-- `name` Key 與 inputBind.label 相同即可
+- `key` key 可更改，但 inputBind.reduce 需一起修改
+- `name` Key 可更改，但 inputBind.label 需一起修改
+
+##### Array of strings or Array of numbers 結構
+- 如果 `options` value 是 string[] or number[]，需調整 `reduce` 為 `reduce: (option) => option`
 
 **階層結構範例：**
 ```js
@@ -2004,17 +2035,30 @@ InkDatetimerng 提供日期時間範圍選擇功能。通常透過 InkField 元�
 - 請見 InkField 的 field 物件結構
 
 #### inputBind 物件結構（HashtagInputBind）
+- 請查看 InkSelect 的 InkSelect 與 InkHashtag 通用項目
+
+##### InkHashtag 項目
+
+| 屬性名稱 | 類型 | 屬性來自套件 | 預設值 | 說明 |
+| ------- | -- | ----------- | ----- | --- |
+| options | `HashtagOptions[]` | 是 | `[]` | 選項陣列 |
+| clearable | `boolean` | 是 | `tue` | 有利用第三方套件 slots `#selected-option` 修改以選項目的 html 結構，達到是否顯示清除按鈕 |
+| searchable | `boolean` | 是 | `true` | 請見第三方套件 props 說明 |
+| inputId |  string | 是 | 使用 `field.id`，例如：fieldId | 請見第三方套件 props 說明 |
+| taggable | boolean | 是 | 使用 `field.limit`，`!field.limit` | 是否可透過 searchInput 增加沒有的選項，若 `field.limit` 為 `false`，則可增加沒有的選項|
+| filterable | boolean | 是 | 使用 `field.limit`，`field.limit` | 請見第三方套件 props 說明 |
+| multiple | boolean | 是，且不可改 | true | 多選欄位 |
+
+- 該元件是否顯示清除按鈕，是透過 `disabled`，如果 value 為 `true`，則不顯示清除按鈕
+
 ```js
 {
-  options: [],              // 現有標籤選項
-  label: 'name',           // 顯示標籤欄位
-  activeStyle: false,      // 是否啟用活躍樣式（可選）
-  noDrop: false,          // 是否禁用拖拽（可選），Vue Select 的 props
-  loading: false,         // 是否顯示載入狀態（可選），Vue Select 的 props
-  clearable: true,         // 是否可清除（可選），Vue Select 的 props
-  searchable: true,        // 是否可搜尋（可選），Vue Select 的 props
-  filterable: false,       // 是否可篩選（可選），Vue Select 的 props
-  autoscroll: false       // 是否自動滾動（可選），Vue Select 的 props
+  options: [],
+  label: 'name',
+  activeStyle: false,
+  clearable: true,
+  searchable: true,
+  autoscroll: false,
 }
 ```
 

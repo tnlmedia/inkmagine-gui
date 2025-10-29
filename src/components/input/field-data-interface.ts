@@ -114,7 +114,7 @@ export type UnKnownOptions = {
 // select
 export type SelectReduceReturn = string | number | undefined | null;
 export type SelectInputBind = {
-  options?: SelectOptions[];
+  options?: SelectOptions[] | string[] | number[];
   label?: string;
   hasNextPage?: boolean;
   activeStyle?: boolean;
@@ -131,8 +131,8 @@ export type SelectOptions = {
 
 // hashtag
 export type HashtagInputBind = {
-  noDrop: boolean;
-  loading: boolean;
+  // noDrop: boolean;
+  // loading: boolean;
   options?: HashtagOptions[];
   label?: string;
   activeStyle?: boolean;

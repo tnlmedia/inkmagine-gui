@@ -1,19 +1,29 @@
-.tw-spinner-grow {
-  @apply tw-inline-block tw-h-8 tw-w-8 tw-rounded-full tw-opacity-0;
-  animation: spinnerGrow 0.75s linear infinite;
-}
 .tw-spinner-grow-gray{
-  @apply tw-bg-gray-900;
+  @apply tw-border-gray-900;
+}
+.tw-spinner-grow-primary{
+  @apply tw-border-primary-700;
+}
+.tw-spinner-grow {
+  @apply tw-inline-block tw-h-8 tw-w-8 tw-rounded-full tw-border-solid tw-border-3 ;
+  animation: spinnerGrow 0.75s linear infinite;
+  border-left-color: transparent;
 }
 .tw-spinner-md{
   @apply tw-h-5 tw-w-5;
 }
 
+.tw-spinner-lg{
+  width: 47px;
+  height: 47px;
+}
+
+
 @keyframes spinnerGrow {
   0% {
-    transform: scale(0);
+    rotate: 0deg;
   }
-  50% {
-    opacity: 1;
+  100% {
+    rotate: 360deg;
   }
 }

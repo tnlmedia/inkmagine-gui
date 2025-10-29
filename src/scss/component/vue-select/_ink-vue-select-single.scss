@@ -54,7 +54,7 @@
         position: static !important;
         opacity: 1 !important;
         @apply tw-text-sm;
-        overflow: hidden;
+        // overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         width: 100%;

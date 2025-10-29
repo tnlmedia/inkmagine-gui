@@ -81,6 +81,9 @@ export const inkTailwindConfig = {
       minWidth: {
         auto: 'auto',
       },
+      borderWidth: {
+        3: '3px',
+      },
       borderRadius: {
         none: '0px',
         sm: '0.375rem', // 6px

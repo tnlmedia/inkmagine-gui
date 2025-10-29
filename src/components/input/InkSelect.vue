@@ -95,12 +95,23 @@ const rules = computed(() => ({
   required: props.required,
 }));
 
-const { value, errorMessage, setValue } = useField<SelectReduceReturn | UnKnownOptions>(`${mergeField.value.id}[${props.valueIndex}]`, rules);
+const { value, errorMessage, handleChange } = useField<SelectReduceReturn | UnKnownOptions>(`${mergeField.value.id}[${props.valueIndex}]`, rules);
 
-watch(()=>value.value, (newVal, oldVal) => {
-  if(newVal !== oldVal && typeof newVal === 'object' && newVal !== null){
+const displayValue = ref<SelectReduceReturn | UnKnownOptions>();
+watch(value, (newVal, oldVal) => {
+  // for displayValue value type is not object
+  if(newVal !== oldVal && typeof displayValue.value !== 'object' && displayValue.value !== newVal){
+    displayValue.value = newVal;
+  }
+}, { immediate: true });
+watch(displayValue, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    if( typeof newVal === 'object' && newVal !== null ){
       const reduceValue = mergeInputBind.value.reduce?.(newVal);
-      setValue(reduceValue);
+      handleChange(reduceValue);
+    } else {
+      handleChange(newVal);
+    }
   }
 }, { immediate: true });
 
@@ -129,7 +140,7 @@ const elStyle = computed(() => {
   <!-- :dropdownShouldOpen="() => true" -->
            <!-- @option:selected="onSelected" -->
         <v-select
-        v-model="value"
+        v-model="displayValue"
         :disabled="disabled"
         :required="required"
         :placeholder="mergeField.placeholder || t('select')"

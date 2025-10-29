@@ -35,8 +35,8 @@ interface MenuChildrenItemSchema {
 
   interface SidebarProps {
     currentAppName:string,
-    currentMainSwitchItem:SwitchItem,
-    mainSwitchItems:SwitchItem[],
+    currentMainSwitchItem?:SwitchItem,
+    mainSwitchItems?:SwitchItem[],
     currentTabSwitchItemId?:string | number,
     tabSwitchItems?:SwitchItem[],
     menu: MenuItemSchema[],
@@ -125,9 +125,10 @@ interface MenuChildrenItemSchema {
         <div class="nav__header">
           <h3 class="nav__title nav-simple-hide">{{ currentAppName }}</h3>
           <!-- 品牌列表 -->
-          <Disclosure as="div" class="brand-nav-item">
+          <Disclosure v-if="currentMainSwitchItem || mainSwitchItems" as="div" class="brand-nav-item">
             <DisclosureButton
             class="nav-link tw-font-semibold tw-border-0 tw-bg-transparent tw-text-left"
+            v-if="currentMainSwitchItem"
             >
             <figure class="tw-border tw-border-solid tw-border-gray-300">
                 <img v-if="currentMainSwitchItem?.logo" :src="currentMainSwitchItem.logo" :alt="currentMainSwitchItem.name"/>
@@ -135,10 +136,10 @@ interface MenuChildrenItemSchema {
               <span class="brand-nav-item__title link-title tw-break-words">
                 {{  currentMainSwitchItem.name }}
               </span>
-              <i v-if="mainSwitchItems.length > 1" class="fal fa-chevron-down fa-fw link-arrow"></i>
+              <i v-if="mainSwitchItems && mainSwitchItems.length > 1" class="fal fa-chevron-down fa-fw link-arrow"></i>
             </DisclosureButton>
             <DisclosurePanel 
-             v-if="mainSwitchItems.length > 1"
+             v-if="mainSwitchItems && currentMainSwitchItem && mainSwitchItems.length > 1"
              v-slot="{ close }"
             >
               <ul class="nav sub-menu">

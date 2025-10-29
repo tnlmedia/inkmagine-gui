@@ -68,10 +68,8 @@ export const useMergeFieldProps = <T extends Record<string, unknown>>(type: stri
 const defaultAllSelectInputBind = () => {
   return {
     activeStyle: false,
-    optionDivider: [],
     options: [],
     label: 'name',
-    filterable: false,
     autoscroll: false,
   }
 }
@@ -81,6 +79,8 @@ const defaultSelectInputBind = () => {
     ...defaultAllSelectInputBind(),
     hasNextPage: false,
     searchable: false,
+    filterable: false,
+    optionDivider: [],
     reduce: (option: UnKnownOptions) => option.key as SelectReduceReturn,
     selectable: (option: UnKnownOptions) => !option.disabled,
     infiniteFn: undefined as (() => void) | undefined,
@@ -114,7 +114,6 @@ const defaultHashtagInputBind = () => {
     ...defaultAllSelectInputBind(),
     clearable: true,
     searchable: true,
-    label: 'name',
   }
 }
 export const useMergeHashtagInputBind = (inputBind: Ref<Record<string, unknown>>) => {
@@ -122,8 +121,8 @@ export const useMergeHashtagInputBind = (inputBind: Ref<Record<string, unknown>>
     return {
       ...defaultHashtagInputBind(),
       ...inputBind.value,
-      noDrop: inputBind.value.noDrop,
-      loading: inputBind.value.loading,
+      // noDrop: inputBind.value.noDrop,
+      // loading: inputBind.value.loading,
     }
   })
   const clearInputBind = computed(() => {
