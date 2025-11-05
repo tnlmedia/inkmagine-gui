@@ -9,7 +9,7 @@
   }
 
   .tw-btn-base{
-    @apply tw-inline-flex tw-gap-x-2.5 tw-text-center tw-rounded tw-justify-center tw-items-center tw-leading-none tw-transition-colors ;
+    @apply tw-relative tw-inline-flex tw-gap-x-2.5 tw-text-center tw-rounded tw-justify-center tw-items-center tw-leading-none tw-transition-colors ;
     @apply hover:tw-bg-gray-200 ;
     @apply focus:tw-outline focus:tw-outline-[3px] focus:tw-outline-gray-200 focus:tw-bg-gray-100 ;
     *,

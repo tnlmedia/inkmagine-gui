@@ -34,7 +34,7 @@ const classList = computed(() => {
       break;
   }
   if (props.loading) {
-    props.variant === 'base' ? '' : list.push(`tw-btn-outline-gray`)
+    props.variant === 'base' ? '' : list.push(`tw-btn-outline-gray !tw-text-transparent`)
   } else {
     props.theme ? list.push(`tw-btn-${props.theme}`) : list.push(`tw-btn-transparent`) 
   }
@@ -51,7 +51,7 @@ const classList = computed(() => {
     :disabled="disabled"
     :class="classList"
     >
-      <InkSpinner size="md" v-if="loading" />
-      <slot v-else>Button</slot>
+      <InkSpinner size="md" theme="gray" class="tw-absolute tw-left-0 tw-top-0 tw-right-0 tw-bottom-0 tw-m-auto" v-if="loading" />
+      <slot>Button</slot>
     </component>
 </template>

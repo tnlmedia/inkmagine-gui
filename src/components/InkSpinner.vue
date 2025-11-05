@@ -5,10 +5,10 @@ import { useRestAttrs } from '@/helper/useAttrs'
 
 interface InkSpinnerProps {
   size?: 'md'
-  theme?: 'gray'
+  theme?: 'primary' | 'gray'
 }
 const props = withDefaults(defineProps<InkSpinnerProps>(), {
-  theme: 'gray'
+  theme: 'primary'
 })
 const restAttrs = useRestAttrs()
 const classList = computed(() => {
