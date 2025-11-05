@@ -27,12 +27,12 @@
     .vs__selected-options {
         flex-basis: auto;
         flex-wrap: nowrap;
-        padding: 8px 9px;
+        padding: 6px 9px;
         position: static;
         align-items: center;
         width: calc(100% - 34px);
         > * {
-            height: 18px;
+            height: 20px;
         }
     }
     .vs__actions {
@@ -54,7 +54,7 @@
         position: static !important;
         opacity: 1 !important;
         @apply tw-text-sm;
-        // overflow: hidden;
+        overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         width: 100%;
