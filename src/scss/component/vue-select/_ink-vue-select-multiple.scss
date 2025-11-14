@@ -25,19 +25,19 @@
     }
     .vs__dropdown-toggle {
         @apply tw-pb-0;
-        align-items: flex-start;
+        position: relative;
     }
     .vs__selected-options {
         padding: 4px 9px;
-        padding-right: 0;
         // 自訂項目
         @apply tw-items-center tw-gap-1;
         min-height: 34px;
     }
     .vs__actions {
-        min-width: calc(25px + 9px);
         padding: 4px 9px;
-        padding-left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
     }
     // .vs__search,
     // .vs__search:focus {
