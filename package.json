@@ -30,7 +30,8 @@
     "prod": "vite build",
     "sandbox": "vite build",
     "stage": "vite build",
-    "watch": "vue-tsc -b && vite build --watch --mode development"
+    "watch": "vue-tsc -b && vite build --watch --mode development",
+    "prepare": "vite build"
   },
   "peerDependencies": {
     "@headlessui/vue": "^1.6.2",
