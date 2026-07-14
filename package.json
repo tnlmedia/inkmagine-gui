@@ -52,9 +52,6 @@
     "url": "git+https://github.com/tnlmedia/inkmagine-gui.git"
   },
   "license": "Apache-2.0",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "devDependencies": {
     "@headlessui/vue": "^1.7.23",
     "@types/js-cookie": "^3.0.6",
