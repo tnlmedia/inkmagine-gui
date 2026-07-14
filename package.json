@@ -30,7 +30,8 @@
     "prod": "vite build",
     "sandbox": "vite build",
     "stage": "vite build",
-    "watch": "vue-tsc -b && vite build --watch --mode development"
+    "watch": "vue-tsc -b && vite build --watch --mode development",
+    "prepare": "vite build"
   },
   "peerDependencies": {
     "@headlessui/vue": "^1.6.2",
@@ -51,9 +52,6 @@
     "url": "git+https://github.com/tnlmedia/inkmagine-gui.git"
   },
   "license": "Apache-2.0",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "devDependencies": {
     "@headlessui/vue": "^1.7.23",
     "@types/js-cookie": "^3.0.6",
